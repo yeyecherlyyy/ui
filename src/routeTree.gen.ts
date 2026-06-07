@@ -14,7 +14,6 @@ import { Route as ScansRouteImport } from './routes/scans'
 import { Route as ReportsRouteImport } from './routes/reports'
 import { Route as MonitorRouteImport } from './routes/monitor'
 import { Route as IntegrationsRouteImport } from './routes/integrations'
-import { Route as ImportSpecRouteImport } from './routes/import-spec'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ReportIdRouteImport } from './routes/report.$id'
 import { Route as ModuleSlugRouteImport } from './routes/module.$slug'
@@ -45,11 +44,6 @@ const MonitorRoute = MonitorRouteImport.update({
 const IntegrationsRoute = IntegrationsRouteImport.update({
   id: '/integrations',
   path: '/integrations',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ImportSpecRoute = ImportSpecRouteImport.update({
-  id: '/import-spec',
-  path: '/import-spec',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -85,7 +79,6 @@ const AiDocsGenRoute = AiDocsGenRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/import-spec': typeof ImportSpecRoute
   '/integrations': typeof IntegrationsRoute
   '/monitor': typeof MonitorRoute
   '/reports': typeof ReportsRoute
@@ -99,7 +92,6 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/import-spec': typeof ImportSpecRoute
   '/integrations': typeof IntegrationsRoute
   '/monitor': typeof MonitorRoute
   '/reports': typeof ReportsRoute
@@ -114,7 +106,6 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/import-spec': typeof ImportSpecRoute
   '/integrations': typeof IntegrationsRoute
   '/monitor': typeof MonitorRoute
   '/reports': typeof ReportsRoute
@@ -130,7 +121,6 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/import-spec'
     | '/integrations'
     | '/monitor'
     | '/reports'
@@ -144,7 +134,6 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/import-spec'
     | '/integrations'
     | '/monitor'
     | '/reports'
@@ -158,7 +147,6 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
-    | '/import-spec'
     | '/integrations'
     | '/monitor'
     | '/reports'
@@ -173,7 +161,6 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ImportSpecRoute: typeof ImportSpecRoute
   IntegrationsRoute: typeof IntegrationsRoute
   MonitorRoute: typeof MonitorRoute
   ReportsRoute: typeof ReportsRoute
@@ -223,13 +210,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IntegrationsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/import-spec': {
-      id: '/import-spec'
-      path: '/import-spec'
-      fullPath: '/import-spec'
-      preLoaderRoute: typeof ImportSpecRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -277,7 +257,6 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ImportSpecRoute: ImportSpecRoute,
   IntegrationsRoute: IntegrationsRoute,
   MonitorRoute: MonitorRoute,
   ReportsRoute: ReportsRoute,
