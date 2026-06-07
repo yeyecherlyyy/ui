@@ -118,7 +118,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&family=Instrument+Serif:ital@1&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700;800&display=swap",
       },
     ],
   }),
@@ -138,8 +138,8 @@ function GlassShell({ children }: { children: ReactNode }) {
         {/* ambient glass background layer */}
         <div className="fixed inset-0 -z-10 bg-background" />
         <div className="fixed inset-0 -z-10">
-          <div className="absolute top-[-20%] left-[-10%] h-[60vh] w-[60vw] rounded-full bg-acid/10 blur-[120px]" />
-          <div className="absolute bottom-[-20%] right-[-10%] h-[60vh] w-[60vw] rounded-full bg-signal/10 blur-[120px]" />
+          <div className="absolute top-[-20%] left-[-10%] h-[60vh] w-[60vw] rounded-full bg-acid/5 blur-[120px]" />
+          <div className="absolute bottom-[-20%] right-[-10%] h-[60vh] w-[60vw] rounded-full bg-signal/5 blur-[120px]" />
           <div className="absolute top-[40%] left-[30%] h-[40vh] w-[40vw] rounded-full bg-warn/5 blur-[100px]" />
         </div>
         {children}

@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Link } from "@tanstack/react-router";
 import { CubeHero } from "@/components/site/CubeHero";
 import { TiltCard } from "@/components/site/TiltCard";
@@ -108,8 +108,9 @@ function Index() {
 
   return (
     <div ref={containerRef} className="relative bg-transparent text-foreground">
+      <SideNav />
       {/* HERO */}
-      <section className="relative min-h-[120vh] grid-bg overflow-hidden pt-24">
+      <section id="hero" className="relative min-h-[120vh] grid-bg overflow-hidden pt-24">
         <div className="absolute inset-0 scan-lines opacity-30 pointer-events-none" />
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-acid to-transparent" />
 
@@ -193,7 +194,7 @@ function Index() {
       </section>
 
       {/* CORE FEATURES BENTO */}
-      <section className="relative px-6 py-32 max-w-[1400px] mx-auto">
+      <section id="modules" className="relative px-6 py-32 max-w-[1400px] mx-auto">
         <SectionHead n="01" label="core.modules" title="Six instruments. One console." />
         <div className="grid md:grid-cols-3 gap-4 mt-12" style={{ perspective: 1500 }}>
           {CORE.map((f) => (
@@ -409,6 +410,58 @@ function Index() {
           <span>© 2026</span>
         </div>
       </footer>
+    </div>
+  );
+}
+
+function SideNav() {
+  const [active, setActive] = useState("hero");
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActive(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    const sections = ["hero", "scan", "modules", "ai", "load", "changes"];
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const links = [
+    { id: "hero", label: "00" },
+    { id: "scan", label: "01" },
+    { id: "modules", label: "02" },
+    { id: "ai", label: "03" },
+    { id: "load", label: "04" },
+    { id: "changes", label: "05" },
+  ];
+
+  return (
+    <div className="fixed left-6 top-1/2 -translate-y-1/2 z-50 hidden xl:flex flex-col gap-4">
+      {links.map((l) => (
+        <a 
+          key={l.id} 
+          href={`#${l.id}`} 
+          className="group flex items-center justify-start gap-3"
+          aria-label={l.id}
+        >
+          <div className={`w-0.5 transition-all duration-300 ${active === l.id ? "h-8 bg-acid" : "h-3 bg-bone/20 group-hover:bg-bone/60"}`} />
+          <span className={`font-mono text-[9px] uppercase tracking-widest transition-opacity duration-300 ${active === l.id ? "opacity-100 text-acid" : "opacity-0 group-hover:opacity-50 text-bone"}`}>
+            {l.id}
+          </span>
+        </a>
+      ))}
     </div>
   );
 }
