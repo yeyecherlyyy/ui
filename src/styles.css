@@ -1,0 +1,160 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-acid: var(--acid);
+  --color-bone: var(--bone);
+  --color-ink: var(--ink);
+  --color-signal: var(--signal);
+  --color-warn: var(--warn);
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.25rem;
+  /* Brutalist cyber palette */
+  --ink: oklch(0.13 0.01 90); /* near-black warm */
+  --bone: oklch(0.96 0.02 90); /* warm off-white */
+  --acid: oklch(0.88 0.24 130); /* electric lime */
+  --signal: oklch(0.66 0.28 350); /* hot magenta */
+  --warn: oklch(0.82 0.18 65); /* amber */
+
+  --background: var(--ink);
+  --foreground: var(--bone);
+  --card: oklch(0.18 0.01 90);
+  --card-foreground: var(--bone);
+  --popover: oklch(0.18 0.01 90);
+  --popover-foreground: var(--bone);
+  --primary: var(--acid);
+  --primary-foreground: var(--ink);
+  --secondary: oklch(0.22 0.01 90);
+  --secondary-foreground: var(--bone);
+  --muted: oklch(0.22 0.01 90);
+  --muted-foreground: oklch(0.62 0.02 90);
+  --accent: var(--signal);
+  --accent-foreground: var(--bone);
+  --destructive: oklch(0.62 0.25 25);
+  --destructive-foreground: var(--bone);
+  --border: oklch(0.28 0.01 90);
+  --input: oklch(0.28 0.01 90);
+  --ring: var(--acid);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    background-color: var(--color-background);
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-display);
+    font-feature-settings: "ss01", "cv11";
+    overflow-x: hidden;
+  }
+  ::selection {
+    background: var(--acid);
+    color: var(--ink);
+  }
+}
+
+@utility grid-bg {
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in oklab, var(--bone) 6%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--bone) 6%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 56px 56px;
+}
+
+@utility noise {
+  position: relative;
+}
+@utility noise-after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+@utility text-stroke {
+  -webkit-text-stroke: 1px var(--bone);
+  color: transparent;
+}
+
+@utility marquee-track {
+  animation: marquee 40s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@utility cursor-blink {
+  animation: blink 1s steps(2) infinite;
+}
+
+@utility scan-lines {
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0,
+    transparent 3px,
+    color-mix(in oklab, var(--bone) 4%, transparent) 3px,
+    color-mix(in oklab, var(--bone) 4%, transparent) 4px
+  );
+}
