@@ -141,8 +141,8 @@ function Index() {
           style={{ y: titleY, opacity: titleOpacity }}
           className="relative z-10 px-6 pt-16 max-w-[1400px] mx-auto"
         >
-          <div className="font-mono text-xs text-bone/50 mb-8 flex items-center gap-4">
-            <span className="border border-bone/30 px-2 py-1">
+          <div className="font-mono text-xs text-bone/70 mb-8 flex items-center gap-4">
+            <span className="border border-bone/40 px-2 py-1">
               [ SYS.BOOT ]
             </span>
             <span>
@@ -160,7 +160,7 @@ function Index() {
                 liability.
               </span>
             </span>
-            <span className="block text-bone/30">we fix that.</span>
+            <span className="block text-bone/50">we fix that.</span>
           </h1>
 
           <div className="mt-12 grid md:grid-cols-[1.4fr_1fr] gap-12 items-end">
@@ -252,13 +252,13 @@ function Index() {
               <Link
                 to="/module/$slug"
                 params={{ slug: f.slug }}
-                className="relative block border border-border bg-card/40 backdrop-blur-xl p-8 h-[280px] overflow-hidden hover:border-acid transition-colors"
+                className="relative block border border-border bg-card/40 backdrop-blur-xl p-8 h-[280px] overflow-hidden hover:border-acid transition-colors shadow-sm"
               >
-                <div className="absolute top-0 right-0 text-[8rem] leading-none text-bone/[0.04] font-display font-bold">
+                <div className="absolute top-0 right-0 text-[8rem] leading-none text-bone/10 font-display font-bold">
                   {f.code}
                 </div>
                 <div className="relative flex flex-col justify-between h-full">
-                  <div className="flex items-center justify-between font-mono text-xs text-bone/40">
+                  <div className="flex items-center justify-between font-mono text-xs text-bone/60">
                     <span>MOD.{f.code}</span>
                     <span className="text-acid text-xl">{f.glyph}</span>
                   </div>
