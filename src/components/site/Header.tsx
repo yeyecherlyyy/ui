@@ -24,9 +24,7 @@ export function Header() {
           <Link to="/integrations" className="hover:text-acid">
             integrations
           </Link>
-          <Link to="/import-spec" className="hover:text-acid">
-            import spec
-          </Link>
+
           <Link to="/scans" className="hover:text-acid">
             scans
           </Link>

@@ -45,7 +45,36 @@ export interface AppState {
 export const useAppStore = create<AppState>()(
   persist(
     (set, get) => ({
-      scans: {},
+      scans: {
+        "s-9281": {
+          id: "s-9281",
+          status: "completed",
+          spec: "{}",
+          createdAt: new Date(Date.now() - 1000 * 60 * 5).toISOString(),
+          findings: [
+            { severity: "critical", description: "BOLA vulnerability in /api/v1/users/{id}/profile" },
+            { severity: "high", description: "JWT signature validation bypass possible on POST /auth" },
+            { severity: "medium", description: "Rate limit not strictly enforced on /search endpoint" },
+          ],
+        },
+        "s-9280": {
+          id: "s-9280",
+          status: "completed",
+          spec: "{}",
+          createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24).toISOString(),
+          findings: [
+            { severity: "medium", description: "Information exposure via overly verbose error responses" },
+            { severity: "low", description: "Missing Content-Security-Policy header" },
+          ],
+        },
+        "s-9279": {
+          id: "s-9279",
+          status: "failed",
+          spec: "{}",
+          createdAt: new Date(Date.now() - 1000 * 60 * 60 * 48).toISOString(),
+          findings: [],
+        },
+      },
       settings: {
         openAIApiKey: "",
         scanServiceUrl: "https://scan-service.example.com",
