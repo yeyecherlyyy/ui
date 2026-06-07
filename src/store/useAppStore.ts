@@ -21,13 +21,25 @@ export interface Settings {
   authToken?: string;
 }
 
+export type ModalKind =
+  | null
+  | "deploy"
+  | "scan"
+  | "demo"
+  | "github"
+  | "jenkins"
+  | "postman"
+  | "swagger";
+
 export interface AppState {
   scans: Record<string, Scan>;
   settings: Settings;
+  modal: ModalKind;
   // actions
   addScan: (scan: Scan) => void;
   updateScan: (id: string, partial: Partial<Scan>) => void;
   setSettings: (s: Settings) => void;
+  setModal: (m: ModalKind) => void;
 }
 
 export const useAppStore = create<AppState>()(
@@ -39,12 +51,14 @@ export const useAppStore = create<AppState>()(
         scanServiceUrl: "https://scan-service.example.com",
         authToken: undefined,
       },
+      modal: null,
       addScan: (scan) => set((state) => ({ scans: { ...state.scans, [scan.id]: scan } })),
       updateScan: (id, partial) =>
         set((state) => ({
           scans: { ...state.scans, [id]: { ...state.scans[id], ...partial } },
         })),
       setSettings: (s) => set(() => ({ settings: s })),
+      setModal: (m) => set(() => ({ modal: m })),
     }),
     {
       name: "apiguard-storage", // key in localStorage

@@ -11,6 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as ScansRouteImport } from './routes/scans'
+import { Route as ReportsRouteImport } from './routes/reports'
+import { Route as MonitorRouteImport } from './routes/monitor'
+import { Route as IntegrationsRouteImport } from './routes/integrations'
 import { Route as ImportSpecRouteImport } from './routes/import-spec'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ReportIdRouteImport } from './routes/report.$id'
@@ -27,6 +30,21 @@ const SettingsRoute = SettingsRouteImport.update({
 const ScansRoute = ScansRouteImport.update({
   id: '/scans',
   path: '/scans',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReportsRoute = ReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MonitorRoute = MonitorRouteImport.update({
+  id: '/monitor',
+  path: '/monitor',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IntegrationsRoute = IntegrationsRouteImport.update({
+  id: '/integrations',
+  path: '/integrations',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ImportSpecRoute = ImportSpecRouteImport.update({
@@ -68,6 +86,9 @@ const AiDocsGenRoute = AiDocsGenRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/import-spec': typeof ImportSpecRoute
+  '/integrations': typeof IntegrationsRoute
+  '/monitor': typeof MonitorRoute
+  '/reports': typeof ReportsRoute
   '/scans': typeof ScansRoute
   '/settings': typeof SettingsRoute
   '/ai/docs-gen': typeof AiDocsGenRoute
@@ -79,6 +100,9 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/import-spec': typeof ImportSpecRoute
+  '/integrations': typeof IntegrationsRoute
+  '/monitor': typeof MonitorRoute
+  '/reports': typeof ReportsRoute
   '/scans': typeof ScansRoute
   '/settings': typeof SettingsRoute
   '/ai/docs-gen': typeof AiDocsGenRoute
@@ -91,6 +115,9 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/import-spec': typeof ImportSpecRoute
+  '/integrations': typeof IntegrationsRoute
+  '/monitor': typeof MonitorRoute
+  '/reports': typeof ReportsRoute
   '/scans': typeof ScansRoute
   '/settings': typeof SettingsRoute
   '/ai/docs-gen': typeof AiDocsGenRoute
@@ -104,6 +131,9 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/import-spec'
+    | '/integrations'
+    | '/monitor'
+    | '/reports'
     | '/scans'
     | '/settings'
     | '/ai/docs-gen'
@@ -115,6 +145,9 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/import-spec'
+    | '/integrations'
+    | '/monitor'
+    | '/reports'
     | '/scans'
     | '/settings'
     | '/ai/docs-gen'
@@ -126,6 +159,9 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/import-spec'
+    | '/integrations'
+    | '/monitor'
+    | '/reports'
     | '/scans'
     | '/settings'
     | '/ai/docs-gen'
@@ -138,6 +174,9 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ImportSpecRoute: typeof ImportSpecRoute
+  IntegrationsRoute: typeof IntegrationsRoute
+  MonitorRoute: typeof MonitorRoute
+  ReportsRoute: typeof ReportsRoute
   ScansRoute: typeof ScansRoute
   SettingsRoute: typeof SettingsRoute
   AiDocsGenRoute: typeof AiDocsGenRoute
@@ -161,6 +200,27 @@ declare module '@tanstack/react-router' {
       path: '/scans'
       fullPath: '/scans'
       preLoaderRoute: typeof ScansRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reports': {
+      id: '/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof ReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/monitor': {
+      id: '/monitor'
+      path: '/monitor'
+      fullPath: '/monitor'
+      preLoaderRoute: typeof MonitorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/integrations': {
+      id: '/integrations'
+      path: '/integrations'
+      fullPath: '/integrations'
+      preLoaderRoute: typeof IntegrationsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/import-spec': {
@@ -218,6 +278,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ImportSpecRoute: ImportSpecRoute,
+  IntegrationsRoute: IntegrationsRoute,
+  MonitorRoute: MonitorRoute,
+  ReportsRoute: ReportsRoute,
   ScansRoute: ScansRoute,
   SettingsRoute: SettingsRoute,
   AiDocsGenRoute: AiDocsGenRoute,

@@ -96,68 +96,18 @@ const CHANGES = [
   { kind: "BREAK", path: "GET /search?q now required", t: "3h ago", tone: "var(--signal)" },
 ];
 
+import { useAppStore } from "@/store/useAppStore";
+
 function Index() {
   useLenis();
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll();
   const titleY = useTransform(scrollYProgress, [0, 0.2], [0, -200]);
   const titleOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
-  const [modal, setModal] = useState<
-    null | "deploy" | "scan" | "demo" | "github" | "jenkins" | "postman" | "swagger"
-  >(null);
+  const { setModal } = useAppStore();
 
   return (
     <div ref={containerRef} className="relative bg-transparent text-foreground">
-      {/* TOP RAIL */}
-      <header className="fixed top-0 inset-x-0 z-50 border-b border-border/60 bg-background/70 backdrop-blur-xl">
-        <div className="flex items-center justify-between px-6 py-3 font-mono text-xs tracking-widest uppercase">
-          <div className="flex items-center gap-3">
-            <span className="size-2 bg-acid animate-pulse rounded-full" />
-            <span className="text-bone">
-              APIGUARD/<span className="text-acid">api.os</span>
-            </span>
-            <span className="text-bone/40 hidden md:inline">
-              // v4.2 · 47ms · all systems nominal
-            </span>
-          </div>
-          <nav className="hidden md:flex items-center gap-6 text-bone/70">
-            <a href="#scan" className="hover:text-acid">
-              scan
-            </a>
-            <a href="#ai" className="hover:text-acid">
-              intelligence
-            </a>
-            <a href="#monitor" className="hover:text-acid">
-              monitor
-            </a>
-            <a href="#load" className="hover:text-acid">
-              load
-            </a>
-            <a href="#changes" className="hover:text-acid">
-              radar
-            </a>
-            <Link to="/import-spec" className="hover:text-acid">
-              import spec
-            </Link>
-            <Link to="/scans" className="hover:text-acid">
-              scans
-            </Link>
-            <Link to="/report/$id" params={{ id: "1" }} className="hover:text-acid">
-              report
-            </Link>
-            <Link to="/settings" className="hover:text-acid">
-              settings
-            </Link>
-          </nav>
-          <button
-            onClick={() => setModal("deploy")}
-            className="border border-acid text-acid px-3 py-1 hover:bg-acid hover:text-ink transition"
-          >
-            deploy_agent →
-          </button>
-        </div>
-      </header>
-
       {/* HERO */}
       <section className="relative min-h-[120vh] grid-bg overflow-hidden pt-24">
         <div className="absolute inset-0 scan-lines opacity-30 pointer-events-none" />
@@ -459,8 +409,6 @@ function Index() {
           <span>© 2026</span>
         </div>
       </footer>
-
-      <ActionModal kind={modal} onClose={() => setModal(null)} />
     </div>
   );
 }
