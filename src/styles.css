@@ -33,7 +33,7 @@
   --color-ink: var(--ink);
   --color-signal: var(--signal);
   --color-warn: var(--warn);
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-mono: "Inter", system-ui, sans-serif;
   --font-display: "Inter", system-ui, sans-serif;
 }
 
@@ -48,22 +48,22 @@
 
   --background: var(--ink);
   --foreground: var(--bone);
-  --card: oklch(0.18 0.01 90);
+  --card: oklch(1 0 0); /* Pure white cards */
   --card-foreground: var(--bone);
-  --popover: oklch(0.18 0.01 90);
+  --popover: oklch(1 0 0);
   --popover-foreground: var(--bone);
   --primary: var(--acid);
-  --primary-foreground: var(--ink);
-  --secondary: oklch(0.22 0.01 90);
+  --primary-foreground: oklch(1 0 0); /* White text on blue buttons */
+  --secondary: oklch(0.96 0 0); /* #f5f5f5 */
   --secondary-foreground: var(--bone);
-  --muted: oklch(0.22 0.01 90);
-  --muted-foreground: oklch(0.62 0.02 90);
+  --muted: oklch(0.96 0 0);
+  --muted-foreground: oklch(0.5 0 0); /* #50576b */
   --accent: var(--signal);
-  --accent-foreground: var(--bone);
+  --accent-foreground: oklch(1 0 0);
   --destructive: oklch(0.62 0.25 25);
-  --destructive-foreground: var(--bone);
-  --border: oklch(0.28 0.01 90);
-  --input: oklch(0.28 0.01 90);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.9 0 0); /* #e5e7eb */
+  --input: oklch(0.9 0 0);
   --ring: var(--acid);
 }
 
