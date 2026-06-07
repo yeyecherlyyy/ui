@@ -52,9 +52,20 @@ export const useAppStore = create<AppState>()(
           spec: "{}",
           createdAt: new Date(Date.now() - 1000 * 60 * 5).toISOString(),
           findings: [
-            { severity: "critical", description: "BOLA vulnerability in /api/v1/users/{id}/profile" },
-            { severity: "high", description: "JWT signature validation bypass possible on POST /auth" },
-            { severity: "medium", description: "Rate limit not strictly enforced on /search endpoint" },
+            {
+              severity: "critical",
+              description: "BOLA vulnerability in /api/v1/users/{id}/profile",
+            },
+            {
+              severity: "high",
+              description:
+                "JWT signature validation bypass possible on POST /auth",
+            },
+            {
+              severity: "medium",
+              description:
+                "Rate limit not strictly enforced on /search endpoint",
+            },
           ],
         },
         "s-9280": {
@@ -63,8 +74,15 @@ export const useAppStore = create<AppState>()(
           spec: "{}",
           createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24).toISOString(),
           findings: [
-            { severity: "medium", description: "Information exposure via overly verbose error responses" },
-            { severity: "low", description: "Missing Content-Security-Policy header" },
+            {
+              severity: "medium",
+              description:
+                "Information exposure via overly verbose error responses",
+            },
+            {
+              severity: "low",
+              description: "Missing Content-Security-Policy header",
+            },
           ],
         },
         "s-9279": {
@@ -81,7 +99,8 @@ export const useAppStore = create<AppState>()(
         authToken: undefined,
       },
       modal: null,
-      addScan: (scan) => set((state) => ({ scans: { ...state.scans, [scan.id]: scan } })),
+      addScan: (scan) =>
+        set((state) => ({ scans: { ...state.scans, [scan.id]: scan } })),
       updateScan: (id, partial) =>
         set((state) => ({
           scans: { ...state.scans, [id]: { ...state.scans[id], ...partial } },

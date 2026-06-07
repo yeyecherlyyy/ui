@@ -17,7 +17,11 @@ function Integrations() {
 
   const integrationDetails: Record<
     Tab,
-    { desc: string; features: string[]; status: "connected" | "disconnected" | "polling" }
+    {
+      desc: string;
+      features: string[];
+      status: "connected" | "disconnected" | "polling";
+    }
   > = {
     GitHub: {
       desc: "Auto-pull OpenAPI specs from PRs. Wire GitHub Actions for CI security gates. Annotate commits with scan results.",
@@ -51,7 +55,11 @@ function Integrations() {
     },
     Swagger: {
       desc: "Ingest Swagger 2.0 specs. Auto-detect drift between documented and deployed contracts.",
-      features: ["Format translation", "Drift detection", "Auto-mock generation"],
+      features: [
+        "Format translation",
+        "Drift detection",
+        "Auto-mock generation",
+      ],
       status: "polling",
     },
     OpenAPI: {
@@ -71,10 +79,12 @@ function Integrations() {
   return (
     <div className="p-6 max-w-6xl mx-auto pt-24 min-h-screen">
       <div className="mb-12">
-        <h1 className="text-4xl font-display uppercase tracking-tight mb-4">Integrations Hub</h1>
+        <h1 className="text-4xl font-display uppercase tracking-tight mb-4">
+          Integrations Hub
+        </h1>
         <p className="font-mono text-sm text-bone/60">
-          Connect your existing stack to APIGUARD.os. Automate your security posture across the
-          SDLC.
+          Connect your existing stack to APIGUARD.os. Automate your security
+          posture across the SDLC.
         </p>
       </div>
 
@@ -125,7 +135,9 @@ function Integrations() {
                   </span>
                 </div>
 
-                <p className="text-bone/80 leading-relaxed mb-10 max-w-2xl">{active.desc}</p>
+                <p className="text-bone/80 leading-relaxed mb-10 max-w-2xl">
+                  {active.desc}
+                </p>
 
                 <div className="mb-12">
                   <div className="font-mono text-xs text-bone/40 uppercase tracking-widest mb-4">
@@ -133,7 +145,10 @@ function Integrations() {
                   </div>
                   <ul className="grid sm:grid-cols-2 gap-4">
                     {active.features.map((feature, i) => (
-                      <li key={i} className="flex items-center gap-3 font-mono text-sm text-bone">
+                      <li
+                        key={i}
+                        className="flex items-center gap-3 font-mono text-sm text-bone"
+                      >
                         <span className="text-acid">▸</span> {feature}
                       </li>
                     ))}
@@ -144,7 +159,7 @@ function Integrations() {
               <div className="flex gap-4 pt-8 border-t border-border/50">
                 <button
                   onClick={() => {
-                    const kindMap: Record<string, any> = {
+                    const kindMap: Record<string, string> = {
                       GitHub: "github",
                       Jenkins: "jenkins",
                       Postman: "postman",

@@ -26,14 +26,21 @@ function Scans() {
     setIsScanning(true);
     try {
       const { id } = await startScan(spec, settings.authToken);
-      const newScan = { id, spec, status: "pending", createdAt: new Date().toISOString() } as const;
+      const newScan = {
+        id,
+        spec,
+        status: "pending",
+        createdAt: new Date().toISOString(),
+      } as const;
       addScan(newScan);
       toast.success(`Sweep initiated [ID: ${id}]`);
-      
+
       pollScanStatus(id, (status, findings) => {
         updateScan(id, { status, findings });
         if (status === "completed") {
-          toast.success(`Sweep ${id} completed. ${findings?.length || 0} anomalies detected.`);
+          toast.success(
+            `Sweep ${id} completed. ${findings?.length || 0} anomalies detected.`,
+          );
           setIsScanning(false);
           setSpec("");
         }
@@ -52,8 +59,12 @@ function Scans() {
   return (
     <div className="p-6 max-w-[1400px] mx-auto pt-24">
       <div className="mb-8">
-        <div className="font-mono text-xs text-acid uppercase tracking-widest mb-3">[ control.plane ]</div>
-        <h1 className="text-4xl md:text-5xl font-display uppercase tracking-tight">Active Surface Sweep</h1>
+        <div className="font-mono text-xs text-acid uppercase tracking-widest mb-3">
+          [ control.plane ]
+        </div>
+        <h1 className="text-4xl md:text-5xl font-display uppercase tracking-tight">
+          Active Surface Sweep
+        </h1>
       </div>
 
       <motion.div
@@ -69,7 +80,9 @@ function Scans() {
             <span className="size-2.5 rounded-full bg-acid/70" />
           </div>
           <span>~/apiguard/scanner_module</span>
-          <span className={isScanning ? "text-signal animate-pulse" : "text-acid"}>
+          <span
+            className={isScanning ? "text-signal animate-pulse" : "text-acid"}
+          >
             {isScanning ? "SCANNING" : "STANDBY"}
           </span>
         </div>
@@ -84,17 +97,25 @@ function Scans() {
               {scanList.slice(0, 6).map((scan) => (
                 <div key={scan.id} className="group">
                   <div className="flex items-center justify-between font-mono text-xs mb-1">
-                    <span className="text-bone/80 group-hover:text-acid transition-colors">#{scan.id}</span>
-                    <span className={
-                      scan.status === "completed" ? "text-acid" :
-                      scan.status === "failed" ? "text-destructive" : "text-signal animate-pulse"
-                    }>
+                    <span className="text-bone/80 group-hover:text-acid transition-colors">
+                      #{scan.id}
+                    </span>
+                    <span
+                      className={
+                        scan.status === "completed"
+                          ? "text-acid"
+                          : scan.status === "failed"
+                            ? "text-destructive"
+                            : "text-signal animate-pulse"
+                      }
+                    >
                       {scan.status}
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="h-0.5 flex-1 bg-border overflow-hidden">
-                      {scan.status === "pending" || scan.status === "running" ? (
+                      {scan.status === "pending" ||
+                      scan.status === "running" ? (
                         <motion.div
                           className="h-full bg-signal"
                           initial={{ width: "0%" }}
@@ -102,7 +123,9 @@ function Scans() {
                           transition={{ duration: 2, repeat: Infinity }}
                         />
                       ) : (
-                        <div className={`h-full w-full ${scan.status === "completed" ? "bg-acid" : "bg-destructive"}`} />
+                        <div
+                          className={`h-full w-full ${scan.status === "completed" ? "bg-acid" : "bg-destructive"}`}
+                        />
                       )}
                     </div>
                   </div>
@@ -112,7 +135,9 @@ function Scans() {
                 </div>
               ))}
               {scanList.length === 0 && (
-                <div className="font-mono text-xs text-bone/40 italic">No history available</div>
+                <div className="font-mono text-xs text-bone/40 italic">
+                  No history available
+                </div>
               )}
             </div>
           </div>
@@ -121,8 +146,12 @@ function Scans() {
           <div className="bg-card/30 backdrop-blur-md p-8 relative flex flex-col">
             <div className="flex justify-between items-end mb-6">
               <div>
-                <div className="font-mono text-[10px] text-bone/40 uppercase tracking-widest mb-2">Target Payload</div>
-                <h2 className="font-display text-2xl uppercase tracking-tight">OpenAPI / Postman Ingestion</h2>
+                <div className="font-mono text-[10px] text-bone/40 uppercase tracking-widest mb-2">
+                  Target Payload
+                </div>
+                <h2 className="font-display text-2xl uppercase tracking-tight">
+                  OpenAPI / Postman Ingestion
+                </h2>
               </div>
               <div className="font-mono text-[10px] text-bone/40 uppercase">
                 Supported: json, yaml
@@ -138,7 +167,7 @@ function Scans() {
                 className="w-full h-full p-6 border border-border bg-background/50 text-bone font-mono text-sm resize-none focus:border-acid focus:outline-none focus:ring-1 focus:ring-acid/20 transition-all disabled:opacity-50"
                 spellCheck={false}
               />
-              
+
               {/* Corner Accents */}
               <div className="absolute top-0 left-0 size-2 border-t border-l border-acid pointer-events-none" />
               <div className="absolute top-0 right-0 size-2 border-t border-r border-acid pointer-events-none" />
@@ -152,9 +181,11 @@ function Scans() {
                 disabled={isScanning || !spec.trim()}
                 className={`
                   relative overflow-hidden px-8 py-4 font-mono text-sm uppercase tracking-widest transition-all
-                  ${isScanning || !spec.trim() 
-                    ? "bg-border text-bone/30 cursor-not-allowed border border-border" 
-                    : "bg-acid text-ink hover:bg-acid/90 hover:shadow-[0_0_20px_rgba(var(--acid-rgb),0.3)]"}
+                  ${
+                    isScanning || !spec.trim()
+                      ? "bg-border text-bone/30 cursor-not-allowed border border-border"
+                      : "bg-acid text-ink hover:bg-acid/90 hover:shadow-[0_0_20px_rgba(var(--acid-rgb),0.3)]"
+                  }
                 `}
               >
                 {isScanning ? (

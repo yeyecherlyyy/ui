@@ -63,7 +63,16 @@ const SECTIONS = [
   },
 ];
 
-const FORMATS = ["html", "markdown", "mdx", "docusaurus", "mintlify", "pdf", "openapi", "redoc"];
+const FORMATS = [
+  "html",
+  "markdown",
+  "mdx",
+  "docusaurus",
+  "mintlify",
+  "pdf",
+  "openapi",
+  "redoc",
+];
 
 const STREAM = [
   {
@@ -76,8 +85,16 @@ const STREAM = [
     line: "▸ inferring auth · oauth2 + bearer · 4 scopes detected",
     tone: "var(--bone)",
   },
-  { t: "00:01.92", line: "✦ narrating overview · 184 lines of prose", tone: "var(--acid)" },
-  { t: "00:04.10", line: "✦ rendering endpoint reference · 9,412 lines", tone: "var(--signal)" },
+  {
+    t: "00:01.92",
+    line: "✦ narrating overview · 184 lines of prose",
+    tone: "var(--acid)",
+  },
+  {
+    t: "00:04.10",
+    line: "✦ rendering endpoint reference · 9,412 lines",
+    tone: "var(--signal)",
+  },
   {
     t: "00:07.55",
     line: "✦ generating examples · 7 languages · 2,087 snippets",
@@ -106,7 +123,10 @@ const PIPELINE = [
 function DocsGenPage() {
   useLenis();
   const heroRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
   const yTitle = useTransform(scrollYProgress, [0, 1], [0, -180]);
   const opTitle = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
   const rotGlyph = useTransform(scrollYProgress, [0, 1], [0, 360]);
@@ -139,7 +159,10 @@ function DocsGenPage() {
       </header>
 
       {/* HERO */}
-      <section ref={heroRef} className="relative min-h-[110vh] grid-bg overflow-hidden pt-28">
+      <section
+        ref={heroRef}
+        className="relative min-h-[110vh] grid-bg overflow-hidden pt-28"
+      >
         <div className="absolute inset-0 scan-lines opacity-30 pointer-events-none" />
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-acid to-transparent" />
 
@@ -165,9 +188,10 @@ function DocsGenPage() {
             <span className="block text-acid">write.</span>
           </h1>
           <p className="mt-10 max-w-2xl text-bone/60 text-lg leading-relaxed">
-            Aim at a base URL or drop an OpenAPI file. Ninety seconds later you have a full
-            documentation site — overview prose, endpoint reference, curl/fetch/python examples,
-            auth diagrams, changelog — all narrated in your tone, all linkable, all printable.
+            Aim at a base URL or drop an OpenAPI file. Ninety seconds later you
+            have a full documentation site — overview prose, endpoint reference,
+            curl/fetch/python examples, auth diagrams, changelog — all narrated
+            in your tone, all linkable, all printable.
           </p>
 
           <div className="mt-12 flex flex-wrap items-center gap-4">
@@ -197,7 +221,9 @@ function DocsGenPage() {
             </div>
             <div className="grid md:grid-cols-[1fr_auto_1fr] gap-0">
               <div className="p-6 font-mono text-xs space-y-3">
-                <div className="text-bone/40">// 1. point at base URL or spec</div>
+                <div className="text-bone/40">
+                  // 1. point at base URL or spec
+                </div>
                 <div className="flex items-center gap-2">
                   <span className="text-acid">▸</span>
                   <input
@@ -206,7 +232,9 @@ function DocsGenPage() {
                     className="bg-transparent border-b border-bone/20 focus:border-acid outline-none flex-1 text-bone py-1"
                   />
                 </div>
-                <div className="text-bone/40 pt-4">// 2. pick output formats</div>
+                <div className="text-bone/40 pt-4">
+                  // 2. pick output formats
+                </div>
                 <div className="flex flex-wrap gap-2">
                   {FORMATS.map((x, i) => (
                     <span
@@ -281,8 +309,9 @@ function DocsGenPage() {
             </h2>
           </div>
           <div className="font-mono text-xs text-bone/40 max-w-sm">
-            Every documentation site is assembled from the same six sections — written in your tone,
-            cross-linked, indexed, and shipped to the format of your choosing.
+            Every documentation site is assembled from the same six sections —
+            written in your tone, cross-linked, indexed, and shipped to the
+            format of your choosing.
           </div>
         </div>
 
@@ -314,10 +343,15 @@ function DocsGenPage() {
                 <h3 className="relative font-display text-3xl uppercase tracking-tight mb-3">
                   {s.title}
                 </h3>
-                <p className="relative text-bone/60 text-sm leading-relaxed mb-6">{s.desc}</p>
+                <p className="relative text-bone/60 text-sm leading-relaxed mb-6">
+                  {s.desc}
+                </p>
                 <div className="relative flex items-baseline justify-between border-t border-border pt-4 font-mono text-xs">
                   <span className="text-bone/40">lines emitted</span>
-                  <span style={{ color: s.tone }} className="text-2xl font-display">
+                  <span
+                    style={{ color: s.tone }}
+                    className="text-2xl font-display"
+                  >
                     {s.lines.toLocaleString()}
                   </span>
                 </div>
@@ -338,9 +372,10 @@ function DocsGenPage() {
               readable. linkable. printable.
             </h3>
             <p className="text-bone/60 leading-relaxed mb-8">
-              The generator doesn't dump a swagger viewer. It writes prose, code, callouts, and
-              diagrams as a real site — searchable, indexable, theme-able. Or as a 300-page PDF if
-              your CTO still mails things.
+              The generator doesn't dump a swagger viewer. It writes prose,
+              code, callouts, and diagrams as a real site — searchable,
+              indexable, theme-able. Or as a 300-page PDF if your CTO still
+              mails things.
             </p>
             <div className="space-y-2 font-mono text-xs">
               {[
@@ -349,7 +384,10 @@ function DocsGenPage() {
                 { k: "docusaurus", v: "drop-in plugin" },
                 { k: "pdf", v: "pdf/a-3 · bookmark tree" },
               ].map((x) => (
-                <div key={x.k} className="flex justify-between border-b border-border/60 py-2">
+                <div
+                  key={x.k}
+                  className="flex justify-between border-b border-border/60 py-2"
+                >
                   <span className="text-bone/50">{x.k}</span>
                   <span className="text-acid">{x.v}</span>
                 </div>
@@ -359,14 +397,16 @@ function DocsGenPage() {
 
           <div className="bg-background/60 font-mono text-xs overflow-hidden">
             <div className="flex border-b border-border">
-              {["POST /v3/checkout.md", "auth.flow.mdx", "changelog.md"].map((f, i) => (
-                <div
-                  key={f}
-                  className={`px-4 py-3 border-r border-border ${i === 0 ? "bg-card text-acid" : "text-bone/40"}`}
-                >
-                  {f}
-                </div>
-              ))}
+              {["POST /v3/checkout.md", "auth.flow.mdx", "changelog.md"].map(
+                (f, i) => (
+                  <div
+                    key={f}
+                    className={`px-4 py-3 border-r border-border ${i === 0 ? "bg-card text-acid" : "text-bone/40"}`}
+                  >
+                    {f}
+                  </div>
+                ),
+              )}
             </div>
             <pre className="p-6 leading-relaxed text-bone/70 overflow-x-auto">
               {`# POST /v3/checkout/express
@@ -385,12 +425,14 @@ the customer can be redirected to. Idempotent on \`X-Idem-Key\`.
 \`\`\`bash
 curl -X POST https://api.acme.io/v3/checkout/express \\
   -H "Authorization: Bearer $TOKEN" \\
-  -H "X-Idem-Key: \$(uuidgen)" \\
+  -H "X-Idem-Key: $(uuidgen)" \\
   -d '{"items":[{"sku":"A-12","qty":2}], "currency":"USD"}'
 \`\`\`
 
 `}
-              <span className="text-acid">// narrated · tone=technical · 184 words</span>
+              <span className="text-acid">
+                // narrated · tone=technical · 184 words
+              </span>
             </pre>
           </div>
         </div>
@@ -403,7 +445,10 @@ curl -X POST https://api.acme.io/v3/checkout/express \\
             <div className="font-mono text-xs text-bone/40 uppercase tracking-widest mb-2">
               return
             </div>
-            <Link to="/" className="font-display text-2xl uppercase hover:text-acid transition">
+            <Link
+              to="/"
+              className="font-display text-2xl uppercase hover:text-acid transition"
+            >
               // apiguard.os
             </Link>
           </div>

@@ -14,7 +14,11 @@ export function ActionModal() {
       desc: "Drop a lightweight sentinel into your cluster. Auto-discovers endpoints, streams telemetry back to apiguard.os in under 60 seconds.",
       fields: [
         { label: "cluster.name", placeholder: "prod-us-east-1", value: "" },
-        { label: "runtime", placeholder: "kubernetes | ecs | nomad | docker", value: "kubernetes" },
+        {
+          label: "runtime",
+          placeholder: "kubernetes | ecs | nomad | docker",
+          value: "kubernetes",
+        },
         { label: "region", placeholder: "global·edge", value: "us-east-1" },
       ],
       cta: "▶ deploy_agent",
@@ -26,7 +30,11 @@ export function ActionModal() {
       desc: "Aim at a base URL or upload an OpenAPI spec. Full CVE + OWASP-API top-10 sweep typically completes in ~90 seconds.",
       fields: [
         { label: "target.url", placeholder: "https://api.acme.io", value: "" },
-        { label: "depth", placeholder: "shallow | standard | deep", value: "standard" },
+        {
+          label: "depth",
+          placeholder: "shallow | standard | deep",
+          value: "standard",
+        },
         { label: "auth.token", placeholder: "Bearer ••••••••", value: "" },
       ],
       cta: "▶ start.scan()",
@@ -112,7 +120,8 @@ export function ActionModal() {
   };
 
   const isAction = kind && ["deploy", "scan", "demo"].includes(kind);
-  const isIntegration = kind && ["github", "jenkins", "postman", "swagger"].includes(kind);
+  const isIntegration =
+    kind && ["github", "jenkins", "postman", "swagger"].includes(kind);
   const actionKind = isAction ? (kind as "deploy" | "scan" | "demo") : null;
   const integrationKind = isIntegration
     ? (kind as "github" | "jenkins" | "postman" | "swagger")
@@ -174,9 +183,15 @@ export function ActionModal() {
                     className="space-y-3 font-mono text-xs"
                   >
                     {actionConfig[actionKind].fields.map(
-                      (f: { label: string; placeholder: string; value: string }) => (
+                      (f: {
+                        label: string;
+                        placeholder: string;
+                        value: string;
+                      }) => (
                         <label key={f.label} className="block">
-                          <span className="text-bone/40 block mb-1">// {f.label}</span>
+                          <span className="text-bone/40 block mb-1">
+                            // {f.label}
+                          </span>
                           <input
                             defaultValue={f.value}
                             placeholder={f.placeholder}

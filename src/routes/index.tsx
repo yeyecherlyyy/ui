@@ -90,10 +90,30 @@ const LOAD_TIERS = [
 ];
 
 const CHANGES = [
-  { kind: "ADDED", path: "POST /v3/checkout/express", t: "2s ago", tone: "var(--acid)" },
-  { kind: "REMOVED", path: "GET /legacy/users/{id}/profile", t: "11m ago", tone: "var(--signal)" },
-  { kind: "AUTH·CHG", path: "PATCH /admin/billing → Bearer", t: "1h ago", tone: "var(--warn)" },
-  { kind: "BREAK", path: "GET /search?q now required", t: "3h ago", tone: "var(--signal)" },
+  {
+    kind: "ADDED",
+    path: "POST /v3/checkout/express",
+    t: "2s ago",
+    tone: "var(--acid)",
+  },
+  {
+    kind: "REMOVED",
+    path: "GET /legacy/users/{id}/profile",
+    t: "11m ago",
+    tone: "var(--signal)",
+  },
+  {
+    kind: "AUTH·CHG",
+    path: "PATCH /admin/billing → Bearer",
+    t: "1h ago",
+    tone: "var(--warn)",
+  },
+  {
+    kind: "BREAK",
+    path: "GET /search?q now required",
+    t: "3h ago",
+    tone: "var(--signal)",
+  },
 ];
 
 import { useAppStore } from "@/store/useAppStore";
@@ -110,7 +130,10 @@ function Index() {
     <div ref={containerRef} className="relative bg-transparent text-foreground">
       <SideNav />
       {/* HERO */}
-      <section id="hero" className="relative min-h-[120vh] grid-bg overflow-hidden pt-24">
+      <section
+        id="hero"
+        className="relative min-h-[120vh] grid-bg overflow-hidden pt-24"
+      >
         <div className="absolute inset-0 scan-lines opacity-30 pointer-events-none" />
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-acid to-transparent" />
 
@@ -119,9 +142,12 @@ function Index() {
           className="relative z-10 px-6 pt-16 max-w-[1400px] mx-auto"
         >
           <div className="font-mono text-xs text-bone/50 mb-8 flex items-center gap-4">
-            <span className="border border-bone/30 px-2 py-1">[ SYS.BOOT ]</span>
+            <span className="border border-bone/30 px-2 py-1">
+              [ SYS.BOOT ]
+            </span>
             <span>
-              initializing perimeter sweep<span className="cursor-blink">_</span>
+              initializing perimeter sweep
+              <span className="cursor-blink">_</span>
             </span>
           </div>
 
@@ -129,25 +155,32 @@ function Index() {
             <span className="block">Every API</span>
             <span className="block text-stroke">you ship is</span>
             <span className="block">
-              a <span className="text-acid italic font-serif lowercase">liability.</span>
+              a{" "}
+              <span className="text-acid italic font-serif lowercase">
+                liability.
+              </span>
             </span>
             <span className="block text-bone/30">we fix that.</span>
           </h1>
 
           <div className="mt-12 grid md:grid-cols-[1.4fr_1fr] gap-12 items-end">
             <p className="text-bone/70 text-lg md:text-xl max-w-xl leading-relaxed">
-              APIGUARD is a brutalist control plane for API security, observability, mocking and
-              load — wired straight into your repo, your CI, and your conscience.
+              APIGUARD is a brutalist control plane for API security,
+              observability, mocking and load — wired straight into your repo,
+              your CI, and your conscience.
             </p>
             <div className="font-mono text-xs text-bone/50 grid grid-cols-3 gap-4 border-t border-border pt-4">
               <div>
-                <div className="text-acid text-2xl font-display">12.4k</div>endpoints scanned
+                <div className="text-acid text-2xl font-display">12.4k</div>
+                endpoints scanned
               </div>
               <div>
-                <div className="text-signal text-2xl font-display">3.1M</div>requests/min
+                <div className="text-signal text-2xl font-display">3.1M</div>
+                requests/min
               </div>
               <div>
-                <div className="text-warn text-2xl font-display">99.99%</div>uptime sla
+                <div className="text-warn text-2xl font-display">99.99%</div>
+                uptime sla
               </div>
             </div>
           </div>
@@ -177,7 +210,10 @@ function Index() {
                   "ci/cd",
                   "owasp·top10",
                 ].map((w) => (
-                  <span key={w + k} className="px-8 flex items-center gap-8 text-bone/60">
+                  <span
+                    key={w + k}
+                    className="px-8 flex items-center gap-8 text-bone/60"
+                  >
                     {w} <span className="text-acid">◇</span>
                   </span>
                 ))}
@@ -189,14 +225,28 @@ function Index() {
 
       {/* DASHBOARD MOCK */}
       <section id="scan" className="relative px-6 py-32 max-w-[1400px] mx-auto">
-        <SectionHead n="00" label="control.plane" title="A dashboard that talks back." />
+        <SectionHead
+          n="00"
+          label="control.plane"
+          title="A dashboard that talks back."
+        />
         <DashboardMock />
       </section>
 
       {/* CORE FEATURES BENTO */}
-      <section id="modules" className="relative px-6 py-32 max-w-[1400px] mx-auto">
-        <SectionHead n="01" label="core.modules" title="Six instruments. One console." />
-        <div className="grid md:grid-cols-3 gap-4 mt-12" style={{ perspective: 1500 }}>
+      <section
+        id="modules"
+        className="relative px-6 py-32 max-w-[1400px] mx-auto"
+      >
+        <SectionHead
+          n="01"
+          label="core.modules"
+          title="Six instruments. One console."
+        />
+        <div
+          className="grid md:grid-cols-3 gap-4 mt-12"
+          style={{ perspective: 1500 }}
+        >
           {CORE.map((f) => (
             <TiltCard key={f.code} className="group">
               <Link
@@ -216,7 +266,9 @@ function Index() {
                     <h3 className="font-display text-2xl uppercase tracking-tight mb-2 group-hover:text-acid transition-colors">
                       {f.title}
                     </h3>
-                    <p className="text-bone/60 text-sm leading-relaxed">{f.desc}</p>
+                    <p className="text-bone/60 text-sm leading-relaxed">
+                      {f.desc}
+                    </p>
                   </div>
                   <div className="font-mono text-[10px] text-acid/70 flex items-center gap-2">
                     <div className="h-px flex-1 bg-acid/30" />
@@ -232,7 +284,11 @@ function Index() {
       {/* AI STACK — sticky scroll */}
       <section id="ai" className="relative">
         <div className="px-6 max-w-[1400px] mx-auto pt-24">
-          <SectionHead n="02" label="intelligence.layer" title="The model does the boring half." />
+          <SectionHead
+            n="02"
+            label="intelligence.layer"
+            title="The model does the boring half."
+          />
         </div>
         {AI_STACK.map((item, i) => (
           <AIPanel key={item.tag} item={item} index={i} />
@@ -241,7 +297,11 @@ function Index() {
 
       {/* LOAD TEST */}
       <section id="load" className="relative px-6 py-32 max-w-[1400px] mx-auto">
-        <SectionHead n="03" label="load.simulation" title="Punch your API. See what breaks." />
+        <SectionHead
+          n="03"
+          label="load.simulation"
+          title="Punch your API. See what breaks."
+        />
         <div className="grid md:grid-cols-3 gap-6 mt-12">
           {LOAD_TIERS.map((t, i) => (
             <motion.div
@@ -256,7 +316,10 @@ function Index() {
                 background: `radial-gradient(circle at top right, color-mix(in oklab, ${t.color} 15%, transparent), transparent 60%)`,
               }}
             >
-              <div className="font-mono text-xs uppercase" style={{ color: t.color }}>
+              <div
+                className="font-mono text-xs uppercase"
+                style={{ color: t.color }}
+              >
                 TIER {String(i + 1).padStart(2, "0")}
               </div>
               <div>
@@ -296,8 +359,15 @@ function Index() {
       </section>
 
       {/* CHANGE RADAR */}
-      <section id="changes" className="relative px-6 py-32 max-w-[1400px] mx-auto">
-        <SectionHead n="04" label="diff.radar" title="The world's most paranoid changelog." />
+      <section
+        id="changes"
+        className="relative px-6 py-32 max-w-[1400px] mx-auto"
+      >
+        <SectionHead
+          n="04"
+          label="diff.radar"
+          title="The world's most paranoid changelog."
+        />
         <div className="mt-12 border border-border bg-card/40 backdrop-blur-xl">
           <div className="grid grid-cols-[100px_1fr_120px] gap-4 px-6 py-3 border-b border-border font-mono text-[10px] text-bone/40 uppercase tracking-widest">
             <span>event</span>
@@ -322,7 +392,9 @@ function Index() {
               <span className="font-mono text-sm text-bone group-hover:text-acid transition-colors">
                 {c.path}
               </span>
-              <span className="font-mono text-xs text-bone/40 text-right">{c.t}</span>
+              <span className="font-mono text-xs text-bone/40 text-right">
+                {c.t}
+              </span>
             </motion.div>
           ))}
         </div>
@@ -348,8 +420,16 @@ function Index() {
               "Slack",
               "PagerDuty",
             ].map((b) => {
-              const clickable = ["GitHub", "Jenkins", "Postman", "Swagger"].includes(b);
-              const kindMap: Record<string, "github" | "jenkins" | "postman" | "swagger"> = {
+              const clickable = [
+                "GitHub",
+                "Jenkins",
+                "Postman",
+                "Swagger",
+              ].includes(b);
+              const kindMap: Record<
+                string,
+                "github" | "jenkins" | "postman" | "swagger"
+              > = {
                 GitHub: "github",
                 Jenkins: "jenkins",
                 Postman: "postman",
@@ -426,7 +506,7 @@ function SideNav() {
           }
         });
       },
-      { threshold: 0.3 }
+      { threshold: 0.3 },
     );
 
     const sections = ["hero", "scan", "modules", "ai", "load", "changes"];
@@ -450,14 +530,18 @@ function SideNav() {
   return (
     <div className="fixed left-6 top-1/2 -translate-y-1/2 z-50 hidden xl:flex flex-col gap-4">
       {links.map((l) => (
-        <a 
-          key={l.id} 
-          href={`#${l.id}`} 
+        <a
+          key={l.id}
+          href={`#${l.id}`}
           className="group flex items-center justify-start gap-3"
           aria-label={l.id}
         >
-          <div className={`w-0.5 transition-all duration-300 ${active === l.id ? "h-8 bg-acid" : "h-3 bg-bone/20 group-hover:bg-bone/60"}`} />
-          <span className={`font-mono text-[9px] uppercase tracking-widest transition-opacity duration-300 ${active === l.id ? "opacity-100 text-acid" : "opacity-0 group-hover:opacity-50 text-bone"}`}>
+          <div
+            className={`w-0.5 transition-all duration-300 ${active === l.id ? "h-8 bg-acid" : "h-3 bg-bone/20 group-hover:bg-bone/60"}`}
+          />
+          <span
+            className={`font-mono text-[9px] uppercase tracking-widest transition-opacity duration-300 ${active === l.id ? "opacity-100 text-acid" : "opacity-0 group-hover:opacity-50 text-bone"}`}
+          >
             {l.id}
           </span>
         </a>
@@ -470,7 +554,15 @@ function ActionModal({
   kind,
   onClose,
 }: {
-  kind: null | "deploy" | "scan" | "demo" | "github" | "jenkins" | "postman" | "swagger";
+  kind:
+    | null
+    | "deploy"
+    | "scan"
+    | "demo"
+    | "github"
+    | "jenkins"
+    | "postman"
+    | "swagger";
   onClose: () => void;
 }) {
   const actionConfig = {
@@ -480,7 +572,11 @@ function ActionModal({
       desc: "Drop a lightweight sentinel into your cluster. Auto-discovers endpoints, streams telemetry back to apiguard.os in under 60 seconds.",
       fields: [
         { label: "cluster.name", placeholder: "prod-us-east-1", value: "" },
-        { label: "runtime", placeholder: "kubernetes | ecs | nomad | docker", value: "kubernetes" },
+        {
+          label: "runtime",
+          placeholder: "kubernetes | ecs | nomad | docker",
+          value: "kubernetes",
+        },
         { label: "region", placeholder: "global·edge", value: "us-east-1" },
       ],
       cta: "▶ deploy_agent",
@@ -492,7 +588,11 @@ function ActionModal({
       desc: "Aim at a base URL or upload an OpenAPI spec. Full CVE + OWASP-API top-10 sweep typically completes in ~90 seconds.",
       fields: [
         { label: "target.url", placeholder: "https://api.acme.io", value: "" },
-        { label: "depth", placeholder: "shallow | standard | deep", value: "standard" },
+        {
+          label: "depth",
+          placeholder: "shallow | standard | deep",
+          value: "standard",
+        },
         { label: "auth.token", placeholder: "Bearer ••••••••", value: "" },
       ],
       cta: "▶ start.scan()",
@@ -578,13 +678,15 @@ function ActionModal({
   };
 
   const isAction = kind && ["deploy", "scan", "demo"].includes(kind);
-  const isIntegration = kind && ["github", "jenkins", "postman", "swagger"].includes(kind);
+  const isIntegration =
+    kind && ["github", "jenkins", "postman", "swagger"].includes(kind);
   const actionKind: "deploy" | "scan" | "demo" | null = isAction
     ? (kind as "deploy" | "scan" | "demo")
     : null;
-  const integrationKind: "github" | "jenkins" | "postman" | "swagger" | null = isIntegration
-    ? (kind as "github" | "jenkins" | "postman" | "swagger")
-    : null;
+  const integrationKind: "github" | "jenkins" | "postman" | "swagger" | null =
+    isIntegration
+      ? (kind as "github" | "jenkins" | "postman" | "swagger")
+      : null;
 
   return (
     <AnimatePresence>
@@ -642,9 +744,15 @@ function ActionModal({
                     className="space-y-3 font-mono text-xs"
                   >
                     {actionConfig[actionKind].fields.map(
-                      (f: { label: string; placeholder: string; value: string }) => (
+                      (f: {
+                        label: string;
+                        placeholder: string;
+                        value: string;
+                      }) => (
                         <label key={f.label} className="block">
-                          <span className="text-bone/40 block mb-1">// {f.label}</span>
+                          <span className="text-bone/40 block mb-1">
+                            // {f.label}
+                          </span>
                           <input
                             defaultValue={f.value}
                             placeholder={f.placeholder}
@@ -721,7 +829,15 @@ function ActionModal({
   );
 }
 
-function SectionHead({ n, label, title }: { n: string; label: string; title: string }) {
+function SectionHead({
+  n,
+  label,
+  title,
+}: {
+  n: string;
+  label: string;
+  title: string;
+}) {
   return (
     <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-border pb-8">
       <div>
@@ -732,7 +848,9 @@ function SectionHead({ n, label, title }: { n: string; label: string; title: str
           {title}
         </h2>
       </div>
-      <div className="font-mono text-[10px] text-bone/40 uppercase">scroll·to·engage ↓</div>
+      <div className="font-mono text-[10px] text-bone/40 uppercase">
+        scroll·to·engage ↓
+      </div>
     </div>
   );
 }
@@ -759,19 +877,25 @@ function DashboardMock() {
       <div className="grid md:grid-cols-[1fr_2fr_1fr] gap-px bg-border">
         {/* left rail: scan history */}
         <div className="bg-card/30 backdrop-blur-md p-5 space-y-3">
-          <div className="font-mono text-[10px] text-bone/40 uppercase">scan.history</div>
-          {["#4192", "#4191", "#4190", "#4189", "#4188", "#4187"].map((id, i) => (
-            <div
-              key={id}
-              className="flex items-center justify-between text-xs font-mono border-l-2 pl-3 py-2"
-              style={{ borderColor: i === 0 ? "var(--acid)" : "var(--border)" }}
-            >
-              <span className="text-bone/80">{id}</span>
-              <span className={i === 0 ? "text-acid" : "text-bone/40"}>
-                {i === 0 ? "running" : `${94 - i}/100`}
-              </span>
-            </div>
-          ))}
+          <div className="font-mono text-[10px] text-bone/40 uppercase">
+            scan.history
+          </div>
+          {["#4192", "#4191", "#4190", "#4189", "#4188", "#4187"].map(
+            (id, i) => (
+              <div
+                key={id}
+                className="flex items-center justify-between text-xs font-mono border-l-2 pl-3 py-2"
+                style={{
+                  borderColor: i === 0 ? "var(--acid)" : "var(--border)",
+                }}
+              >
+                <span className="text-bone/80">{id}</span>
+                <span className={i === 0 ? "text-acid" : "text-bone/40"}>
+                  {i === 0 ? "running" : `${94 - i}/100`}
+                </span>
+              </div>
+            ),
+          )}
         </div>
         {/* center: security score + chart */}
         <div className="bg-card/30 backdrop-blur-md p-8 relative">
@@ -780,7 +904,9 @@ function DashboardMock() {
           </div>
           <div className="flex items-baseline gap-4 mb-6">
             <div className="font-display text-7xl text-acid">94</div>
-            <div className="text-bone/50 text-sm font-mono">/ 100 · ↑ 6 this week</div>
+            <div className="text-bone/50 text-sm font-mono">
+              / 100 · ↑ 6 this week
+            </div>
           </div>
           {/* sparkline */}
           <svg viewBox="0 0 400 100" className="w-full h-24">
@@ -819,14 +945,18 @@ function DashboardMock() {
                 <div className="font-display text-2xl" style={{ color: v.c }}>
                   {v.v}
                 </div>
-                <div className="font-mono text-[10px] text-bone/40 uppercase">{v.l}</div>
+                <div className="font-mono text-[10px] text-bone/40 uppercase">
+                  {v.l}
+                </div>
               </div>
             ))}
           </div>
         </div>
         {/* right: health pulse */}
         <div className="bg-card/30 backdrop-blur-md p-5 space-y-4">
-          <div className="font-mono text-[10px] text-bone/40 uppercase">health.pulse</div>
+          <div className="font-mono text-[10px] text-bone/40 uppercase">
+            health.pulse
+          </div>
           {[
             { n: "auth-svc", v: 99.99, ms: 42 },
             { n: "billing", v: 99.91, ms: 118 },
@@ -847,7 +977,9 @@ function DashboardMock() {
                   className="h-full bg-acid"
                 />
               </div>
-              <div className="font-mono text-[10px] text-bone/40">p50 · {s.ms}ms</div>
+              <div className="font-mono text-[10px] text-bone/40">
+                p50 · {s.ms}ms
+              </div>
             </div>
           ))}
         </div>
@@ -864,8 +996,15 @@ function AIPanel({
   index: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const x = useTransform(scrollYProgress, [0, 1], index % 2 === 0 ? [-80, 80] : [80, -80]);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const x = useTransform(
+    scrollYProgress,
+    [0, 1],
+    index % 2 === 0 ? [-80, 80] : [80, -80],
+  );
   const rot = useTransform(scrollYProgress, [0, 1], [-6, 6]);
 
   return (
@@ -881,7 +1020,9 @@ function AIPanel({
           <h3 className="font-display text-4xl md:text-6xl uppercase tracking-tight leading-[0.9] mb-6">
             {item.title}
           </h3>
-          <p className="text-bone/60 text-lg leading-relaxed max-w-md">{item.body}</p>
+          <p className="text-bone/60 text-lg leading-relaxed max-w-md">
+            {item.body}
+          </p>
           {(() => {
             const to =
               item.tag === "AI.TESTS"
@@ -902,7 +1043,9 @@ function AIPanel({
         <div className="relative aspect-square border border-border bg-background p-6 overflow-hidden">
           <div className="absolute inset-0 grid-bg opacity-40" />
           <div className="relative font-mono text-xs space-y-2 text-bone/60">
-            <div className="text-acid">▸ apiguard.{item.tag.toLowerCase().replace(".", "_")}()</div>
+            <div className="text-acid">
+              ▸ apiguard.{item.tag.toLowerCase().replace(".", "_")}()
+            </div>
             <div className="pl-4">
               analyzing 247 endpoints<span className="cursor-blink">_</span>
             </div>

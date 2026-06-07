@@ -12,7 +12,10 @@ const FACES = [
 
 export function CubeHero() {
   const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
   const rotX = useTransform(scrollYProgress, [0, 1], [-18, 180]);
   const rotY = useTransform(scrollYProgress, [0, 1], [28, 420]);
 
@@ -60,7 +63,10 @@ export function CubeHero() {
             >
               <div className="flex items-center justify-between font-mono text-[10px] tracking-widest text-bone/60">
                 <span>FACE_{String(i).padStart(2, "0")}</span>
-                <span className="size-2 rounded-full" style={{ background: color }} />
+                <span
+                  className="size-2 rounded-full"
+                  style={{ background: color }}
+                />
               </div>
               <div className="font-mono text-sm" style={{ color }}>
                 {f.label}

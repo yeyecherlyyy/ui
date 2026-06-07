@@ -12,7 +12,7 @@ function Reports() {
     (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
   );
 
-  const getSeverityCounts = (findings: any[] = []) => {
+  const getSeverityCounts = (findings: { severity: string }[] = []) => {
     return {
       critical: findings.filter((f) => f.severity === "critical").length,
       high: findings.filter((f) => f.severity === "high").length,
@@ -25,8 +25,12 @@ function Reports() {
     <div className="p-6 max-w-5xl mx-auto pt-24">
       <div className="flex items-center justify-between mb-8 border-b border-border pb-6">
         <div>
-          <div className="font-mono text-xs text-acid uppercase tracking-widest mb-3">[ reports.index ]</div>
-          <h1 className="text-4xl md:text-5xl font-display uppercase tracking-tight">Scan Intelligence</h1>
+          <div className="font-mono text-xs text-acid uppercase tracking-widest mb-3">
+            [ reports.index ]
+          </div>
+          <h1 className="text-4xl md:text-5xl font-display uppercase tracking-tight">
+            Scan Intelligence
+          </h1>
         </div>
         <Link
           to="/scans"
@@ -39,7 +43,9 @@ function Reports() {
       {scanList.length === 0 ? (
         <div className="border border-border border-dashed p-16 text-center bg-card/10 backdrop-blur-md">
           <span className="font-mono text-acid text-2xl block mb-2">∅</span>
-          <span className="font-mono text-sm text-bone/40 uppercase tracking-widest">No scans executed yet.</span>
+          <span className="font-mono text-sm text-bone/40 uppercase tracking-widest">
+            No scans executed yet.
+          </span>
         </div>
       ) : (
         <div className="space-y-4">
@@ -59,7 +65,7 @@ function Reports() {
                   className="block border border-border bg-card/30 backdrop-blur-md p-6 hover:border-acid transition-colors group relative overflow-hidden"
                 >
                   <div className="absolute top-0 left-0 w-1 h-full bg-border group-hover:bg-acid transition-colors" />
-                  
+
                   <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pl-4">
                     <div>
                       <div className="flex items-center gap-3 mb-2">
@@ -86,39 +92,59 @@ function Reports() {
                     {scan.status === "completed" && (
                       <div className="flex items-center gap-4">
                         <div className="text-right mr-4 hidden md:block">
-                          <div className="font-display text-3xl text-bone leading-none">{total}</div>
-                          <div className="font-mono text-[10px] text-bone/40 uppercase tracking-widest">Total Findings</div>
+                          <div className="font-display text-3xl text-bone leading-none">
+                            {total}
+                          </div>
+                          <div className="font-mono text-[10px] text-bone/40 uppercase tracking-widest">
+                            Total Findings
+                          </div>
                         </div>
-                        
+
                         <div className="flex gap-2 font-mono text-xs">
                           {counts.critical > 0 && (
                             <div className="flex flex-col items-center border border-destructive/30 bg-destructive/5 px-3 py-2 min-w-[60px]">
-                              <span className="text-destructive font-bold">{counts.critical}</span>
-                              <span className="text-[9px] text-destructive/60 uppercase mt-1">Crit</span>
+                              <span className="text-destructive font-bold">
+                                {counts.critical}
+                              </span>
+                              <span className="text-[9px] text-destructive/60 uppercase mt-1">
+                                Crit
+                              </span>
                             </div>
                           )}
                           {counts.high > 0 && (
                             <div className="flex flex-col items-center border border-signal/30 bg-signal/5 px-3 py-2 min-w-[60px]">
-                              <span className="text-signal font-bold">{counts.high}</span>
-                              <span className="text-[9px] text-signal/60 uppercase mt-1">High</span>
+                              <span className="text-signal font-bold">
+                                {counts.high}
+                              </span>
+                              <span className="text-[9px] text-signal/60 uppercase mt-1">
+                                High
+                              </span>
                             </div>
                           )}
                           {counts.medium > 0 && (
                             <div className="flex flex-col items-center border border-warn/30 bg-warn/5 px-3 py-2 min-w-[60px]">
-                              <span className="text-warn font-bold">{counts.medium}</span>
-                              <span className="text-[9px] text-warn/60 uppercase mt-1">Med</span>
+                              <span className="text-warn font-bold">
+                                {counts.medium}
+                              </span>
+                              <span className="text-[9px] text-warn/60 uppercase mt-1">
+                                Med
+                              </span>
                             </div>
                           )}
                           {(counts.low > 0 || total === 0) && (
                             <div className="flex flex-col items-center border border-acid/30 bg-acid/5 px-3 py-2 min-w-[60px]">
-                              <span className="text-acid font-bold">{counts.low}</span>
-                              <span className="text-[9px] text-acid/60 uppercase mt-1">Low</span>
+                              <span className="text-acid font-bold">
+                                {counts.low}
+                              </span>
+                              <span className="text-[9px] text-acid/60 uppercase mt-1">
+                                Low
+                              </span>
                             </div>
                           )}
                         </div>
                       </div>
                     )}
-                    
+
                     {scan.status === "failed" && (
                       <div className="font-mono text-xs text-destructive border border-destructive/20 bg-destructive/5 px-4 py-2 uppercase tracking-widest">
                         Analysis Halted — Execution Error

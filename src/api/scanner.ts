@@ -17,7 +17,10 @@ export interface ScanStatusResponse {
  * Initiates a scan by sending the API specification to the backend service.
  * Returns the newly created scan ID.
  */
-export async function startScan(spec: string, authToken?: string): Promise<ScanResponse> {
+export async function startScan(
+  spec: string,
+  authToken?: string,
+): Promise<ScanResponse> {
   const { scanServiceUrl } = useAppStore.getState().settings;
   const response = await fetch(`${scanServiceUrl}/start`, {
     method: "POST",

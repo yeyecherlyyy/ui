@@ -63,12 +63,31 @@ const PROFILES = [
   },
 ];
 
-const REGIONS = ["us-east", "us-west", "eu-west", "eu-north", "ap-south", "sa-east"];
+const REGIONS = [
+  "us-east",
+  "us-west",
+  "eu-west",
+  "eu-north",
+  "ap-south",
+  "sa-east",
+];
 
 const STREAM = [
-  { t: "00:00.04", line: "▸ ingesting openapi.yaml · 247 routes detected", tone: "var(--acid)" },
-  { t: "00:00.11", line: "▸ generating faker schemas · 1,204 fields", tone: "var(--bone)" },
-  { t: "00:00.28", line: "✦ allocating in-memory store · 50 MB", tone: "var(--acid)" },
+  {
+    t: "00:00.04",
+    line: "▸ ingesting openapi.yaml · 247 routes detected",
+    tone: "var(--acid)",
+  },
+  {
+    t: "00:00.11",
+    line: "▸ generating faker schemas · 1,204 fields",
+    tone: "var(--bone)",
+  },
+  {
+    t: "00:00.28",
+    line: "✦ allocating in-memory store · 50 MB",
+    tone: "var(--acid)",
+  },
   {
     t: "00:00.41",
     line: "✦ provisioning edge worker · us-east · eu-west · ap-south",
@@ -79,7 +98,11 @@ const STREAM = [
     line: "✦ wiring latency profile · p95 = 118ms · jitter 22ms",
     tone: "var(--signal)",
   },
-  { t: "00:00.78", line: "✦ chaos hooks armed · 0.4% 5xx · 0.1% reset", tone: "var(--warn)" },
+  {
+    t: "00:00.78",
+    line: "✦ chaos hooks armed · 0.4% 5xx · 0.1% reset",
+    tone: "var(--warn)",
+  },
   {
     t: "00:00.91",
     line: "✓ live @ https://m-9af3.apiguard.dev · 247 routes · stateful",
@@ -101,7 +124,13 @@ const ROUTES = [
   { m: "GET", p: "/v3/users/{id}", s: 200, ms: 51, tone: "var(--acid)" },
   { m: "PATCH", p: "/v3/users/{id}", s: 200, ms: 94, tone: "var(--signal)" },
   { m: "DELETE", p: "/v3/users/{id}", s: 204, ms: 38, tone: "var(--signal)" },
-  { m: "POST", p: "/v3/checkout/express", s: 201, ms: 118, tone: "var(--acid)" },
+  {
+    m: "POST",
+    p: "/v3/checkout/express",
+    s: 201,
+    ms: 118,
+    tone: "var(--acid)",
+  },
   { m: "GET", p: "/v3/orders/{id}", s: 200, ms: 67, tone: "var(--acid)" },
   { m: "POST", p: "/v3/auth/token", s: 200, ms: 22, tone: "var(--warn)" },
   { m: "GET", p: "/v3/admin/billing", s: 403, ms: 14, tone: "var(--warn)" },
@@ -110,7 +139,10 @@ const ROUTES = [
 function MockServerPage() {
   useLenis();
   const heroRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
   const yTitle = useTransform(scrollYProgress, [0, 1], [0, -180]);
   const opTitle = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
   const rotGlyph = useTransform(scrollYProgress, [0, 1], [0, 360]);
@@ -144,7 +176,10 @@ function MockServerPage() {
       </header>
 
       {/* HERO */}
-      <section ref={heroRef} className="relative min-h-[110vh] grid-bg overflow-hidden pt-28">
+      <section
+        ref={heroRef}
+        className="relative min-h-[110vh] grid-bg overflow-hidden pt-28"
+      >
         <div className="absolute inset-0 scan-lines opacity-30 pointer-events-none" />
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-warn to-transparent" />
 
@@ -170,9 +205,10 @@ function MockServerPage() {
             <span className="block text-warn">convincingly.</span>
           </h1>
           <p className="mt-10 max-w-2xl text-bone/60 text-lg leading-relaxed">
-            Throw it a spec. In under a second it stands up a stateful, faker-backed,
-            latency-shaped, chaos-armed clone of your API on a stable HTTPS URL — so your frontend,
-            your tests, and your demos stop waiting on the backend team.
+            Throw it a spec. In under a second it stands up a stateful,
+            faker-backed, latency-shaped, chaos-armed clone of your API on a
+            stable HTTPS URL — so your frontend, your tests, and your demos stop
+            waiting on the backend team.
           </p>
 
           <div className="mt-12 flex flex-wrap items-center gap-4">
@@ -299,9 +335,9 @@ function MockServerPage() {
             </h2>
           </div>
           <div className="font-mono text-xs text-bone/40 max-w-sm">
-            Every mock server is the same six dials. Twist them per route, per method, per consumer
-            — and your frontend finally gets a backend that behaves the way production actually
-            does.
+            Every mock server is the same six dials. Twist them per route, per
+            method, per consumer — and your frontend finally gets a backend that
+            behaves the way production actually does.
           </div>
         </div>
 
@@ -333,10 +369,15 @@ function MockServerPage() {
                 <h3 className="relative font-display text-3xl uppercase tracking-tight mb-3">
                   {p.title}
                 </h3>
-                <p className="relative text-bone/60 text-sm leading-relaxed mb-6">{p.desc}</p>
+                <p className="relative text-bone/60 text-sm leading-relaxed mb-6">
+                  {p.desc}
+                </p>
                 <div className="relative flex items-baseline justify-between border-t border-border pt-4 font-mono text-xs">
                   <span className="text-bone/40">profile</span>
-                  <span style={{ color: p.tone }} className="font-display text-lg">
+                  <span
+                    style={{ color: p.tone }}
+                    className="font-display text-lg"
+                  >
                     {p.reqs}
                   </span>
                 </div>
@@ -395,8 +436,9 @@ function MockServerPage() {
               it answers.
             </h3>
             <p className="text-bone/60 leading-relaxed mb-8">
-              The mock URL is stable. Bake it into your CI, your Storybook, your demo deck. Tear it
-              down with one click — or leave it running for a week. Costs nothing when idle.
+              The mock URL is stable. Bake it into your CI, your Storybook, your
+              demo deck. Tear it down with one click — or leave it running for a
+              week. Costs nothing when idle.
             </p>
             <div className="space-y-2 font-mono text-xs">
               {[
@@ -405,7 +447,10 @@ function MockServerPage() {
                 { k: "cors", v: "* · per-origin override" },
                 { k: "cost", v: "$0 idle · $0.40 / 1M req" },
               ].map((x) => (
-                <div key={x.k} className="flex justify-between border-b border-border/60 py-2">
+                <div
+                  key={x.k}
+                  className="flex justify-between border-b border-border/60 py-2"
+                >
                   <span className="text-bone/50">{x.k}</span>
                   <span className="text-acid">{x.v}</span>
                 </div>
@@ -440,7 +485,9 @@ function MockServerPage() {
 }
 
 # `}
-              <span className="text-warn">// faker-backed · stateful · 51ms · region eu-west</span>
+              <span className="text-warn">
+                // faker-backed · stateful · 51ms · region eu-west
+              </span>
             </pre>
           </div>
         </div>
@@ -464,7 +511,10 @@ function MockServerPage() {
             <div className="font-mono text-xs text-bone/40 uppercase tracking-widest mb-2">
               return
             </div>
-            <Link to="/" className="font-display text-2xl uppercase hover:text-acid transition">
+            <Link
+              to="/"
+              className="font-display text-2xl uppercase hover:text-acid transition"
+            >
               // apiguard.os
             </Link>
           </div>

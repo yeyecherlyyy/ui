@@ -55,10 +55,15 @@ const MODULES: Record<string, ModuleDef> = {
     glyph: "◉",
     tag: "scan.surface",
     accent: "var(--acid)",
-    tagline: "Continuous CVE + OWASP API top-10 sweeps. Live security score per endpoint.",
+    tagline:
+      "Continuous CVE + OWASP API top-10 sweeps. Live security score per endpoint.",
     body: "A perpetually-running adversary. Probes every endpoint against OWASP API Top 10, known CVEs, auth weaknesses, IDOR patterns, rate-limit absence, and silent data exfiltration paths. Outputs a single twitchy security score per endpoint, per service, per fleet.",
     metrics: [
-      { label: "endpoints under watch", value: "12,481", sub: "across 38 services" },
+      {
+        label: "endpoints under watch",
+        value: "12,481",
+        sub: "across 38 services",
+      },
       { label: "rules engine", value: "2,140", sub: "owasp + cve + custom" },
       { label: "mean time to detect", value: "47s", sub: "p50 across last 7d" },
       { label: "false positive rate", value: "0.6%", sub: "tuned weekly" },
@@ -88,12 +93,36 @@ const MODULES: Record<string, ModuleDef> = {
       },
     ],
     feed: [
-      { t: "00:01", line: "BOLA suspected · GET /v3/users/{id}/orders", tone: "var(--signal)" },
-      { t: "00:04", line: "missing rate-limit · POST /auth/login", tone: "var(--warn)" },
-      { t: "00:09", line: "tls/ok · cipher TLS_AES_256_GCM_SHA384", tone: "var(--acid)" },
-      { t: "00:14", line: "owasp-api-02 · weak token rotation policy", tone: "var(--warn)" },
-      { t: "00:19", line: "cve-2025-19023 · package undici < 6.21", tone: "var(--signal)" },
-      { t: "00:23", line: "scan #4192 · 12,481/12,481 · 94 score", tone: "var(--acid)" },
+      {
+        t: "00:01",
+        line: "BOLA suspected · GET /v3/users/{id}/orders",
+        tone: "var(--signal)",
+      },
+      {
+        t: "00:04",
+        line: "missing rate-limit · POST /auth/login",
+        tone: "var(--warn)",
+      },
+      {
+        t: "00:09",
+        line: "tls/ok · cipher TLS_AES_256_GCM_SHA384",
+        tone: "var(--acid)",
+      },
+      {
+        t: "00:14",
+        line: "owasp-api-02 · weak token rotation policy",
+        tone: "var(--warn)",
+      },
+      {
+        t: "00:19",
+        line: "cve-2025-19023 · package undici < 6.21",
+        tone: "var(--signal)",
+      },
+      {
+        t: "00:23",
+        line: "scan #4192 · 12,481/12,481 · 94 score",
+        tone: "var(--acid)",
+      },
     ],
     cli: [
       "▸ apiguard scan --profile strict --diff main",
@@ -114,9 +143,17 @@ const MODULES: Record<string, ModuleDef> = {
     body: "Throw any spec at it — OpenAPI 2/3/3.1, Postman v2.1, HAR captures, Insomnia exports, raw curl logs. The inhaler normalizes, diffs against the last known good, and emits a single canonical contract your whole stack can pivot on.",
     metrics: [
       { label: "specs ingested", value: "1,847", sub: "lifetime" },
-      { label: "formats supported", value: "9", sub: "openapi · postman · har · curl…" },
+      {
+        label: "formats supported",
+        value: "9",
+        sub: "openapi · postman · har · curl…",
+      },
       { label: "normalization time", value: "1.2s", sub: "avg per 500 ops" },
-      { label: "diff precision", value: "99.4%", sub: "vs hand-audited baseline" },
+      {
+        label: "diff precision",
+        value: "99.4%",
+        sub: "vs hand-audited baseline",
+      },
     ],
     ops: [
       { k: "input.formats", v: "openapi · postman · har · curl · graphql" },
@@ -144,11 +181,31 @@ const MODULES: Record<string, ModuleDef> = {
     ],
     feed: [
       { t: "now", line: "openapi.v3.1 · 412 ops parsed", tone: "var(--acid)" },
-      { t: "1s", line: "postman.collection.json · 89 requests merged", tone: "var(--signal)" },
-      { t: "2s", line: "$ref resolved · 1,204 schema nodes", tone: "var(--acid)" },
-      { t: "3s", line: "secret scrubbed · 2 bearer tokens removed", tone: "var(--warn)" },
-      { t: "4s", line: "diff vs baseline · +14 / -3 / ~22", tone: "var(--signal)" },
-      { t: "5s", line: "canonical contract emitted · sha 9af3…", tone: "var(--acid)" },
+      {
+        t: "1s",
+        line: "postman.collection.json · 89 requests merged",
+        tone: "var(--signal)",
+      },
+      {
+        t: "2s",
+        line: "$ref resolved · 1,204 schema nodes",
+        tone: "var(--acid)",
+      },
+      {
+        t: "3s",
+        line: "secret scrubbed · 2 bearer tokens removed",
+        tone: "var(--warn)",
+      },
+      {
+        t: "4s",
+        line: "diff vs baseline · +14 / -3 / ~22",
+        tone: "var(--signal)",
+      },
+      {
+        t: "5s",
+        line: "canonical contract emitted · sha 9af3…",
+        tone: "var(--acid)",
+      },
     ],
     cli: [
       "▸ apiguard inhale ./specs/*.yaml ./postman/*.json",
@@ -165,7 +222,8 @@ const MODULES: Record<string, ModuleDef> = {
     glyph: "⟁",
     tag: "ci.bridge",
     accent: "var(--acid)",
-    tagline: "Connect GitHub. Auto-pull specs from PRs. Wire Actions or Jenkins.",
+    tagline:
+      "Connect GitHub. Auto-pull specs from PRs. Wire Actions or Jenkins.",
     body: "The umbilical between source-of-truth and APIGUARD. Watches every PR, pulls specs as they land, runs the gauntlet, posts results inline as PR checks. Speaks GitHub Actions, Jenkins, GitLab CI, CircleCI, Buildkite.",
     metrics: [
       { label: "repos connected", value: "147", sub: "across 6 orgs" },
@@ -202,10 +260,22 @@ const MODULES: Record<string, ModuleDef> = {
       },
     ],
     feed: [
-      { t: "12s", line: "pr #4421 · payments-svc · check started", tone: "var(--bone)" },
-      { t: "15s", line: "spec diff · +2 endpoints · 0 breaking", tone: "var(--acid)" },
+      {
+        t: "12s",
+        line: "pr #4421 · payments-svc · check started",
+        tone: "var(--bone)",
+      },
+      {
+        t: "15s",
+        line: "spec diff · +2 endpoints · 0 breaking",
+        tone: "var(--acid)",
+      },
       { t: "18s", line: "scan · 0 critical · 1 medium", tone: "var(--warn)" },
-      { t: "19s", line: "annotation posted · line 84 · openapi.yaml", tone: "var(--signal)" },
+      {
+        t: "19s",
+        line: "annotation posted · line 84 · openapi.yaml",
+        tone: "var(--signal)",
+      },
       { t: "22s", line: "status · success · score 96", tone: "var(--acid)" },
     ],
     cli: [
@@ -228,8 +298,16 @@ const MODULES: Record<string, ModuleDef> = {
     metrics: [
       { label: "reports issued", value: "9,118", sub: "last 12 months" },
       { label: "avg generation time", value: "3.4s", sub: "300-page bundle" },
-      { label: "sign + timestamp", value: "PAdES-LTA", sub: "long-term archival" },
-      { label: "templates", value: "12", sub: "soc2 · iso · pci · hipaa · custom" },
+      {
+        label: "sign + timestamp",
+        value: "PAdES-LTA",
+        sub: "long-term archival",
+      },
+      {
+        label: "templates",
+        value: "12",
+        sub: "soc2 · iso · pci · hipaa · custom",
+      },
     ],
     ops: [
       { k: "format", v: "pdf/a-3 · machine-readable annex" },
@@ -256,11 +334,27 @@ const MODULES: Record<string, ModuleDef> = {
       },
     ],
     feed: [
-      { t: "0.1s", line: "collecting findings · 23 items", tone: "var(--bone)" },
+      {
+        t: "0.1s",
+        line: "collecting findings · 23 items",
+        tone: "var(--bone)",
+      },
       { t: "0.4s", line: "rendering evidence pages · 86", tone: "var(--bone)" },
-      { t: "1.1s", line: "embedding machine-readable annex (json+sarif)", tone: "var(--signal)" },
-      { t: "2.8s", line: "signing pades-lta · tsa: digicert", tone: "var(--warn)" },
-      { t: "3.4s", line: "report-2026-06-07-#4192.pdf · 4.2mb · ready", tone: "var(--acid)" },
+      {
+        t: "1.1s",
+        line: "embedding machine-readable annex (json+sarif)",
+        tone: "var(--signal)",
+      },
+      {
+        t: "2.8s",
+        line: "signing pades-lta · tsa: digicert",
+        tone: "var(--warn)",
+      },
+      {
+        t: "3.4s",
+        line: "report-2026-06-07-#4192.pdf · 4.2mb · ready",
+        tone: "var(--acid)",
+      },
     ],
     cli: [
       "▸ apiguard report --scan 4192 --template soc2 --sign",
@@ -277,13 +371,26 @@ const MODULES: Record<string, ModuleDef> = {
     glyph: "⟴",
     tag: "diff.radar",
     accent: "var(--signal)",
-    tagline: "Endpoint added, auth changed, contract broken — pinged before users notice.",
+    tagline:
+      "Endpoint added, auth changed, contract broken — pinged before users notice.",
     body: "Watches your runtime AND your spec. The instant a new endpoint slips into production, an auth header silently mutates, or a required field appears in a response — radar pings the channel of your choosing with a structural diff and blast radius.",
     metrics: [
       { label: "events/day", value: "1,204", sub: "across all envs" },
-      { label: "detection latency", value: "8s", sub: "runtime → notification" },
-      { label: "blast radius engine", value: "v2.3", sub: "graph-based dep walk" },
-      { label: "channels", value: "slack · pagerduty · teams · webhook", sub: "" },
+      {
+        label: "detection latency",
+        value: "8s",
+        sub: "runtime → notification",
+      },
+      {
+        label: "blast radius engine",
+        value: "v2.3",
+        sub: "graph-based dep walk",
+      },
+      {
+        label: "channels",
+        value: "slack · pagerduty · teams · webhook",
+        sub: "",
+      },
     ],
     ops: [
       { k: "sources", v: "runtime taps · spec repo · gateway logs" },
@@ -310,11 +417,31 @@ const MODULES: Record<string, ModuleDef> = {
       },
     ],
     feed: [
-      { t: "now", line: "ADDED · POST /v3/checkout/express", tone: "var(--acid)" },
-      { t: "11m", line: "REMOVED · GET /legacy/users/{id}/profile", tone: "var(--signal)" },
-      { t: "1h", line: "AUTH·CHG · PATCH /admin/billing → Bearer", tone: "var(--warn)" },
-      { t: "3h", line: "BREAK · GET /search?q now required", tone: "var(--signal)" },
-      { t: "6h", line: "FIELD · response.user.email now nullable", tone: "var(--warn)" },
+      {
+        t: "now",
+        line: "ADDED · POST /v3/checkout/express",
+        tone: "var(--acid)",
+      },
+      {
+        t: "11m",
+        line: "REMOVED · GET /legacy/users/{id}/profile",
+        tone: "var(--signal)",
+      },
+      {
+        t: "1h",
+        line: "AUTH·CHG · PATCH /admin/billing → Bearer",
+        tone: "var(--warn)",
+      },
+      {
+        t: "3h",
+        line: "BREAK · GET /search?q now required",
+        tone: "var(--signal)",
+      },
+      {
+        t: "6h",
+        line: "FIELD · response.user.email now nullable",
+        tone: "var(--warn)",
+      },
     ],
     cli: [
       "▸ apiguard radar tail --env prod",
@@ -330,7 +457,8 @@ const MODULES: Record<string, ModuleDef> = {
     glyph: "♡",
     tag: "uptime.pulse",
     accent: "var(--acid)",
-    tagline: "Uptime, latency, error rates rolled into a single twitchy heartbeat.",
+    tagline:
+      "Uptime, latency, error rates rolled into a single twitchy heartbeat.",
     body: "Three numbers that actually matter, fused into one waveform. p50/p95/p99 latency, 5xx + 4xx-by-intent error budget burn, and synthetic uptime probes from 14 regions. When the heartbeat skips, on-call knows before the dashboard refreshes.",
     metrics: [
       { label: "probes/min", value: "82,400", sub: "14 regions" },
@@ -339,7 +467,10 @@ const MODULES: Record<string, ModuleDef> = {
       { label: "slo violations", value: "0", sub: "last 14d" },
     ],
     ops: [
-      { k: "regions", v: "us-east · us-west · eu-west · eu-north · ap-south · sa-east · …" },
+      {
+        k: "regions",
+        v: "us-east · us-west · eu-west · eu-north · ap-south · sa-east · …",
+      },
       { k: "method.set", v: "GET · POST · WS handshake · long-poll" },
       { k: "burn.alerting", v: "multi-window · multi-burn-rate" },
       { k: "synthetic.flows", v: "login · checkout · search · upload" },
@@ -363,11 +494,27 @@ const MODULES: Record<string, ModuleDef> = {
       },
     ],
     feed: [
-      { t: "now", line: "auth-svc · p95 42ms · 99.99% · ok", tone: "var(--acid)" },
-      { t: "now", line: "billing · p95 118ms · 99.91% · ok", tone: "var(--acid)" },
-      { t: "now", line: "search · p95 312ms · 98.40% · degraded", tone: "var(--warn)" },
+      {
+        t: "now",
+        line: "auth-svc · p95 42ms · 99.99% · ok",
+        tone: "var(--acid)",
+      },
+      {
+        t: "now",
+        line: "billing · p95 118ms · 99.91% · ok",
+        tone: "var(--acid)",
+      },
+      {
+        t: "now",
+        line: "search · p95 312ms · 98.40% · degraded",
+        tone: "var(--warn)",
+      },
       { t: "12s", line: "feed · p95 67ms · 99.97% · ok", tone: "var(--acid)" },
-      { t: "30s", line: "synthetic checkout · 1.4s · pass", tone: "var(--acid)" },
+      {
+        t: "30s",
+        line: "synthetic checkout · 1.4s · pass",
+        tone: "var(--acid)",
+      },
     ],
     cli: [
       "▸ apiguard pulse --service '*' --window 5m",
@@ -404,7 +551,10 @@ function ModulePage() {
       <header className="fixed top-0 inset-x-0 z-50 border-b border-border/60 bg-background/70 backdrop-blur-xl">
         <div className="flex items-center justify-between px-6 py-3 font-mono text-xs tracking-widest uppercase">
           <div className="flex items-center gap-3">
-            <span className="size-2 rounded-full animate-pulse" style={{ background: m.accent }} />
+            <span
+              className="size-2 rounded-full animate-pulse"
+              style={{ background: m.accent }}
+            />
             <Link to="/" className="text-bone hover:text-acid">
               APIGUARD/<span style={{ color: m.accent }}>{m.tag}</span>
             </Link>
@@ -426,7 +576,9 @@ function ModulePage() {
         <div className="absolute inset-0 scan-lines opacity-30 pointer-events-none" />
         <div
           className="absolute top-0 left-0 right-0 h-px"
-          style={{ background: `linear-gradient(to right, transparent, ${m.accent}, transparent)` }}
+          style={{
+            background: `linear-gradient(to right, transparent, ${m.accent}, transparent)`,
+          }}
         />
 
         <div className="relative z-10 max-w-[1400px] mx-auto px-6">
@@ -441,7 +593,9 @@ function ModulePage() {
             </Link>
             <span className="text-bone/30">/</span>
             <span style={{ color: m.accent }}>{slug}</span>
-            <span className="ml-auto border border-bone/30 px-2 py-1">MOD.{m.code} · ONLINE</span>
+            <span className="ml-auto border border-bone/30 px-2 py-1">
+              MOD.{m.code} · ONLINE
+            </span>
           </motion.div>
 
           <div className="grid md:grid-cols-[1.6fr_1fr] gap-12 items-end">
@@ -452,7 +606,10 @@ function ModulePage() {
                 transition={{ delay: 0.1 }}
                 className="flex items-center gap-6 mb-6"
               >
-                <span className="font-display text-7xl leading-none" style={{ color: m.accent }}>
+                <span
+                  className="font-display text-7xl leading-none"
+                  style={{ color: m.accent }}
+                >
                   {m.glyph}
                 </span>
                 <div className="font-mono text-xs text-bone/50 uppercase">
@@ -468,7 +625,9 @@ function ModulePage() {
               >
                 {m.title.split(" ")[0]}
                 <br />
-                <span className="text-stroke">{m.title.split(" ").slice(1).join(" ") || "·"}</span>
+                <span className="text-stroke">
+                  {m.title.split(" ").slice(1).join(" ") || "·"}
+                </span>
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0 }}
@@ -499,7 +658,11 @@ function ModulePage() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.5 + i * 0.12 }}
                   className={
-                    line.startsWith("✓") ? "" : line.startsWith("▸") ? "text-bone" : "text-bone/50"
+                    line.startsWith("✓")
+                      ? ""
+                      : line.startsWith("▸")
+                        ? "text-bone"
+                        : "text-bone/50"
                   }
                   style={line.startsWith("✓") ? { color: m.accent } : undefined}
                 >
@@ -535,7 +698,9 @@ function ModulePage() {
               >
                 {x.value}
               </div>
-              <div className="font-mono text-[10px] text-bone/40 mt-2">{x.sub}</div>
+              <div className="font-mono text-[10px] text-bone/40 mt-2">
+                {x.sub}
+              </div>
             </motion.div>
           ))}
         </div>
@@ -586,7 +751,9 @@ function ModulePage() {
               What it actually does.
             </h2>
           </div>
-          <div className="font-mono text-[10px] text-bone/40 uppercase">4 · primitives</div>
+          <div className="font-mono text-[10px] text-bone/40 uppercase">
+            4 · primitives
+          </div>
         </div>
         <div className="grid md:grid-cols-2 gap-px bg-border">
           {m.capabilities.map((c, i) => (
@@ -678,7 +845,10 @@ function ModulePage() {
             </div>
             <h2 className="font-display text-4xl md:text-6xl uppercase tracking-tight leading-[0.9] mb-8">
               Wire{" "}
-              <span className="italic font-serif lowercase" style={{ color: m.accent }}>
+              <span
+                className="italic font-serif lowercase"
+                style={{ color: m.accent }}
+              >
                 {m.title.toLowerCase()}
               </span>
               <br />
@@ -708,7 +878,9 @@ function ModulePage() {
             params={{ slug: prev }}
             className="bg-card/40 backdrop-blur-xl p-6 group hover:bg-bone/[0.02] transition-colors"
           >
-            <div className="font-mono text-[10px] text-bone/40 uppercase mb-2">← prev module</div>
+            <div className="font-mono text-[10px] text-bone/40 uppercase mb-2">
+              ← prev module
+            </div>
             <div className="font-display text-2xl uppercase group-hover:text-acid transition-colors">
               {MODULES[prev].title}
             </div>
@@ -718,7 +890,9 @@ function ModulePage() {
             params={{ slug: next }}
             className="bg-card/40 backdrop-blur-xl p-6 group hover:bg-bone/[0.02] transition-colors text-right"
           >
-            <div className="font-mono text-[10px] text-bone/40 uppercase mb-2">next module →</div>
+            <div className="font-mono text-[10px] text-bone/40 uppercase mb-2">
+              next module →
+            </div>
             <div className="font-display text-2xl uppercase group-hover:text-acid transition-colors">
               {MODULES[next].title}
             </div>

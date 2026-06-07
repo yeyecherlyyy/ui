@@ -10,8 +10,14 @@ export function TiltCard({
 }) {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const rx = useSpring(useTransform(y, [-0.5, 0.5], [10, -10]), { stiffness: 200, damping: 18 });
-  const ry = useSpring(useTransform(x, [-0.5, 0.5], [-12, 12]), { stiffness: 200, damping: 18 });
+  const rx = useSpring(useTransform(y, [-0.5, 0.5], [10, -10]), {
+    stiffness: 200,
+    damping: 18,
+  });
+  const ry = useSpring(useTransform(x, [-0.5, 0.5], [-12, 12]), {
+    stiffness: 200,
+    damping: 18,
+  });
 
   function onMove(e: MouseEvent<HTMLDivElement>) {
     const r = e.currentTarget.getBoundingClientRect();
@@ -27,7 +33,12 @@ export function TiltCard({
     <motion.div
       onMouseMove={onMove}
       onMouseLeave={onLeave}
-      style={{ rotateX: rx, rotateY: ry, transformStyle: "preserve-3d", perspective: 1000 }}
+      style={{
+        rotateX: rx,
+        rotateY: ry,
+        transformStyle: "preserve-3d",
+        perspective: 1000,
+      }}
       className={className}
     >
       {children}

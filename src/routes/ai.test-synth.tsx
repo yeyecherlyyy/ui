@@ -63,16 +63,33 @@ const CASE_CLASSES = [
   },
 ];
 
-const EXPORTS = ["jest", "pytest", "k6", "vitest", "postman", "rest-client", "bruno", "tavern"];
+const EXPORTS = [
+  "jest",
+  "pytest",
+  "k6",
+  "vitest",
+  "postman",
+  "rest-client",
+  "bruno",
+  "tavern",
+];
 
 const STREAM = [
-  { t: "00:00.12", line: "▸ parsed openapi.yaml · 247 endpoints", tone: "var(--acid)" },
+  {
+    t: "00:00.12",
+    line: "▸ parsed openapi.yaml · 247 endpoints",
+    tone: "var(--acid)",
+  },
   {
     t: "00:00.41",
     line: "▸ inferring auth model · oauth2 + bearer · 4 scopes",
     tone: "var(--bone)",
   },
-  { t: "00:01.07", line: "✦ synthesizing NEG class · 412 cases", tone: "var(--acid)" },
+  {
+    t: "00:01.07",
+    line: "✦ synthesizing NEG class · 412 cases",
+    tone: "var(--acid)",
+  },
   {
     t: "00:02.55",
     line: "✦ synthesizing FZZ class · 9,318 cases (mutational)",
@@ -88,7 +105,11 @@ const STREAM = [
     line: "✦ synthesizing AUT class · BOLA on GET /users/{id}/orders",
     tone: "var(--signal)",
   },
-  { t: "00:07.10", line: "✓ exported jest+pytest+k6 · 11,959 cases · 2.1 MB", tone: "var(--acid)" },
+  {
+    t: "00:07.10",
+    line: "✓ exported jest+pytest+k6 · 11,959 cases · 2.1 MB",
+    tone: "var(--acid)",
+  },
 ];
 
 const PIPELINE = [
@@ -102,7 +123,10 @@ const PIPELINE = [
 function TestSynthPage() {
   useLenis();
   const heroRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
   const yTitle = useTransform(scrollYProgress, [0, 1], [0, -180]);
   const opTitle = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
   const rotGlyph = useTransform(scrollYProgress, [0, 1], [0, 360]);
@@ -134,7 +158,10 @@ function TestSynthPage() {
       </header>
 
       {/* HERO */}
-      <section ref={heroRef} className="relative min-h-[110vh] grid-bg overflow-hidden pt-28">
+      <section
+        ref={heroRef}
+        className="relative min-h-[110vh] grid-bg overflow-hidden pt-28"
+      >
         <div className="absolute inset-0 scan-lines opacity-30 pointer-events-none" />
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-signal to-transparent" />
 
@@ -160,9 +187,10 @@ function TestSynthPage() {
             <span className="block text-signal">would have written.</span>
           </h1>
           <p className="mt-10 max-w-2xl text-bone/60 text-lg leading-relaxed">
-            Feed it a spec. It hallucinates the request payloads your QA team forgot to imagine —
-            boundary edges, malformed unicode, scope-confused JWTs, BOLA chains, refill-timing races
-            — and ships them as runnable Jest, Pytest or k6 files.
+            Feed it a spec. It hallucinates the request payloads your QA team
+            forgot to imagine — boundary edges, malformed unicode,
+            scope-confused JWTs, BOLA chains, refill-timing races — and ships
+            them as runnable Jest, Pytest or k6 files.
           </p>
 
           <div className="mt-12 flex flex-wrap items-center gap-4">
@@ -265,8 +293,8 @@ function TestSynthPage() {
             </h2>
           </div>
           <div className="font-mono text-xs text-bone/40 max-w-sm">
-            Every endpoint is exploded across six adversarial dimensions in parallel. You ship the
-            ones with the highest risk × novelty score.
+            Every endpoint is exploded across six adversarial dimensions in
+            parallel. You ship the ones with the highest risk × novelty score.
           </div>
         </div>
 
@@ -298,10 +326,15 @@ function TestSynthPage() {
                 <h3 className="relative font-display text-3xl uppercase tracking-tight mb-3">
                   {c.title}
                 </h3>
-                <p className="relative text-bone/60 text-sm leading-relaxed mb-6">{c.desc}</p>
+                <p className="relative text-bone/60 text-sm leading-relaxed mb-6">
+                  {c.desc}
+                </p>
                 <div className="relative flex items-baseline justify-between border-t border-border pt-4 font-mono text-xs">
                   <span className="text-bone/40">cases generated</span>
-                  <span style={{ color: c.tone }} className="text-2xl font-display">
+                  <span
+                    style={{ color: c.tone }}
+                    className="text-2xl font-display"
+                  >
                     {c.count.toLocaleString()}
                   </span>
                 </div>
@@ -322,8 +355,9 @@ function TestSynthPage() {
               framework-native. no glue.
             </h3>
             <p className="text-bone/60 leading-relaxed mb-8">
-              The synthesizer doesn't dump JSON for you to wrap. It writes the actual test file in
-              your framework's idiom — fixtures, hooks, parametrize blocks, the works.
+              The synthesizer doesn't dump JSON for you to wrap. It writes the
+              actual test file in your framework's idiom — fixtures, hooks,
+              parametrize blocks, the works.
             </p>
             <div className="space-y-2 font-mono text-xs">
               {[
@@ -332,7 +366,10 @@ function TestSynthPage() {
                 { k: "k6", v: "scenarios + thresholds" },
                 { k: "postman", v: "v2.1 collection + env" },
               ].map((x) => (
-                <div key={x.k} className="flex justify-between border-b border-border/60 py-2">
+                <div
+                  key={x.k}
+                  className="flex justify-between border-b border-border/60 py-2"
+                >
                   <span className="text-bone/50">{x.k}</span>
                   <span className="text-acid">{x.v}</span>
                 </div>
@@ -342,7 +379,11 @@ function TestSynthPage() {
 
           <div className="bg-background/60 font-mono text-xs overflow-hidden">
             <div className="flex border-b border-border">
-              {["auth_bypass.test.ts", "fuzz_checkout.py", "load_burst.k6.js"].map((f, i) => (
+              {[
+                "auth_bypass.test.ts",
+                "fuzz_checkout.py",
+                "load_burst.k6.js",
+              ].map((f, i) => (
                 <div
                   key={f}
                   className={`px-4 py-3 border-r border-border ${i === 0 ? "bg-card text-acid" : "text-bone/40"}`}
@@ -370,7 +411,9 @@ describe.each([
 });
 
 // `}
-              <span className="text-signal">// synthesized · risk 0.91 · novelty 0.77</span>
+              <span className="text-signal">
+                // synthesized · risk 0.91 · novelty 0.77
+              </span>
             </pre>
           </div>
         </div>
@@ -426,7 +469,14 @@ describe.each([
               s: "FAIL",
               tone: "var(--signal)",
             },
-            { c: "NEG", e: "PUT /catalog/{sku}", r: 0.52, n: 0.18, s: "PASS", tone: "var(--acid)" },
+            {
+              c: "NEG",
+              e: "PUT /catalog/{sku}",
+              r: 0.52,
+              n: 0.18,
+              s: "PASS",
+              tone: "var(--acid)",
+            },
             {
               c: "RAT",
               e: "POST /auth/refresh",
@@ -479,7 +529,10 @@ describe.each([
             <div className="font-mono text-xs text-bone/40 uppercase tracking-widest mb-2">
               previous module
             </div>
-            <Link to="/" className="font-display text-2xl uppercase hover:text-acid transition">
+            <Link
+              to="/"
+              className="font-display text-2xl uppercase hover:text-acid transition"
+            >
               ← AI.Docs · generator
             </Link>
           </div>
@@ -487,7 +540,10 @@ describe.each([
             <div className="font-mono text-xs text-bone/40 uppercase tracking-widest mb-2">
               return
             </div>
-            <Link to="/" className="font-display text-2xl uppercase hover:text-signal transition">
+            <Link
+              to="/"
+              className="font-display text-2xl uppercase hover:text-signal transition"
+            >
               // apiguard.os
             </Link>
           </div>
@@ -495,13 +551,18 @@ describe.each([
             <div className="font-mono text-xs text-bone/40 uppercase tracking-widest mb-2">
               next module
             </div>
-            <Link to="/" className="font-display text-2xl uppercase hover:text-acid transition">
+            <Link
+              to="/"
+              className="font-display text-2xl uppercase hover:text-acid transition"
+            >
               AI.Mock · server →
             </Link>
           </div>
         </div>
         <div className="border-t border-border px-6 py-4 font-mono text-[10px] uppercase tracking-widest text-bone/30 flex justify-between">
-          <span>apiguard // ai.test-synth · built for engineers who don't sleep</span>
+          <span>
+            apiguard // ai.test-synth · built for engineers who don't sleep
+          </span>
           <span className="text-signal">● synth-engine nominal</span>
         </div>
       </section>

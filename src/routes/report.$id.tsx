@@ -37,7 +37,8 @@ function Report() {
           <ul className="list-disc pl-5 space-y-1">
             {scan.findings.map((f, idx) => (
               <li key={idx}>
-                <span className="font-medium capitalize">{f.severity}</span>: {f.description}
+                <span className="font-medium capitalize">{f.severity}</span>:{" "}
+                {f.description}
               </li>
             ))}
           </ul>

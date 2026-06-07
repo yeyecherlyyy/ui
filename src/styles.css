@@ -43,8 +43,8 @@
   --ink: oklch(0.98 0.01 240); /* light gray / white background */
   --bone: oklch(0.15 0.01 250); /* dark charcoal text */
   --acid: oklch(0.55 0.2 250); /* CodeDale blue */
-  --signal: oklch(0.60 0.18 20); /* softer red/magenta */
-  --warn: oklch(0.70 0.18 65); /* softer amber */
+  --signal: oklch(0.6 0.18 20); /* softer red/magenta */
+  --warn: oklch(0.7 0.18 65); /* softer amber */
 
   --background: var(--ink);
   --foreground: var(--bone);

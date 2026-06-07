@@ -9,7 +9,9 @@ export const Route = createFileRoute("/monitor")({
 function Monitor() {
   return (
     <div className="p-6 max-w-6xl mx-auto pt-24">
-      <h1 className="text-3xl font-display uppercase tracking-tight mb-8">System Monitor</h1>
+      <h1 className="text-3xl font-display uppercase tracking-tight mb-8">
+        System Monitor
+      </h1>
       <div className="grid md:grid-cols-3 gap-6">
         {[
           { n: "auth-svc", v: 99.99, ms: 42, status: "healthy" },
