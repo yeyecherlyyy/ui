@@ -138,20 +138,20 @@ function DocsGenPage() {
   return (
     <div className="relative bg-transparent text-foreground">
       {/* TOP RAIL */}
-      <header className="fixed top-0 inset-x-0 z-50 border-b border-border/60 bg-background/70 backdrop-blur-xl">
-        <div className="flex items-center justify-between px-6 py-3 font-mono text-xs tracking-widest uppercase">
+      <header className="fixed top-0 inset-x-0 z-50 bg-background/80 backdrop-blur-xl">
+        <div className="max-w-[1400px] mx-auto flex items-center justify-between px-6 py-4 font-mono text-xs tracking-widest uppercase">
           <div className="flex items-center gap-3">
             <span className="size-2 bg-acid animate-pulse rounded-full" />
-            <Link to="/" className="text-bone hover:text-acid">
-              APIGUARD/<span className="text-acid">ai.docs</span>
+            <Link to="/" className="text-foreground font-display font-bold hover:text-acid transition-colors">
+              APIGUARD / <span className="text-acid">ai.docs</span>
             </Link>
-            <span className="text-bone/40 hidden md:inline">
+            <span className="text-muted-foreground hidden md:inline font-medium">
               // generator v3.1 · llm-augmented · 47ms
             </span>
           </div>
           <Link
             to="/"
-            className="border border-bone/30 text-bone/70 px-3 py-1 hover:border-acid hover:text-acid transition"
+            className="text-muted-foreground font-display font-semibold hover:text-acid transition-colors"
           >
             ← return to OS
           </Link>
@@ -161,10 +161,9 @@ function DocsGenPage() {
       {/* HERO */}
       <section
         ref={heroRef}
-        className="relative min-h-[110vh] grid-bg overflow-hidden pt-28"
+        className="relative min-h-[100vh] overflow-hidden pt-28 bg-background"
       >
-        <div className="absolute inset-0 scan-lines opacity-30 pointer-events-none" />
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-acid to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-acid/10 via-background to-background pointer-events-none" />
 
         <motion.div
           style={{ rotate: rotGlyph }}
@@ -179,30 +178,29 @@ function DocsGenPage() {
           style={{ y: yTitle, opacity: opTitle }}
           className="relative px-6 max-w-[1400px] mx-auto pt-12"
         >
-          <div className="font-mono text-xs text-acid uppercase tracking-[0.3em] mb-6">
+          <div className="font-display font-bold text-xs text-acid uppercase tracking-[0.3em] mb-6 bg-acid/10 px-3 py-1 inline-block rounded-full">
             [ ai.module · 01/03 · documentation generator ]
           </div>
-          <h1 className="font-display text-[14vw] md:text-[10vw] leading-[0.82] uppercase tracking-tighter">
+          <h1 className="font-display font-bold text-[14vw] md:text-[10vw] leading-[0.9] uppercase tracking-tighter text-foreground">
             <span className="block">docs nobody</span>
-            <span className="block text-stroke">wanted to</span>
+            <span className="block text-foreground/40">wanted to</span>
             <span className="block text-acid">write.</span>
           </h1>
-          <p className="mt-10 max-w-2xl text-bone/60 text-lg leading-relaxed">
+          <p className="mt-10 max-w-2xl text-muted-foreground font-medium text-lg leading-relaxed">
             Aim at a base URL or drop an OpenAPI file. Ninety seconds later you
             have a full documentation site — overview prose, endpoint reference,
             curl/fetch/python examples, auth diagrams, changelog — all narrated
             in your tone, all linkable, all printable.
           </p>
 
-          <div className="mt-12 flex flex-wrap items-center gap-4">
+          <div className="mt-12 flex flex-wrap items-center gap-6">
             <button
               onClick={() => setRunning((r) => !r)}
-              className="group relative border border-acid text-acid px-6 py-3 font-mono text-xs uppercase tracking-[0.25em] hover:bg-acid hover:text-ink transition"
+              className="bg-acid text-ink px-8 py-4 font-display font-bold text-sm uppercase tracking-widest rounded-full shadow-md hover:-translate-y-1 hover:shadow-lg transition-all"
             >
               {running ? "■ abort generation" : "▶ run generator"}
-              <span className="absolute -inset-px border border-acid/30 translate-x-1 translate-y-1 -z-10 group-hover:translate-x-2 group-hover:translate-y-2 transition" />
             </button>
-            <span className="font-mono text-xs text-bone/40">
+            <span className="font-display font-medium text-xs text-muted-foreground uppercase">
               expected · ~14s · ~12,757 lines · 4.8 MB
             </span>
           </div>
@@ -210,68 +208,68 @@ function DocsGenPage() {
 
         {/* INTAKE */}
         <div className="relative mt-20 px-6 max-w-[1400px] mx-auto pb-24">
-          <div className="border border-border bg-card/40 backdrop-blur-xl">
-            <div className="flex items-center justify-between border-b border-border px-4 py-2 font-mono text-[10px] uppercase tracking-widest text-bone/50">
+          <div className="bg-card rounded-3xl shadow-sm overflow-hidden">
+            <div className="flex items-center justify-between border-b border-border/60 bg-secondary/50 px-6 py-4 font-display font-semibold text-[10px] uppercase tracking-widest text-muted-foreground">
               <span>~/apiguard/ai/docs-gen · intake</span>
-              <span className="flex gap-1">
-                <span className="size-2 rounded-full bg-warn/60" />
-                <span className="size-2 rounded-full bg-signal/60" />
-                <span className="size-2 rounded-full bg-acid/60" />
+              <span className="flex gap-2">
+                <span className="size-3 rounded-full bg-destructive/70" />
+                <span className="size-3 rounded-full bg-warn/70" />
+                <span className="size-3 rounded-full bg-acid/70" />
               </span>
             </div>
             <div className="grid md:grid-cols-[1fr_auto_1fr] gap-0">
-              <div className="p-6 font-mono text-xs space-y-3">
-                <div className="text-bone/40">
+              <div className="p-8 font-mono text-xs space-y-4">
+                <div className="text-muted-foreground font-semibold">
                   // 1. point at base URL or spec
                 </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-acid">▸</span>
+                <div className="flex items-center gap-3">
+                  <span className="text-acid font-bold">▸</span>
                   <input
                     value={target}
                     onChange={(e) => setTarget(e.target.value)}
-                    className="bg-transparent border-b border-bone/20 focus:border-acid outline-none flex-1 text-bone py-1"
+                    className="bg-background border border-border/60 rounded-lg focus:border-acid focus:ring-4 focus:ring-acid/10 outline-none flex-1 text-foreground px-4 py-2 font-mono"
                   />
                 </div>
-                <div className="text-bone/40 pt-4">
+                <div className="text-muted-foreground font-semibold pt-6">
                   // 2. pick output formats
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {FORMATS.map((x, i) => (
                     <span
                       key={x}
-                      className={`border px-2 py-1 cursor-pointer transition ${i < 4 ? "border-acid text-acid" : "border-bone/20 text-bone/40 hover:border-bone/60 hover:text-bone/70"}`}
+                      className={`border rounded-full px-4 py-1.5 cursor-pointer transition-all font-display font-semibold ${i < 4 ? "border-acid text-acid bg-acid/10" : "border-border/60 text-muted-foreground hover:border-foreground/30 hover:text-foreground bg-background"}`}
                     >
                       {x}
                     </span>
                   ))}
                 </div>
-                <div className="text-bone/40 pt-4">// 3. tone</div>
+                <div className="text-muted-foreground font-semibold pt-6">// 3. tone</div>
                 <div className="flex flex-wrap gap-2">
                   {["technical", "friendly", "terse", "verbose"].map((t, i) => (
                     <span
                       key={t}
-                      className={`border px-2 py-1 cursor-pointer transition ${i === 0 ? "border-signal text-signal" : "border-bone/20 text-bone/40 hover:border-bone/60 hover:text-bone/70"}`}
+                      className={`border rounded-full px-4 py-1.5 cursor-pointer transition-all font-display font-semibold ${i === 0 ? "border-signal text-signal bg-signal/10" : "border-border/60 text-muted-foreground hover:border-foreground/30 hover:text-foreground bg-background"}`}
                     >
                       {t}
                     </span>
                   ))}
                 </div>
               </div>
-              <div className="hidden md:block w-px bg-border" />
-              <div className="p-6 font-mono text-xs space-y-1 bg-background/40 max-h-[320px] overflow-hidden">
+              <div className="hidden md:block w-px bg-border/60" />
+              <div className="p-8 font-mono text-xs space-y-2 bg-secondary/20 max-h-[400px] overflow-hidden">
                 {STREAM.map((s, i) => (
                   <motion.div
                     key={s.t}
                     initial={{ opacity: 0, x: -8 }}
                     animate={{ opacity: running ? 1 : 0.35, x: 0 }}
                     transition={{ delay: running ? i * 0.4 : 0 }}
-                    className="flex gap-3"
+                    className="flex gap-4"
                   >
-                    <span className="text-bone/30">{s.t}</span>
-                    <span style={{ color: s.tone }}>{s.line}</span>
+                    <span className="text-muted-foreground">{s.t}</span>
+                    <span style={{ color: s.tone }} className="font-medium">{s.line}</span>
                   </motion.div>
                 ))}
-                <div className="text-acid">
+                <div className="text-acid font-bold mt-2">
                   ▸ ready<span className="cursor-blink">_</span>
                 </div>
               </div>
@@ -281,15 +279,15 @@ function DocsGenPage() {
       </section>
 
       {/* PIPELINE STRIP */}
-      <section className="relative border-y border-border bg-card/30 backdrop-blur-xl overflow-hidden">
-        <div className="flex marquee-track whitespace-nowrap py-4 font-mono text-xs uppercase tracking-[0.3em] text-bone/40">
+      <section className="relative border-y border-border/50 bg-secondary/30 overflow-hidden">
+        <div className="flex marquee-track whitespace-nowrap py-6 font-display font-bold text-xs uppercase tracking-[0.3em] text-muted-foreground">
           {[...PIPELINE, ...PIPELINE, ...PIPELINE].map((p, i) => (
-            <span key={i} className="px-8 flex items-center gap-3">
+            <span key={i} className="px-8 flex items-center gap-4">
               <span className="text-acid">{p.n}</span>
-              <span className="text-bone/80">{p.k}</span>
+              <span className="text-foreground/80">{p.k}</span>
               <span>·</span>
               <span>{p.v}</span>
-              <span className="text-bone/20">//</span>
+              <span className="text-muted-foreground/30">//</span>
             </span>
           ))}
         </div>
@@ -297,41 +295,41 @@ function DocsGenPage() {
 
       {/* SECTIONS BENTO */}
       <section className="relative px-6 max-w-[1400px] mx-auto py-32">
-        <div className="flex items-end justify-between mb-12 flex-wrap gap-4">
+        <div className="flex items-end justify-between mb-16 flex-wrap gap-6">
           <div>
-            <div className="font-mono text-xs text-acid uppercase tracking-[0.3em] mb-3">
+            <div className="font-display font-bold text-xs text-acid uppercase tracking-[0.3em] mb-4">
               [ 02 · sections ]
             </div>
-            <h2 className="font-display text-5xl md:text-7xl uppercase tracking-tighter leading-[0.9]">
+            <h2 className="font-display font-bold text-5xl md:text-7xl uppercase tracking-tighter leading-[1]">
               six sections.
               <br />
-              <span className="text-stroke">one narration pass.</span>
+              <span className="text-foreground/40">one narration pass.</span>
             </h2>
           </div>
-          <div className="font-mono text-xs text-bone/40 max-w-sm">
+          <div className="font-display font-medium text-sm text-muted-foreground max-w-sm">
             Every documentation site is assembled from the same six sections —
             written in your tone, cross-linked, indexed, and shipped to the
             format of your choosing.
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-4">
+        <div className="grid md:grid-cols-3 gap-8">
           {SECTIONS.map((s, i) => (
-            <TiltCard key={s.code} className="group">
+            <TiltCard key={s.code} className="group h-full">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: i * 0.06 }}
-                className="relative border border-border bg-card/40 backdrop-blur-xl p-6 h-full overflow-hidden"
+                className="relative bg-card rounded-3xl shadow-sm p-8 h-full overflow-hidden hover:shadow-md transition-shadow flex flex-col"
               >
-                <div className="absolute top-0 right-0 font-mono text-[10rem] leading-none text-bone/[0.03] select-none">
+                <div className="absolute -top-4 -right-4 font-display font-bold text-[10rem] leading-none text-foreground/[0.02] select-none pointer-events-none">
                   {s.code}
                 </div>
-                <div className="relative flex items-start justify-between mb-8">
+                <div className="relative flex items-start justify-between mb-10">
                   <span
-                    className="font-mono text-xs uppercase tracking-widest"
-                    style={{ color: s.tone }}
+                    className="font-display font-bold text-xs uppercase tracking-widest px-3 py-1 rounded-full"
+                    style={{ color: s.tone, backgroundColor: `color-mix(in srgb, ${s.tone} 10%, transparent)` }}
                   >
                     [ {s.code} ]
                   </span>
@@ -340,17 +338,17 @@ function DocsGenPage() {
                     style={{ background: s.tone }}
                   />
                 </div>
-                <h3 className="relative font-display text-3xl uppercase tracking-tight mb-3">
+                <h3 className="relative font-display font-bold text-3xl uppercase tracking-tight mb-4 text-foreground">
                   {s.title}
                 </h3>
-                <p className="relative text-bone/60 text-sm leading-relaxed mb-6">
+                <p className="relative text-muted-foreground font-medium text-sm leading-relaxed mb-8 flex-1">
                   {s.desc}
                 </p>
-                <div className="relative flex items-baseline justify-between border-t border-border pt-4 font-mono text-xs">
-                  <span className="text-bone/40">lines emitted</span>
+                <div className="relative flex items-baseline justify-between border-t border-border/60 pt-6 font-display font-medium text-xs">
+                  <span className="text-muted-foreground uppercase tracking-widest">lines emitted</span>
                   <span
                     style={{ color: s.tone }}
-                    className="text-2xl font-display"
+                    className="text-3xl font-display font-bold"
                   >
                     {s.lines.toLocaleString()}
                   </span>
@@ -363,21 +361,21 @@ function DocsGenPage() {
 
       {/* PREVIEW PANE */}
       <section className="relative px-6 max-w-[1400px] mx-auto pb-32">
-        <div className="grid md:grid-cols-[1fr_1.4fr] gap-0 border border-border bg-card/40 backdrop-blur-xl">
-          <div className="p-10 border-r border-border">
-            <div className="font-mono text-xs text-acid uppercase tracking-[0.3em] mb-4">
+        <div className="grid md:grid-cols-[1fr_1.4fr] gap-0 bg-card rounded-[3rem] shadow-lg overflow-hidden">
+          <div className="p-10 md:p-16 border-b md:border-b-0 md:border-r border-border/60 bg-secondary/20">
+            <div className="font-display font-bold text-xs text-acid uppercase tracking-[0.3em] mb-6">
               [ 03 · emit ]
             </div>
-            <h3 className="font-display text-4xl md:text-5xl uppercase tracking-tighter leading-[0.9] mb-6">
+            <h3 className="font-display font-bold text-4xl md:text-5xl uppercase tracking-tighter leading-[1] mb-6">
               readable. linkable. printable.
             </h3>
-            <p className="text-bone/60 leading-relaxed mb-8">
+            <p className="text-muted-foreground font-medium leading-relaxed mb-10">
               The generator doesn't dump a swagger viewer. It writes prose,
               code, callouts, and diagrams as a real site — searchable,
               indexable, theme-able. Or as a 300-page PDF if your CTO still
               mails things.
             </p>
-            <div className="space-y-2 font-mono text-xs">
+            <div className="space-y-3 font-mono text-xs font-medium">
               {[
                 { k: "html", v: "static · 0 deps · ship to S3" },
                 { k: "mdx", v: "embed React widgets" },
@@ -386,29 +384,29 @@ function DocsGenPage() {
               ].map((x) => (
                 <div
                   key={x.k}
-                  className="flex justify-between border-b border-border/60 py-2"
+                  className="flex justify-between border-b border-border/40 py-3 last:border-0"
                 >
-                  <span className="text-bone/50">{x.k}</span>
-                  <span className="text-acid">{x.v}</span>
+                  <span className="text-muted-foreground uppercase">{x.k}</span>
+                  <span className="text-acid font-bold">{x.v}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="bg-background/60 font-mono text-xs overflow-hidden">
-            <div className="flex border-b border-border">
+          <div className="bg-background font-mono text-xs overflow-hidden flex flex-col">
+            <div className="flex border-b border-border/60 bg-secondary/30">
               {["POST /v3/checkout.md", "auth.flow.mdx", "changelog.md"].map(
                 (f, i) => (
                   <div
                     key={f}
-                    className={`px-4 py-3 border-r border-border ${i === 0 ? "bg-card text-acid" : "text-bone/40"}`}
+                    className={`px-6 py-4 border-r border-border/60 font-medium ${i === 0 ? "bg-background text-acid border-b-transparent -mb-px" : "text-muted-foreground hover:bg-secondary/50 transition-colors cursor-pointer"}`}
                   >
                     {f}
                   </div>
                 ),
               )}
             </div>
-            <pre className="p-6 leading-relaxed text-bone/70 overflow-x-auto">
+            <pre className="p-8 md:p-10 leading-relaxed text-foreground overflow-x-auto flex-1">
               {`# POST /v3/checkout/express
 
 Creates an **express checkout session** and returns a hosted URL
@@ -430,7 +428,7 @@ curl -X POST https://api.acme.io/v3/checkout/express \\
 \`\`\`
 
 `}
-              <span className="text-acid">
+              <span className="text-acid font-bold">
                 // narrated · tone=technical · 184 words
               </span>
             </pre>
@@ -439,39 +437,39 @@ curl -X POST https://api.acme.io/v3/checkout/express \\
       </section>
 
       {/* FOOTER NAV */}
-      <section className="border-t border-border bg-card/30 backdrop-blur-xl">
-        <div className="max-w-[1400px] mx-auto px-6 py-16 grid md:grid-cols-3 gap-8">
+      <section className="border-t border-border/60 bg-background">
+        <div className="max-w-[1400px] mx-auto px-6 py-16 grid md:grid-cols-3 gap-12">
           <div>
-            <div className="font-mono text-xs text-bone/40 uppercase tracking-widest mb-2">
-              return
+            <div className="font-display font-bold text-xs text-muted-foreground uppercase tracking-widest mb-3">
+              Return
             </div>
             <Link
               to="/"
-              className="font-display text-2xl uppercase hover:text-acid transition"
+              className="font-display font-bold text-2xl uppercase hover:text-acid transition-colors text-foreground"
             >
               // apiguard.os
             </Link>
           </div>
-          <div className="text-center">
-            <div className="font-mono text-xs text-bone/40 uppercase tracking-widest mb-2">
-              next module
+          <div className="text-left md:text-center">
+            <div className="font-display font-bold text-xs text-muted-foreground uppercase tracking-widest mb-3">
+              Next Module
             </div>
             <Link
               to="/ai/test-synth"
-              className="font-display text-2xl uppercase hover:text-signal transition"
+              className="font-display font-bold text-2xl uppercase hover:text-signal transition-colors text-foreground"
             >
-              AI.Tests · synthesizer →
+              AI.Tests · Synthesizer →
             </Link>
           </div>
-          <div className="text-right">
-            <div className="font-mono text-xs text-bone/40 uppercase tracking-widest mb-2">
-              also
+          <div className="text-left md:text-right">
+            <div className="font-display font-bold text-xs text-muted-foreground uppercase tracking-widest mb-3">
+              Also
             </div>
             <Link
               to="/ai/mock-server"
-              className="font-display text-2xl uppercase hover:text-warn transition"
+              className="font-display font-bold text-2xl uppercase hover:text-warn transition-colors text-foreground"
             >
-              AI.Mock · server →
+              AI.Mock · Server →
             </Link>
           </div>
         </div>

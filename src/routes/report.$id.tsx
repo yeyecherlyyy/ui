@@ -15,10 +15,10 @@ function Report() {
   if (!scan) {
     return (
       <div className="p-6 max-w-4xl mx-auto pt-32 pb-20">
-        <div className="border border-border/60 bg-card rounded-2xl shadow-sm p-12 text-center">
+        <div className="bg-secondary/10 rounded-3xl p-12 text-center">
           <h1 className="text-3xl font-display font-bold mb-4 text-foreground">Report Not Found</h1>
           <p className="text-muted-foreground text-lg mb-8">
-            No scan with ID <code className="bg-secondary px-2 py-1 rounded font-mono text-sm">{id}</code> was found.
+            No scan with ID <code className="bg-background px-2 py-1 rounded font-mono text-sm">{id}</code> was found.
           </p>
           <Link to="/reports" className="bg-acid text-ink px-6 py-2.5 rounded-full font-display font-semibold hover:-translate-y-0.5 transition-all shadow-sm">
             ← Back to Reports
@@ -117,8 +117,8 @@ function Report() {
         </div>
       </div>
 
-      <div className="border border-border/60 bg-card rounded-2xl shadow-sm overflow-hidden">
-        <div className="bg-secondary/30 border-b border-border/60 px-6 py-4 font-display font-semibold text-xs text-muted-foreground uppercase tracking-wider flex justify-between items-center">
+      <div className="bg-secondary/10 rounded-3xl overflow-hidden">
+        <div className="bg-secondary/20 border-b border-border/40 px-6 py-4 font-display font-semibold text-xs text-muted-foreground uppercase tracking-wider flex justify-between items-center">
           <span>Findings Breakdown</span>
         </div>
         <div className="p-6 md:p-8">

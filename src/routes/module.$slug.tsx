@@ -17,13 +17,13 @@ export const Route = createFileRoute("/module/$slug")({
     return { slug: params.slug };
   },
   notFoundComponent: () => (
-    <div className="min-h-screen flex items-center justify-center font-mono text-bone/60">
+    <div className="min-h-screen flex items-center justify-center font-mono text-muted-foreground">
       <div className="text-center">
-        <div className="text-acid text-xs mb-4">[ MODULE.404 ]</div>
-        <div className="mb-6">unknown module</div>
+        <div className="text-acid text-xs mb-4 font-bold">[ MODULE.404 ]</div>
+        <div className="mb-6 font-medium">unknown module</div>
         <Link
           to="/"
-          className="border border-acid text-acid px-4 py-2 hover:bg-acid hover:text-ink transition"
+          className="border border-acid text-acid px-6 py-2 hover:bg-acid hover:text-ink transition-all rounded-full font-display font-semibold"
         >
           return ←
         </Link>
@@ -263,7 +263,7 @@ const MODULES: Record<string, ModuleDef> = {
       {
         t: "12s",
         line: "pr #4421 · payments-svc · check started",
-        tone: "var(--bone)",
+        tone: "var(--foreground)",
       },
       {
         t: "15s",
@@ -337,9 +337,9 @@ const MODULES: Record<string, ModuleDef> = {
       {
         t: "0.1s",
         line: "collecting findings · 23 items",
-        tone: "var(--bone)",
+        tone: "var(--foreground)",
       },
-      { t: "0.4s", line: "rendering evidence pages · 86", tone: "var(--bone)" },
+      { t: "0.4s", line: "rendering evidence pages · 86", tone: "var(--foreground)" },
       {
         t: "1.1s",
         line: "embedding machine-readable annex (json+sarif)",
@@ -548,52 +548,46 @@ function ModulePage() {
   return (
     <div className="relative bg-transparent text-foreground min-h-screen">
       {/* TOP RAIL */}
-      <header className="fixed top-0 inset-x-0 z-50 border-b border-border/60 bg-background/70 backdrop-blur-xl">
-        <div className="flex items-center justify-between px-6 py-3 font-mono text-xs tracking-widest uppercase">
+      <header className="fixed top-0 inset-x-0 z-50 bg-background/80 backdrop-blur-xl">
+        <div className="max-w-[1400px] mx-auto flex items-center justify-between px-6 py-4 font-mono text-xs tracking-widest uppercase">
           <div className="flex items-center gap-3">
             <span
               className="size-2 rounded-full animate-pulse"
               style={{ background: m.accent }}
             />
-            <Link to="/" className="text-bone hover:text-acid">
-              APIGUARD/<span style={{ color: m.accent }}>{m.tag}</span>
+            <Link to="/" className="text-foreground font-display font-bold hover:text-acid transition-colors">
+              APIGUARD / <span style={{ color: m.accent }}>{m.tag}</span>
             </Link>
-            <span className="text-bone/40 hidden md:inline">
+            <span className="text-muted-foreground hidden md:inline font-medium">
               // mod.{m.code} · {m.title.toLowerCase()}
             </span>
           </div>
           <Link
             to="/"
-            className="border border-bone/40 text-bone px-3 py-1 hover:border-acid hover:text-acid transition"
+            className="text-muted-foreground font-display font-semibold hover:text-acid transition-colors"
           >
-            ← all.modules
+            ← all modules
           </Link>
         </div>
       </header>
 
       {/* HERO */}
-      <section className="relative grid-bg pt-32 pb-20 overflow-hidden">
-        <div className="absolute inset-0 scan-lines opacity-30 pointer-events-none" />
-        <div
-          className="absolute top-0 left-0 right-0 h-px"
-          style={{
-            background: `linear-gradient(to right, transparent, ${m.accent}, transparent)`,
-          }}
-        />
+      <section className="relative pt-32 pb-20 overflow-hidden bg-background">
+        <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-acid/5 via-background to-background" />
 
         <div className="relative z-10 max-w-[1400px] mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="font-mono text-xs text-bone/50 mb-8 flex items-center gap-4 flex-wrap"
+            className="font-display font-semibold text-xs text-muted-foreground mb-8 flex items-center gap-4 flex-wrap"
           >
-            <Link to="/" className="hover:text-acid">
+            <Link to="/" className="hover:text-acid transition-colors">
               ~/modules
             </Link>
-            <span className="text-bone/30">/</span>
+            <span className="text-border">/</span>
             <span style={{ color: m.accent }}>{slug}</span>
-            <span className="ml-auto border border-bone/30 px-2 py-1">
+            <span className="ml-auto bg-secondary px-3 py-1 rounded-full text-[10px] tracking-widest uppercase">
               MOD.{m.code} · ONLINE
             </span>
           </motion.div>
@@ -607,25 +601,25 @@ function ModulePage() {
                 className="flex items-center gap-6 mb-6"
               >
                 <span
-                  className="font-display text-7xl leading-none"
+                  className="font-display text-7xl leading-none font-medium"
                   style={{ color: m.accent }}
                 >
                   {m.glyph}
                 </span>
-                <div className="font-mono text-xs text-bone/50 uppercase">
+                <div className="font-display font-bold text-xs text-muted-foreground uppercase tracking-widest">
                   <div>module · {m.code}</div>
-                  <div className="text-bone/30">[ {m.tag} ]</div>
+                  <div className="text-border mt-1">[ {m.tag} ]</div>
                 </div>
               </motion.div>
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.15 }}
-                className="font-display text-[clamp(2.8rem,8vw,7rem)] leading-[0.85] tracking-tight uppercase"
+                className="font-display font-bold text-[clamp(2.8rem,8vw,7rem)] leading-[0.9] tracking-tight uppercase text-foreground"
               >
                 {m.title.split(" ")[0]}
                 <br />
-                <span className="text-stroke">
+                <span className="text-foreground/40">
                   {m.title.split(" ").slice(1).join(" ") || "·"}
                 </span>
               </motion.h1>
@@ -633,7 +627,7 @@ function ModulePage() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.25 }}
-                className="mt-8 text-bone/70 text-lg md:text-xl leading-relaxed max-w-2xl"
+                className="mt-8 text-muted-foreground font-medium text-lg md:text-xl leading-relaxed max-w-2xl"
               >
                 {m.tagline}
               </motion.p>
@@ -645,32 +639,34 @@ function ModulePage() {
               animate={{ opacity: 1, y: 0, rotateX: 0 }}
               transition={{ delay: 0.3, duration: 0.7 }}
               style={{ transformPerspective: 1200 }}
-              className="border border-border bg-card/40 backdrop-blur-xl p-5 font-mono text-[11px] space-y-1.5"
+              className="bg-card shadow-lg rounded-2xl overflow-hidden font-mono text-[11px] space-y-1.5"
             >
-              <div className="flex items-center justify-between text-bone/40 uppercase text-[10px] pb-2 border-b border-border mb-2">
+              <div className="bg-secondary/50 px-5 py-3 flex items-center justify-between text-muted-foreground font-semibold uppercase text-[10px]">
                 <span>~/apiguard · {m.tag}</span>
                 <span style={{ color: m.accent }}>LIVE</span>
               </div>
-              {m.cli.map((line, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.5 + i * 0.12 }}
-                  className={
-                    line.startsWith("✓")
-                      ? ""
-                      : line.startsWith("▸")
-                        ? "text-bone"
-                        : "text-bone/50"
-                  }
-                  style={line.startsWith("✓") ? { color: m.accent } : undefined}
-                >
-                  {line}
-                </motion.div>
-              ))}
-              <div style={{ color: m.accent }}>
-                _<span className="cursor-blink">▌</span>
+              <div className="p-5">
+                {m.cli.map((line, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.5 + i * 0.12 }}
+                    className={
+                      line.startsWith("✓")
+                        ? "mt-2 font-medium"
+                        : line.startsWith("▸")
+                          ? "text-foreground font-medium mb-2"
+                          : "text-muted-foreground"
+                    }
+                    style={line.startsWith("✓") ? { color: m.accent } : undefined}
+                  >
+                    {line}
+                  </motion.div>
+                ))}
+                <div style={{ color: m.accent }} className="mt-1">
+                  _<span className="cursor-blink">▌</span>
+                </div>
               </div>
             </motion.div>
           </div>
@@ -678,8 +674,8 @@ function ModulePage() {
       </section>
 
       {/* METRICS STRIP */}
-      <section className="border-y border-border bg-background/40 backdrop-blur-xl">
-        <div className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-4 divide-x divide-border">
+      <section className="bg-secondary/20">
+        <div className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-4 divide-x divide-border/50">
           {m.metrics.map((x, i) => (
             <motion.div
               key={x.label}
@@ -687,18 +683,18 @@ function ModulePage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
-              className="p-6 md:p-8"
+              className="p-8 md:p-12 text-center"
             >
-              <div className="font-mono text-[10px] text-bone/40 uppercase tracking-widest mb-3">
+              <div className="font-display font-semibold text-xs text-muted-foreground uppercase tracking-widest mb-4">
                 {x.label}
               </div>
               <div
-                className="font-display text-4xl md:text-5xl tracking-tight"
+                className="font-display font-bold text-4xl md:text-5xl tracking-tight mb-2"
                 style={{ color: m.accent }}
               >
                 {x.value}
               </div>
-              <div className="font-mono text-[10px] text-bone/40 mt-2">
+              <div className="font-display font-medium text-xs text-muted-foreground">
                 {x.sub}
               </div>
             </motion.div>
@@ -707,30 +703,30 @@ function ModulePage() {
       </section>
 
       {/* BODY + OPS */}
-      <section className="max-w-[1400px] mx-auto px-6 py-24 grid md:grid-cols-[1.5fr_1fr] gap-12">
+      <section className="max-w-[1400px] mx-auto px-6 py-32 grid md:grid-cols-[1.5fr_1fr] gap-16">
         <div>
           <div
-            className="font-mono text-xs uppercase tracking-widest mb-4"
+            className="font-display font-bold text-sm uppercase tracking-widest mb-6"
             style={{ color: m.accent }}
           >
-            [ 01 ] dossier
+            [ Dossier ]
           </div>
-          <p className="font-serif italic text-2xl md:text-3xl leading-relaxed text-bone/90 max-w-2xl">
+          <p className="font-display font-medium text-2xl md:text-3xl leading-relaxed text-foreground max-w-2xl">
             {m.body}
           </p>
         </div>
-        <div className="border border-border bg-card/40 backdrop-blur-xl p-6">
-          <div className="font-mono text-[10px] text-bone/40 uppercase tracking-widest mb-4">
+        <div className="bg-secondary/30 rounded-3xl p-8">
+          <div className="font-display font-bold text-xs text-muted-foreground uppercase tracking-widest mb-6">
             ops.config
           </div>
-          <div className="space-y-3 font-mono text-xs">
+          <div className="space-y-4 font-mono text-xs">
             {m.ops.map((o) => (
               <div
                 key={o.k}
-                className="grid grid-cols-[1fr_1.5fr] gap-3 border-b border-border/50 pb-2"
+                className="grid grid-cols-[1fr_1.5fr] gap-4 border-b border-border/50 pb-3"
               >
-                <span className="text-bone/50">{o.k}</span>
-                <span className="text-bone">{o.v}</span>
+                <span className="text-muted-foreground font-semibold">{o.k}</span>
+                <span className="text-foreground font-medium">{o.v}</span>
               </div>
             ))}
           </div>
@@ -739,23 +735,23 @@ function ModulePage() {
 
       {/* CAPABILITIES */}
       <section className="max-w-[1400px] mx-auto px-6 py-16">
-        <div className="border-b border-border pb-6 mb-10 flex items-end justify-between flex-wrap gap-4">
+        <div className="mb-16 flex items-end justify-between flex-wrap gap-4">
           <div>
             <div
-              className="font-mono text-xs uppercase tracking-widest mb-3"
+              className="font-display font-bold text-sm uppercase tracking-widest mb-4"
               style={{ color: m.accent }}
             >
-              [ 02 ] capabilities
+              [ Capabilities ]
             </div>
-            <h2 className="font-display text-4xl md:text-5xl uppercase tracking-tight">
+            <h2 className="font-display font-bold text-4xl md:text-5xl uppercase tracking-tight text-foreground">
               What it actually does.
             </h2>
           </div>
-          <div className="font-mono text-[10px] text-bone/40 uppercase">
+          <div className="font-display font-bold text-xs text-muted-foreground uppercase bg-secondary px-4 py-2 rounded-full">
             4 · primitives
           </div>
         </div>
-        <div className="grid md:grid-cols-2 gap-px bg-border">
+        <div className="grid md:grid-cols-2 gap-8">
           {m.capabilities.map((c, i) => (
             <motion.div
               key={c.title}
@@ -763,20 +759,20 @@ function ModulePage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: i * 0.1 }}
-              className="bg-card/40 backdrop-blur-xl p-8 group hover:bg-bone/[0.02] transition-colors"
+              className="bg-card rounded-3xl p-10 group hover:-translate-y-1 hover:shadow-xl shadow-sm transition-all"
             >
-              <div className="flex items-start justify-between mb-4">
-                <div className="font-mono text-xs text-bone/40">
+              <div className="flex items-start justify-between mb-6">
+                <div className="font-display font-bold text-xs text-muted-foreground uppercase">
                   CAP.{String(i + 1).padStart(2, "0")}
                 </div>
                 <span className="text-2xl" style={{ color: m.accent }}>
                   {["◇", "◈", "◆", "▣"][i]}
                 </span>
               </div>
-              <h3 className="font-display text-2xl uppercase tracking-tight mb-3 group-hover:text-acid transition-colors">
+              <h3 className="font-display font-bold text-2xl uppercase tracking-tight mb-4 text-foreground group-hover:text-acid transition-colors">
                 {c.title}
               </h3>
-              <p className="text-bone/60 leading-relaxed">{c.desc}</p>
+              <p className="text-muted-foreground font-medium leading-relaxed">{c.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -784,86 +780,81 @@ function ModulePage() {
 
       {/* LIVE FEED */}
       <section className="max-w-[1400px] mx-auto px-6 py-24">
-        <div className="border-b border-border pb-6 mb-10 flex items-end justify-between flex-wrap gap-4">
+        <div className="mb-12 flex items-end justify-between flex-wrap gap-4">
           <div>
             <div
-              className="font-mono text-xs uppercase tracking-widest mb-3"
+              className="font-display font-bold text-sm uppercase tracking-widest mb-4"
               style={{ color: m.accent }}
             >
-              [ 03 ] live.stream
+              [ Live Stream ]
             </div>
-            <h2 className="font-display text-4xl md:text-5xl uppercase tracking-tight">
+            <h2 className="font-display font-bold text-4xl md:text-5xl uppercase tracking-tight text-foreground">
               As it happens.
             </h2>
           </div>
-          <div className="font-mono text-[10px] text-bone/40 flex items-center gap-2">
+          <div className="font-display font-bold text-xs text-muted-foreground flex items-center gap-3 bg-secondary px-4 py-2 rounded-full">
             <span
-              className="size-1.5 rounded-full animate-pulse"
+              className="size-2 rounded-full animate-pulse"
               style={{ background: m.accent }}
             />
-            tailing · 5m window
+            TAILING · 5M WINDOW
           </div>
         </div>
-        <div className="border border-border bg-card/40 backdrop-blur-xl">
-          <div className="grid grid-cols-[80px_1fr] gap-4 px-6 py-3 border-b border-border font-mono text-[10px] text-bone/40 uppercase tracking-widest">
-            <span>t</span>
-            <span>event</span>
+        <div className="bg-card rounded-3xl shadow-sm overflow-hidden">
+          <div className="grid grid-cols-[80px_1fr] gap-4 px-8 py-4 bg-secondary/50 border-b border-border/60 font-display font-semibold text-[10px] text-muted-foreground uppercase tracking-widest">
+            <span>Time</span>
+            <span>Event Details</span>
           </div>
-          {m.feed.map((f, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.06 }}
-              className="grid grid-cols-[80px_1fr] gap-4 px-6 py-4 border-b border-border/50 font-mono text-sm hover:bg-bone/[0.02]"
-            >
-              <span className="text-bone/40">{f.t}</span>
-              <span style={{ color: f.tone }}>{f.line}</span>
-            </motion.div>
-          ))}
+          <div className="p-2">
+            {m.feed.map((f, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.06 }}
+                className="grid grid-cols-[80px_1fr] gap-4 px-6 py-4 border-b border-border/40 last:border-0 font-mono text-sm hover:bg-secondary/30 transition-colors rounded-xl"
+              >
+                <span className="text-muted-foreground">{f.t}</span>
+                <span style={{ color: f.tone }} className="font-medium">{f.line}</span>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* CTA + NAV */}
       <section className="max-w-[1400px] mx-auto px-6 py-24">
-        <div className="border border-border bg-card/40 backdrop-blur-xl p-10 md:p-16 text-center relative overflow-hidden">
-          <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
-          <div
-            className="absolute -top-32 -right-32 size-96 rounded-full pointer-events-none"
-            style={{
-              background: `radial-gradient(circle, ${m.accent}, transparent 70%)`,
-              opacity: 0.15,
-            }}
-          />
+        <div className="bg-card rounded-[3rem] shadow-xl p-10 md:p-20 text-center relative overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-acid/10 via-background to-background pointer-events-none" />
           <div className="relative">
             <div
-              className="font-mono text-xs uppercase tracking-widest mb-4"
+              className="font-display font-bold text-sm uppercase tracking-widest mb-6"
               style={{ color: m.accent }}
             >
-              [ engage ]
+              [ Engage ]
             </div>
-            <h2 className="font-display text-4xl md:text-6xl uppercase tracking-tight leading-[0.9] mb-8">
-              Wire{" "}
+            <h2 className="font-display font-bold text-4xl md:text-6xl tracking-tight leading-[1.1] mb-10 text-foreground">
+              WIRE{" "}
               <span
-                className="italic font-serif lowercase"
+                className="font-display uppercase"
                 style={{ color: m.accent }}
               >
                 {m.title.toLowerCase()}
               </span>
               <br />
-              <span className="text-stroke">into your stack.</span>
+              INTO YOUR STACK.
             </h2>
             <div className="flex flex-wrap justify-center gap-4">
               <button
-                className="px-8 py-4 font-mono text-sm uppercase tracking-widest text-ink transition hover:opacity-80"
+                className="px-8 py-4 font-display font-bold text-sm uppercase tracking-widest text-ink transition-transform hover:-translate-y-1 rounded-full shadow-md hover:shadow-lg"
                 style={{ background: m.accent }}
               >
                 deploy.{m.tag.split(".")[0]}()
               </button>
               <Link
                 to="/"
-                className="border border-bone/40 text-bone px-8 py-4 font-mono text-sm uppercase tracking-widest hover:border-acid hover:text-acid transition"
+                className="bg-background text-foreground px-8 py-4 font-display font-bold text-sm uppercase tracking-widest hover:text-acid transition-all rounded-full shadow-sm hover:shadow-md border border-border/60"
               >
                 back.to.console
               </Link>
@@ -872,41 +863,41 @@ function ModulePage() {
         </div>
 
         {/* prev / next */}
-        <div className="mt-12 grid md:grid-cols-2 gap-px bg-border">
+        <div className="mt-16 grid md:grid-cols-2 gap-8">
           <Link
             to="/module/$slug"
             params={{ slug: prev }}
-            className="bg-card/40 backdrop-blur-xl p-6 group hover:bg-bone/[0.02] transition-colors"
+            className="bg-card rounded-3xl p-8 group hover:-translate-y-1 hover:shadow-md shadow-sm transition-all text-left"
           >
-            <div className="font-mono text-[10px] text-bone/40 uppercase mb-2">
-              ← prev module
+            <div className="font-display font-bold text-xs text-muted-foreground uppercase mb-3">
+              ← Prev Module
             </div>
-            <div className="font-display text-2xl uppercase group-hover:text-acid transition-colors">
+            <div className="font-display font-bold text-3xl uppercase group-hover:text-acid transition-colors text-foreground">
               {MODULES[prev].title}
             </div>
           </Link>
           <Link
             to="/module/$slug"
             params={{ slug: next }}
-            className="bg-card/40 backdrop-blur-xl p-6 group hover:bg-bone/[0.02] transition-colors text-right"
+            className="bg-card rounded-3xl p-8 group hover:-translate-y-1 hover:shadow-md shadow-sm transition-all text-right"
           >
-            <div className="font-mono text-[10px] text-bone/40 uppercase mb-2">
-              next module →
+            <div className="font-display font-bold text-xs text-muted-foreground uppercase mb-3">
+              Next Module →
             </div>
-            <div className="font-display text-2xl uppercase group-hover:text-acid transition-colors">
+            <div className="font-display font-bold text-3xl uppercase group-hover:text-acid transition-colors text-foreground">
               {MODULES[next].title}
             </div>
           </Link>
         </div>
       </section>
 
-      <footer className="border-t border-border px-6 py-8 font-mono text-xs text-bone/40 flex flex-wrap items-center justify-between gap-4 bg-background/40 backdrop-blur-xl">
+      <footer className="border-t border-border/60 px-6 py-8 font-display font-medium text-xs text-muted-foreground flex flex-wrap items-center justify-between gap-4 bg-background">
         <div>
           APIGUARD // mod.{m.code} · {m.tag}
         </div>
         <div className="flex gap-6">
           <span>
-            status: <span style={{ color: m.accent }}>operational</span>
+            STATUS: <span style={{ color: m.accent }} className="font-bold">OPERATIONAL</span>
           </span>
           <span>© 2026</span>
         </div>

@@ -237,7 +237,7 @@ function Index() {
                 <Link
                   to="/module/$slug"
                   params={{ slug: f.slug }}
-                  className="relative block border border-border bg-card shadow-sm hover:shadow-lg rounded-2xl p-8 h-[280px] overflow-hidden transition-all duration-300"
+                  className="relative block bg-secondary/10 hover:bg-secondary/20 rounded-3xl p-8 h-[280px] overflow-hidden transition-all duration-300"
                 >
                   <div className="absolute top-4 right-6 text-6xl leading-none text-muted-foreground/10 font-display font-bold transition-transform group-hover:scale-110 group-hover:-translate-y-2">
                     {f.code}
@@ -295,9 +295,9 @@ function Index() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.7, delay: i * 0.12 }}
-              className="relative border border-border/40 p-10 flex flex-col justify-between overflow-hidden bg-card shadow-lg rounded-3xl group hover:-translate-y-2 transition-transform duration-300"
+              className="relative p-10 flex flex-col justify-between overflow-hidden bg-secondary/10 rounded-3xl group hover:-translate-y-2 transition-transform duration-300"
               style={{
-                background: `radial-gradient(circle at top right, color-mix(in oklab, ${t.color} 5%, transparent), transparent 70%), var(--card)`,
+                background: `radial-gradient(circle at top right, color-mix(in oklab, ${t.color} 15%, transparent), transparent 70%), var(--secondary)`,
               }}
             >
               <div
@@ -351,8 +351,8 @@ function Index() {
           label="Diff Radar"
           title="The World's Most Paranoid Changelog"
         />
-        <div className="mt-12 border border-border bg-card shadow-md rounded-2xl overflow-hidden">
-          <div className="grid grid-cols-[120px_1fr_120px] gap-4 px-8 py-4 border-b border-border bg-secondary/30 font-display font-semibold text-xs text-muted-foreground uppercase tracking-widest">
+        <div className="mt-12 bg-secondary/10 rounded-3xl overflow-hidden">
+          <div className="grid grid-cols-[120px_1fr_120px] gap-4 px-8 py-4 border-b border-border/50 bg-secondary/20 font-display font-semibold text-xs text-muted-foreground uppercase tracking-widest">
             <span>Event</span>
             <span>Endpoint</span>
             <span className="text-right">Timestamp</span>
@@ -364,7 +364,7 @@ function Index() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.05 }}
-              className="grid grid-cols-[120px_1fr_120px] gap-4 px-8 py-6 border-b border-border hover:bg-secondary/20 transition-colors items-center group"
+              className="grid grid-cols-[120px_1fr_120px] gap-4 px-8 py-6 border-b border-border/50 hover:bg-secondary/20 transition-colors items-center group last:border-0"
             >
               <span
                 className="font-display text-xs font-bold tracking-wider uppercase px-2 py-1 rounded bg-secondary inline-block text-center w-fit"
@@ -681,7 +681,7 @@ function ActionModal({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
-          className="fixed inset-0 z-[100] bg-ink/70 backdrop-blur-md flex items-center justify-center p-6"
+          className="fixed inset-0 z-[100] bg-foreground/10 backdrop-blur-md flex items-center justify-center p-6"
         >
           <motion.div
             initial={{ opacity: 0, y: 20, scale: 0.98 }}
@@ -689,9 +689,9 @@ function ActionModal({
             exit={{ opacity: 0, y: 10, scale: 0.98 }}
             transition={{ duration: 0.18 }}
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-lg border border-border bg-card/80 backdrop-blur-xl"
+            className="relative w-full max-w-lg border border-border/60 bg-card/95 backdrop-blur-xl shadow-2xl rounded-2xl overflow-hidden"
           >
-            <div className="flex items-center justify-between border-b border-border px-4 py-2 font-mono text-[10px] uppercase tracking-widest text-bone/50">
+            <div className="flex items-center justify-between border-b border-border/60 bg-secondary/30 px-6 py-3 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
               <span>
                 ~/apiguard
                 {isAction
@@ -702,23 +702,23 @@ function ActionModal({
                       : "/demo"
                   : `/integrations/${kind}`}
               </span>
-              <button onClick={onClose} className="hover:text-acid">
+              <button onClick={onClose} className="hover:text-foreground transition-colors">
                 [ esc ]
               </button>
             </div>
-            <div className="p-6 space-y-5">
+            <div className="p-6 md:p-8 space-y-5">
               {isAction && actionKind && (
                 <>
                   <div
-                    className="font-mono text-xs uppercase tracking-[0.3em]"
+                    className="font-mono text-xs font-semibold uppercase tracking-[0.2em]"
                     style={{ color: actionConfig[actionKind].accent }}
                   >
                     {actionConfig[actionKind].tag}
                   </div>
-                  <h3 className="font-display text-3xl md:text-4xl uppercase tracking-tighter leading-[0.95]">
+                  <h3 className="font-display text-3xl md:text-4xl font-bold tracking-tighter leading-tight text-foreground">
                     {actionConfig[actionKind].title}
                   </h3>
-                  <p className="text-bone/60 text-sm leading-relaxed">
+                  <p className="text-muted-foreground text-sm leading-relaxed">
                     {actionConfig[actionKind].desc}
                   </p>
                   <form
@@ -726,7 +726,7 @@ function ActionModal({
                       e.preventDefault();
                       onClose();
                     }}
-                    className="space-y-3 font-mono text-xs"
+                    className="space-y-4 font-mono text-sm mt-6"
                   >
                     {actionConfig[actionKind].fields.map(
                       (f: {
@@ -735,24 +735,25 @@ function ActionModal({
                         value: string;
                       }) => (
                         <label key={f.label} className="block">
-                          <span className="text-bone/40 block mb-1">
+                          <span className="text-muted-foreground block mb-2 text-xs font-semibold uppercase tracking-wider">
                             // {f.label}
                           </span>
                           <input
                             defaultValue={f.value}
                             placeholder={f.placeholder}
-                            className="w-full bg-background/60 border border-bone/20 focus:border-acid outline-none px-3 py-2 text-bone"
+                            className="w-full bg-background border border-border/60 focus:border-acid focus:ring-2 focus:ring-acid/20 outline-none rounded-lg px-4 py-2.5 text-foreground transition-all shadow-sm"
                           />
                         </label>
                       ),
                     )}
-                    <div className="flex items-center gap-3 pt-4">
+                    <div className="flex flex-col sm:flex-row items-center gap-3 pt-6">
                       <button
                         type="submit"
-                        className="border px-5 py-2 uppercase tracking-[0.25em] transition"
+                        className="w-full sm:w-auto font-display font-semibold border px-6 py-2.5 rounded-full transition-all shadow-sm hover:-translate-y-0.5 hover:shadow-md"
                         style={{
                           borderColor: actionConfig[actionKind].accent,
-                          color: actionConfig[actionKind].accent,
+                          backgroundColor: actionConfig[actionKind].accent,
+                          color: "var(--ink)",
                         }}
                       >
                         {actionConfig[actionKind].cta}
@@ -760,9 +761,9 @@ function ActionModal({
                       <button
                         type="button"
                         onClick={onClose}
-                        className="text-bone/50 hover:text-bone uppercase tracking-[0.25em]"
+                        className="w-full sm:w-auto text-muted-foreground hover:text-foreground font-display font-semibold px-4 py-2.5 transition-colors"
                       >
-                        cancel
+                        Cancel
                       </button>
                     </div>
                   </form>
@@ -771,34 +772,34 @@ function ActionModal({
               {isIntegration && integrationKind && (
                 <>
                   <div
-                    className="font-mono text-xs uppercase tracking-[0.3em]"
+                    className="font-mono text-xs font-semibold uppercase tracking-[0.2em]"
                     style={{ color: integrationConfig[integrationKind].accent }}
                   >
                     {integrationConfig[integrationKind].tag}
                   </div>
-                  <h3 className="font-display text-3xl md:text-4xl uppercase tracking-tighter leading-[0.95]">
+                  <h3 className="font-display text-3xl md:text-4xl font-bold tracking-tighter leading-tight text-foreground">
                     {integrationConfig[integrationKind].title}
                   </h3>
-                  <p className="text-bone/60 text-sm leading-relaxed">
+                  <p className="text-muted-foreground text-sm leading-relaxed">
                     {integrationConfig[integrationKind].desc}
                   </p>
-                  <div className="space-y-2 font-mono text-xs">
+                  <div className="space-y-3 font-mono text-sm mt-6 bg-secondary/20 rounded-xl p-4 border border-border/40">
                     {integrationConfig[integrationKind].meta.map((m) => (
                       <div
                         key={m.label}
-                        className="flex justify-between border-b border-border/50 py-2"
+                        className="flex justify-between items-center py-1 border-b border-border/40 last:border-0"
                       >
-                        <span className="text-bone/40">// {m.label}</span>
-                        <span className="text-bone">{m.value}</span>
+                        <span className="text-muted-foreground text-xs uppercase tracking-wider font-semibold">// {m.label}</span>
+                        <span className="text-foreground font-medium">{m.value}</span>
                       </div>
                     ))}
                   </div>
-                  <div className="flex flex-wrap gap-2 pt-2">
+                  <div className="flex flex-wrap gap-2 pt-6">
                     {integrationConfig[integrationKind].actions.map((a) => (
                       <button
                         key={a}
                         onClick={onClose}
-                        className="border border-border px-3 py-1.5 font-mono text-[10px] uppercase tracking-widest text-bone/70 hover:border-acid hover:text-acid transition"
+                        className="border border-border/60 bg-background hover:bg-secondary/30 px-4 py-2 rounded-lg font-mono text-xs font-medium text-foreground transition-all shadow-sm hover:border-acid hover:text-acid"
                       >
                         {a}
                       </button>
@@ -848,7 +849,7 @@ function DashboardMock() {
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 1 }}
       style={{ transformPerspective: 1400 }}
-      className="mt-12 border border-border/60 bg-card shadow-xl rounded-2xl overflow-hidden"
+      className="mt-12 bg-secondary/10 rounded-3xl overflow-hidden"
     >
       <div className="flex items-center justify-between border-b border-border/60 bg-secondary/50 px-6 py-3 font-display font-medium text-xs text-muted-foreground uppercase tracking-wider">
         <div className="flex gap-2">
@@ -859,9 +860,9 @@ function DashboardMock() {
         <span>Production Dashboard</span>
         <span className="text-acid font-bold flex items-center gap-1.5"><span className="size-2 bg-acid rounded-full animate-pulse"/> LIVE</span>
       </div>
-      <div className="grid md:grid-cols-[1fr_2fr_1fr] gap-px bg-border/40">
+      <div className="grid md:grid-cols-[1fr_2fr_1fr] gap-px bg-border/30">
         {/* left rail: scan history */}
-        <div className="bg-card p-6 space-y-4">
+        <div className="bg-background/50 p-6 space-y-4">
           <div className="font-display font-semibold text-xs text-muted-foreground uppercase tracking-widest">
             Scan History
           </div>
@@ -883,7 +884,7 @@ function DashboardMock() {
           )}
         </div>
         {/* center: security score + chart */}
-        <div className="bg-card p-8 relative">
+        <div className="bg-background/50 p-8 relative">
           <div className="font-display font-semibold text-xs text-muted-foreground uppercase tracking-widest mb-6">
             Security Score · Last 30d
           </div>
@@ -938,7 +939,7 @@ function DashboardMock() {
           </div>
         </div>
         {/* right: health pulse */}
-        <div className="bg-card p-6 space-y-5">
+        <div className="bg-background/50 p-6 space-y-5">
           <div className="font-display font-semibold text-xs text-muted-foreground uppercase tracking-widest mb-2">
             Health Pulse
           </div>
@@ -996,7 +997,7 @@ function AIPanel({
     <div ref={ref} className="sticky top-24 px-6 max-w-[1400px] mx-auto py-16">
       <motion.div
         style={{ x, rotate: rot }}
-        className="grid md:grid-cols-2 gap-12 items-center border border-border/50 bg-card shadow-xl rounded-3xl p-10 md:p-16"
+        className="grid md:grid-cols-2 gap-12 items-center bg-secondary/10 rounded-3xl p-10 md:p-16"
       >
         <div>
           <div className="font-display font-bold text-sm text-signal uppercase tracking-widest mb-4 bg-signal/10 inline-block px-3 py-1 rounded-full">
@@ -1025,8 +1026,8 @@ function AIPanel({
             );
           })()}
         </div>
-        <div className="relative aspect-square border border-border/60 bg-secondary rounded-2xl p-8 overflow-hidden shadow-inner flex items-center justify-center">
-          <div className="relative font-mono text-sm space-y-3 text-muted-foreground bg-card w-full h-full rounded-xl p-6 shadow-sm border border-border/50">
+        <div className="relative aspect-square bg-secondary/20 rounded-3xl p-8 overflow-hidden flex items-center justify-center">
+          <div className="relative font-mono text-sm space-y-3 text-muted-foreground bg-background w-full h-full rounded-2xl p-6 shadow-sm">
             <div className="text-acid font-semibold">
               ▸ apiguard.{item.tag.toLowerCase().replace(".", "_")}()
             </div>

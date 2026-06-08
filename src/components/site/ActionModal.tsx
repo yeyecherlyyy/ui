@@ -135,7 +135,7 @@ export function ActionModal() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
-          className="fixed inset-0 z-[100] bg-bone/40 backdrop-blur-sm flex items-center justify-center p-6"
+          className="fixed inset-0 z-[100] bg-foreground/10 backdrop-blur-md flex items-center justify-center p-6"
         >
           <motion.div
             initial={{ opacity: 0, y: 20, scale: 0.98 }}
@@ -143,9 +143,9 @@ export function ActionModal() {
             exit={{ opacity: 0, y: 10, scale: 0.98 }}
             transition={{ duration: 0.18 }}
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-lg border border-border bg-card shadow-2xl rounded-2xl overflow-hidden"
+            className="relative w-full max-w-lg border border-border/60 bg-card/95 backdrop-blur-xl shadow-2xl rounded-2xl overflow-hidden"
           >
-            <div className="flex items-center justify-between border-b border-border px-4 py-3 bg-secondary/50 font-mono text-[10px] uppercase tracking-widest text-bone/60">
+            <div className="flex items-center justify-between border-b border-border/60 px-6 py-3 bg-secondary/30 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
               <span>
                 ~/apiguard
                 {isAction
@@ -156,20 +156,20 @@ export function ActionModal() {
                       : "/demo"
                   : `/integrations/${kind}`}
               </span>
-              <button onClick={onClose} className="hover:text-acid">
+              <button onClick={onClose} className="hover:text-foreground transition-colors">
                 [ esc ]
               </button>
             </div>
-            <div className="p-6 space-y-5">
+            <div className="p-6 md:p-8 space-y-5">
               {isAction && actionKind && (
                 <>
                   <div
-                    className="font-mono text-xs font-semibold tracking-widest mb-2"
+                    className="font-mono text-xs font-semibold uppercase tracking-[0.2em] mb-2"
                     style={{ color: actionConfig[actionKind].accent }}
                   >
                     {actionConfig[actionKind].tag}
                   </div>
-                  <h3 className="font-display text-3xl md:text-4xl font-bold tracking-tight mb-2">
+                  <h3 className="font-display text-3xl md:text-4xl font-bold tracking-tighter leading-tight text-foreground mb-2">
                     {actionConfig[actionKind].title}
                   </h3>
                   <p className="text-muted-foreground text-sm leading-relaxed mb-6">
@@ -180,7 +180,7 @@ export function ActionModal() {
                       e.preventDefault();
                       onClose();
                     }}
-                    className="space-y-3 font-mono text-xs"
+                    className="space-y-4 font-mono text-sm"
                   >
                     {actionConfig[actionKind].fields.map(
                       (f: {
@@ -189,28 +189,33 @@ export function ActionModal() {
                         value: string;
                       }) => (
                         <label key={f.label} className="block">
-                          <span className="text-muted-foreground font-medium block mb-1">
-                            {f.label}
+                          <span className="text-muted-foreground block mb-2 text-xs font-semibold uppercase tracking-wider">
+                            // {f.label}
                           </span>
                           <input
                             defaultValue={f.value}
                             placeholder={f.placeholder}
-                            className="w-full bg-background border border-border focus:border-acid focus:ring-1 focus:ring-acid rounded-md outline-none px-3 py-2 text-bone transition-shadow"
+                            className="w-full bg-background border border-border/60 focus:border-acid focus:ring-2 focus:ring-acid/20 outline-none rounded-lg px-4 py-2.5 text-foreground transition-all shadow-sm"
                           />
                         </label>
                       ),
                     )}
-                    <div className="flex items-center gap-3 pt-6">
+                    <div className="flex flex-col sm:flex-row items-center gap-3 pt-6">
                       <button
                         type="submit"
-                        className="bg-acid text-ink font-medium px-5 py-2.5 rounded-full hover:shadow-md transition-all"
+                        className="w-full sm:w-auto font-display font-semibold border px-6 py-2.5 rounded-full transition-all shadow-sm hover:-translate-y-0.5 hover:shadow-md"
+                        style={{
+                          borderColor: actionConfig[actionKind].accent,
+                          backgroundColor: actionConfig[actionKind].accent,
+                          color: "var(--ink)",
+                        }}
                       >
                         {actionConfig[actionKind].cta}
                       </button>
                       <button
                         type="button"
                         onClick={onClose}
-                        className="text-muted-foreground hover:text-bone font-medium px-4 py-2"
+                        className="w-full sm:w-auto text-muted-foreground hover:text-foreground font-display font-semibold px-4 py-2.5 transition-colors"
                       >
                         Cancel
                       </button>
@@ -221,34 +226,34 @@ export function ActionModal() {
               {isIntegration && integrationKind && (
                 <>
                   <div
-                    className="font-mono text-xs font-semibold tracking-widest mb-2"
+                    className="font-mono text-xs font-semibold uppercase tracking-[0.2em] mb-2"
                     style={{ color: integrationConfig[integrationKind].accent }}
                   >
                     {integrationConfig[integrationKind].tag}
                   </div>
-                  <h3 className="font-display text-3xl md:text-4xl font-bold tracking-tight mb-2">
+                  <h3 className="font-display text-3xl md:text-4xl font-bold tracking-tighter leading-tight text-foreground mb-2">
                     {integrationConfig[integrationKind].title}
                   </h3>
                   <p className="text-muted-foreground text-sm leading-relaxed mb-6">
                     {integrationConfig[integrationKind].desc}
                   </p>
-                  <div className="space-y-2 font-mono text-xs">
+                  <div className="space-y-3 font-mono text-sm mt-6 bg-secondary/20 rounded-xl p-4 border border-border/40">
                     {integrationConfig[integrationKind].meta.map((m) => (
                       <div
                         key={m.label}
-                        className="flex justify-between border-b border-border py-3 text-sm"
+                        className="flex justify-between items-center py-1 border-b border-border/40 last:border-0"
                       >
-                        <span className="text-muted-foreground font-medium">{m.label}</span>
-                        <span className="text-bone font-semibold">{m.value}</span>
+                        <span className="text-muted-foreground text-xs uppercase tracking-wider font-semibold">// {m.label}</span>
+                        <span className="text-foreground font-medium">{m.value}</span>
                       </div>
                     ))}
                   </div>
-                  <div className="flex flex-wrap gap-3 pt-4">
+                  <div className="flex flex-wrap gap-2 pt-6">
                     {integrationConfig[integrationKind].actions.map((a) => (
                       <button
                         key={a}
                         onClick={onClose}
-                        className="bg-secondary text-bone border border-border px-4 py-2 rounded-full font-medium text-xs hover:border-acid hover:text-acid transition-colors"
+                        className="border border-border/60 bg-background hover:bg-secondary/30 px-4 py-2 rounded-lg font-mono text-xs font-medium text-foreground transition-all shadow-sm hover:border-acid hover:text-acid"
                       >
                         {a}
                       </button>

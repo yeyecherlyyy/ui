@@ -6,7 +6,7 @@ const FACES = [
   { label: "POST /auth/login", tone: "signal" },
   { label: "DELETE /key/42", tone: "warn" },
   { label: "PATCH /scan/run", tone: "acid" },
-  { label: "GET /health", tone: "bone" },
+  { label: "GET /health", tone: "foreground" },
   { label: "POST /webhook", tone: "signal" },
 ];
 
@@ -49,7 +49,7 @@ export function CubeHero() {
                 ? "var(--signal)"
                 : f.tone === "warn"
                   ? "var(--warn)"
-                  : "var(--bone)";
+                  : "var(--foreground)";
           return (
             <div
               key={i}
@@ -61,17 +61,17 @@ export function CubeHero() {
                 boxShadow: `inset 0 0 60px color-mix(in oklab, ${color} 15%, transparent)`,
               }}
             >
-              <div className="flex items-center justify-between font-mono text-[10px] tracking-widest text-bone/60">
+              <div className="flex items-center justify-between font-mono text-[10px] tracking-widest text-muted-foreground">
                 <span>FACE_{String(i).padStart(2, "0")}</span>
                 <span
                   className="size-2 rounded-full"
                   style={{ background: color }}
                 />
               </div>
-              <div className="font-mono text-sm" style={{ color }}>
+              <div className="font-mono text-sm font-semibold" style={{ color }}>
                 {f.label}
               </div>
-              <div className="font-mono text-[10px] text-bone/40 leading-relaxed">
+              <div className="font-mono text-[10px] text-muted-foreground leading-relaxed">
                 200 OK · 42ms
                 <br />
                 lat p95 · 118ms

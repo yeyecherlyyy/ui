@@ -164,7 +164,7 @@ function Scans() {
                 onChange={(e) => setSpec(e.target.value)}
                 disabled={isScanning}
                 placeholder="Paste API specification here to begin surface analysis..."
-                className="w-full h-full p-6 border border-border/60 bg-background rounded-xl text-foreground font-mono text-sm resize-none focus:border-acid focus:outline-none focus:ring-4 focus:ring-acid/10 transition-all shadow-inner disabled:opacity-50"
+                className="w-full h-full p-6 bg-secondary/10 hover:bg-secondary/20 border border-transparent rounded-3xl text-foreground font-mono text-sm resize-none focus:border-acid focus:bg-background focus:outline-none focus:ring-4 focus:ring-acid/10 transition-all disabled:opacity-50"
                 spellCheck={false}
               />
             </div>
