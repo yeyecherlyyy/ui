@@ -171,10 +171,7 @@ function Index() {
           </div>
         </motion.div>
 
-        {/* Floating cube */}
-        <div className="absolute right-[10%] top-[20%] hidden xl:block opacity-60">
-          <CubeHero />
-        </div>
+        {/* Floating cube removed */}
 
         {/* Marquee strip */}
         <div className="absolute bottom-0 inset-x-0 border-t border-border bg-card/50 backdrop-blur-md overflow-hidden py-4">
@@ -981,24 +978,9 @@ function AIPanel({
   item: { tag: string; title: string; body: string };
   index: number;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-  const x = useTransform(
-    scrollYProgress,
-    [0, 1],
-    index % 2 === 0 ? [-80, 80] : [80, -80],
-  );
-  const rot = useTransform(scrollYProgress, [0, 1], [-6, 6]);
-
   return (
-    <div ref={ref} className="sticky top-24 px-6 max-w-[1400px] mx-auto py-16">
-      <motion.div
-        style={{ x, rotate: rot }}
-        className="grid md:grid-cols-2 gap-12 items-center bg-secondary/10 rounded-3xl p-10 md:p-16"
-      >
+    <div className="relative px-6 max-w-[1400px] mx-auto py-6">
+      <div className="grid md:grid-cols-2 gap-12 items-center bg-secondary/10 rounded-3xl p-10 md:p-16">
         <div>
           <div className="font-display font-bold text-sm text-signal uppercase tracking-widest mb-4 bg-signal/10 inline-block px-3 py-1 rounded-full">
             {item.tag}
@@ -1051,7 +1033,7 @@ function AIPanel({
             transition={{ duration: 4, repeat: Infinity }}
           />
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }
