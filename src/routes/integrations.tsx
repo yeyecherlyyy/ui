@@ -77,28 +77,28 @@ function Integrations() {
   const active = integrationDetails[activeTab];
 
   return (
-    <div className="p-6 max-w-6xl mx-auto pt-24 min-h-screen">
+    <div className="p-6 max-w-6xl mx-auto pt-32 pb-20 min-h-screen">
       <div className="mb-12">
-        <h1 className="text-4xl font-display uppercase tracking-tight mb-4">
+        <h1 className="text-4xl font-display font-bold tracking-tight mb-4 text-foreground">
           Integrations Hub
         </h1>
-        <p className="font-mono text-sm text-bone/60">
+        <p className="text-lg text-muted-foreground max-w-2xl">
           Connect your existing stack to APIGUARD.os. Automate your security
           posture across the SDLC.
         </p>
       </div>
 
-      <div className="grid md:grid-cols-[250px_1fr] gap-8 border-t border-border pt-8">
+      <div className="grid md:grid-cols-[250px_1fr] gap-8 border-t border-border/60 pt-10">
         {/* Sidebar Tabs */}
         <div className="flex flex-col gap-2">
           {TABS.map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`text-left px-4 py-3 font-mono text-sm uppercase tracking-widest transition-colors border-l-2 ${
+              className={`text-left px-5 py-3 font-medium text-sm rounded-lg transition-all ${
                 activeTab === tab
-                  ? "border-acid text-acid bg-acid/5"
-                  : "border-transparent text-bone/50 hover:text-bone hover:bg-bone/5"
+                  ? "bg-acid text-ink shadow-sm"
+                  : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
               }`}
             >
               {tab}
@@ -111,45 +111,45 @@ function Integrations() {
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
-              initial={{ opacity: 0, x: 10 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -10 }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.2 }}
-              className="border border-border bg-card/40 backdrop-blur-xl p-8 h-full flex flex-col justify-between"
+              className="h-full flex flex-col justify-between py-2"
             >
               <div>
                 <div className="flex items-center justify-between mb-8 pb-6 border-b border-border/50">
-                  <h2 className="text-3xl font-display uppercase tracking-tight text-bone">
-                    {activeTab} <span className="text-acid">Integration</span>
+                  <h2 className="text-3xl font-display font-bold tracking-tight text-foreground">
+                    {activeTab} <span className="text-muted-foreground font-normal">Integration</span>
                   </h2>
                   <span
-                    className={`font-mono text-xs px-3 py-1 border uppercase tracking-widest ${
+                    className={`font-semibold text-xs px-3 py-1 rounded-full uppercase tracking-wider ${
                       active.status === "connected"
-                        ? "border-acid text-acid bg-acid/10"
+                        ? "text-acid bg-acid/10"
                         : active.status === "polling"
-                          ? "border-warn text-warn bg-warn/10"
-                          : "border-bone/20 text-bone/50 bg-bone/5"
+                          ? "text-warn bg-warn/10"
+                          : "text-muted-foreground bg-secondary"
                     }`}
                   >
                     {active.status}
                   </span>
                 </div>
 
-                <p className="text-bone/80 leading-relaxed mb-10 max-w-2xl">
+                <p className="text-foreground text-lg leading-relaxed mb-10 max-w-2xl">
                   {active.desc}
                 </p>
 
                 <div className="mb-12">
-                  <div className="font-mono text-xs text-bone/40 uppercase tracking-widest mb-4">
-                    // Features
+                  <div className="font-display font-semibold text-xs text-muted-foreground uppercase tracking-widest mb-4">
+                    Features
                   </div>
                   <ul className="grid sm:grid-cols-2 gap-4">
                     {active.features.map((feature, i) => (
                       <li
                         key={i}
-                        className="flex items-center gap-3 font-mono text-sm text-bone"
+                        className="flex items-center gap-3 font-medium text-sm text-foreground bg-secondary/30 px-4 py-3 rounded-lg"
                       >
-                        <span className="text-acid">▸</span> {feature}
+                        <span className="text-acid">✔</span> {feature}
                       </li>
                     ))}
                   </ul>
@@ -168,12 +168,12 @@ function Integrations() {
                     };
                     setModal(kindMap[activeTab]);
                   }}
-                  className="bg-acid text-ink px-6 py-2 font-mono text-xs uppercase tracking-widest hover:bg-bone transition-colors"
+                  className="bg-acid text-ink px-6 py-2.5 rounded-full font-display font-semibold shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all"
                 >
                   Configure
                 </button>
                 {active.status === "connected" && (
-                  <button className="border border-bone/20 text-bone px-6 py-2 font-mono text-xs uppercase tracking-widest hover:border-destructive hover:text-destructive transition-colors">
+                  <button className="border border-border bg-card text-foreground px-6 py-2.5 rounded-full font-display font-semibold shadow-sm hover:border-destructive hover:text-destructive transition-all">
                     Disconnect
                   </button>
                 )}

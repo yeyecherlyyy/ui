@@ -22,28 +22,28 @@ function Reports() {
   };
 
   return (
-    <div className="p-6 max-w-5xl mx-auto pt-24">
-      <div className="flex items-center justify-between mb-8 border-b border-border pb-6">
+    <div className="p-6 max-w-5xl mx-auto pt-32 pb-20">
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-10 gap-6">
         <div>
-          <div className="font-mono text-xs text-acid uppercase tracking-widest mb-3">
-            [ reports.index ]
-          </div>
-          <h1 className="text-4xl md:text-5xl font-display uppercase tracking-tight">
+          <h1 className="text-4xl md:text-5xl font-display font-bold tracking-tight text-foreground">
             Scan Intelligence
           </h1>
+          <p className="text-muted-foreground mt-2 font-medium">
+            Review historical vulnerability scans and compliance reports.
+          </p>
         </div>
         <Link
           to="/scans"
-          className="border border-acid bg-acid/10 text-acid px-6 py-3 font-mono text-sm uppercase tracking-widest hover:bg-acid hover:text-ink transition shadow-[0_0_15px_rgba(var(--acid-rgb),0.2)]"
+          className="bg-acid text-ink px-6 py-3 font-display font-semibold rounded-full shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all text-center whitespace-nowrap"
         >
           New Scan +
         </Link>
       </div>
 
       {scanList.length === 0 ? (
-        <div className="border border-border border-dashed p-16 text-center bg-card/10 backdrop-blur-md">
-          <span className="font-mono text-acid text-2xl block mb-2">∅</span>
-          <span className="font-mono text-sm text-bone/40 uppercase tracking-widest">
+        <div className="border border-border/60 border-dashed rounded-3xl p-20 text-center bg-card/50 shadow-inner">
+          <span className="font-display font-bold text-muted-foreground/30 text-6xl block mb-4">∅</span>
+          <span className="font-medium text-muted-foreground text-lg">
             No scans executed yet.
           </span>
         </div>
@@ -62,81 +62,79 @@ function Reports() {
                 <Link
                   to="/report/$id"
                   params={{ id: scan.id }}
-                  className="block border border-border bg-card/30 backdrop-blur-md p-6 hover:border-acid transition-colors group relative overflow-hidden"
+                  className="block bg-background hover:bg-secondary/30 rounded-2xl p-6 transition-all group relative"
                 >
-                  <div className="absolute top-0 left-0 w-1 h-full bg-border group-hover:bg-acid transition-colors" />
-
-                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pl-4">
+                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                     <div>
                       <div className="flex items-center gap-3 mb-2">
-                        <span className="font-mono text-acid text-xl font-bold group-hover:text-signal transition-colors">
+                        <span className="font-mono text-foreground text-xl font-bold group-hover:text-acid transition-colors">
                           {scan.id.toUpperCase()}
                         </span>
                         <span
-                          className={`font-mono text-[10px] uppercase px-2 py-0.5 border ${
+                          className={`font-semibold text-xs px-2.5 py-0.5 rounded-md uppercase tracking-wider ${
                             scan.status === "completed"
-                              ? "border-acid text-acid bg-acid/10"
+                              ? "text-acid bg-acid/10"
                               : scan.status === "failed"
-                                ? "border-destructive text-destructive bg-destructive/10"
-                                : "border-warn text-warn bg-warn/10"
+                                ? "text-destructive bg-destructive/10"
+                                : "text-warn bg-warn/10"
                           }`}
                         >
                           {scan.status}
                         </span>
                       </div>
-                      <span className="font-mono text-xs text-bone/40 uppercase tracking-widest block">
+                      <span className="font-medium text-sm text-muted-foreground block">
                         {new Date(scan.createdAt).toLocaleString()}
                       </span>
                     </div>
 
                     {scan.status === "completed" && (
-                      <div className="flex items-center gap-4">
-                        <div className="text-right mr-4 hidden md:block">
-                          <div className="font-display text-3xl text-bone leading-none">
+                      <div className="flex items-center gap-6">
+                        <div className="text-right hidden md:block">
+                          <div className="font-display font-bold text-3xl text-foreground leading-none">
                             {total}
                           </div>
-                          <div className="font-mono text-[10px] text-bone/40 uppercase tracking-widest">
+                          <div className="font-medium text-xs text-muted-foreground uppercase tracking-wider mt-1">
                             Total Findings
                           </div>
                         </div>
 
-                        <div className="flex gap-2 font-mono text-xs">
+                        <div className="flex gap-2">
                           {counts.critical > 0 && (
-                            <div className="flex flex-col items-center border border-destructive/30 bg-destructive/5 px-3 py-2 min-w-[60px]">
-                              <span className="text-destructive font-bold">
+                            <div className="flex flex-col items-center bg-destructive/10 rounded-lg px-4 py-2 min-w-[64px]">
+                              <span className="text-destructive font-bold text-lg">
                                 {counts.critical}
                               </span>
-                              <span className="text-[9px] text-destructive/60 uppercase mt-1">
+                              <span className="text-[10px] font-semibold text-destructive uppercase">
                                 Crit
                               </span>
                             </div>
                           )}
                           {counts.high > 0 && (
-                            <div className="flex flex-col items-center border border-signal/30 bg-signal/5 px-3 py-2 min-w-[60px]">
-                              <span className="text-signal font-bold">
+                            <div className="flex flex-col items-center bg-signal/10 rounded-lg px-4 py-2 min-w-[64px]">
+                              <span className="text-signal font-bold text-lg">
                                 {counts.high}
                               </span>
-                              <span className="text-[9px] text-signal/60 uppercase mt-1">
+                              <span className="text-[10px] font-semibold text-signal uppercase">
                                 High
                               </span>
                             </div>
                           )}
                           {counts.medium > 0 && (
-                            <div className="flex flex-col items-center border border-warn/30 bg-warn/5 px-3 py-2 min-w-[60px]">
-                              <span className="text-warn font-bold">
+                            <div className="flex flex-col items-center bg-warn/10 rounded-lg px-4 py-2 min-w-[64px]">
+                              <span className="text-warn font-bold text-lg">
                                 {counts.medium}
                               </span>
-                              <span className="text-[9px] text-warn/60 uppercase mt-1">
+                              <span className="text-[10px] font-semibold text-warn uppercase">
                                 Med
                               </span>
                             </div>
                           )}
                           {(counts.low > 0 || total === 0) && (
-                            <div className="flex flex-col items-center border border-acid/30 bg-acid/5 px-3 py-2 min-w-[60px]">
-                              <span className="text-acid font-bold">
+                            <div className="flex flex-col items-center bg-acid/10 rounded-lg px-4 py-2 min-w-[64px]">
+                              <span className="text-acid font-bold text-lg">
                                 {counts.low}
                               </span>
-                              <span className="text-[9px] text-acid/60 uppercase mt-1">
+                              <span className="text-[10px] font-semibold text-acid uppercase">
                                 Low
                               </span>
                             </div>
@@ -146,7 +144,7 @@ function Reports() {
                     )}
 
                     {scan.status === "failed" && (
-                      <div className="font-mono text-xs text-destructive border border-destructive/20 bg-destructive/5 px-4 py-2 uppercase tracking-widest">
+                      <div className="font-medium text-sm text-destructive bg-destructive/10 rounded-lg px-4 py-2">
                         Analysis Halted — Execution Error
                       </div>
                     )}

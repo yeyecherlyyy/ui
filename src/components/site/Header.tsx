@@ -6,18 +6,18 @@ export function Header() {
   const { setModal } = useAppStore();
 
   return (
-    <header className="fixed top-0 inset-x-0 z-50 border-b border-border/60 bg-background/70 backdrop-blur-xl">
-      <div className="flex items-center justify-between px-6 py-3 font-mono text-xs tracking-widest uppercase">
+    <header className="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-[1400px] z-50 border border-border/40 bg-card/80 backdrop-blur-xl shadow-sm rounded-full">
+      <div className="flex items-center justify-between px-6 py-3 font-display font-medium text-sm">
         <div className="flex items-center gap-3">
           <span className="size-2 bg-acid animate-pulse rounded-full" />
           <Link to="/" className="text-bone hover:text-acid transition-colors">
             APIGUARD/<span className="text-acid">api.os</span>
           </Link>
-          <span className="text-bone/40 hidden md:inline">
-            // v4.2 · 47ms · all systems nominal
+          <span className="text-bone/40 hidden md:inline font-mono text-xs">
+            // v4.2 · all systems nominal
           </span>
         </div>
-        <nav className="hidden md:flex items-center gap-6 text-bone/70">
+        <nav className="hidden md:flex items-center gap-8 text-bone/70">
           <Link to="/monitor" className="hover:text-acid">
             monitor
           </Link>
@@ -37,9 +37,9 @@ export function Header() {
         </nav>
         <button
           onClick={() => setModal("deploy")}
-          className="border border-acid text-acid px-3 py-1 hover:bg-acid hover:text-ink transition"
+          className="bg-acid text-ink px-5 py-2 rounded-full hover:shadow-md hover:-translate-y-0.5 transition-all"
         >
-          deploy_agent →
+          Deploy Agent
         </button>
       </div>
     </header>

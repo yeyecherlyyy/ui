@@ -29,29 +29,29 @@ function Settings() {
   };
 
   return (
-    <div className="p-6 max-w-3xl mx-auto pt-24">
-      <div className="mb-8 border-b border-border pb-6">
-        <div className="font-mono text-xs text-acid uppercase tracking-widest mb-3">
-          [ sys.settings ]
-        </div>
-        <h1 className="text-4xl md:text-5xl font-display uppercase tracking-tight">
+    <div className="p-6 max-w-3xl mx-auto pt-32 pb-20">
+      <div className="mb-10">
+        <h1 className="text-4xl md:text-5xl font-display font-bold tracking-tight text-foreground">
           Configuration
         </h1>
+        <p className="text-muted-foreground mt-2 font-medium">
+          Manage system infrastructure and intelligence settings.
+        </p>
       </div>
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="space-y-8"
+        className="space-y-12 max-w-2xl"
       >
-        <div className="border border-border bg-card/20 backdrop-blur-md">
-          <div className="border-b border-border px-6 py-3 font-mono text-[10px] uppercase tracking-widest text-bone/50 bg-background/50">
-            // Core Infrastructure
-          </div>
-          <div className="p-6 space-y-6">
+        <div>
+          <h2 className="font-display font-semibold text-lg text-foreground mb-6">
+            Core Infrastructure
+          </h2>
+          <div className="space-y-6">
             <div>
-              <label className="block font-mono text-xs text-bone/60 uppercase tracking-widest mb-2">
+              <label className="block font-medium text-sm text-foreground mb-2">
                 Scan Service URL
               </label>
               <input
@@ -59,15 +59,15 @@ function Settings() {
                 value={scanServiceUrl}
                 onChange={(e) => setScanServiceUrl(e.target.value)}
                 placeholder="https://scan-service.example.com"
-                className="w-full bg-background/60 border border-border focus:border-acid outline-none px-4 py-3 text-bone font-mono text-sm transition-colors"
+                className="w-full bg-background border border-border/60 rounded-xl focus:border-acid focus:ring-4 focus:ring-acid/10 outline-none px-4 py-3 text-foreground font-mono text-sm transition-all shadow-inner"
               />
-              <p className="mt-2 font-mono text-[10px] text-bone/40">
+              <p className="mt-2 text-xs text-muted-foreground font-medium">
                 Target endpoint for offloading heavy surface analysis.
               </p>
             </div>
 
             <div>
-              <label className="block font-mono text-xs text-bone/60 uppercase tracking-widest mb-2">
+              <label className="block font-medium text-sm text-foreground mb-2">
                 Service Authentication Token
               </label>
               <input
@@ -75,22 +75,22 @@ function Settings() {
                 value={authToken}
                 onChange={(e) => setAuthToken(e.target.value)}
                 placeholder="Bearer ••••••••••••"
-                className="w-full bg-background/60 border border-border focus:border-acid outline-none px-4 py-3 text-bone font-mono text-sm transition-colors"
+                className="w-full bg-background border border-border/60 rounded-xl focus:border-acid focus:ring-4 focus:ring-acid/10 outline-none px-4 py-3 text-foreground font-mono text-sm transition-all shadow-inner"
               />
-              <p className="mt-2 font-mono text-[10px] text-bone/40">
+              <p className="mt-2 text-xs text-muted-foreground font-medium">
                 Required if your designated scan service is protected.
               </p>
             </div>
           </div>
         </div>
 
-        <div className="border border-border bg-card/20 backdrop-blur-md">
-          <div className="border-b border-border px-6 py-3 font-mono text-[10px] uppercase tracking-widest text-bone/50 bg-background/50">
-            // Intelligence Layer
-          </div>
-          <div className="p-6 space-y-6">
+        <div>
+          <h2 className="font-display font-semibold text-lg text-foreground mb-6">
+            Intelligence Layer
+          </h2>
+          <div className="space-y-6">
             <div>
-              <label className="block font-mono text-xs text-bone/60 uppercase tracking-widest mb-2">
+              <label className="block font-medium text-sm text-foreground mb-2">
                 OpenAI API Key
               </label>
               <input
@@ -98,26 +98,25 @@ function Settings() {
                 value={openAIApiKey}
                 onChange={(e) => setOpenAIApiKey(e.target.value)}
                 placeholder="sk-proj-..."
-                className="w-full bg-background/60 border border-border focus:border-acid outline-none px-4 py-3 text-bone font-mono text-sm transition-colors"
+                className="w-full bg-background border border-border/60 rounded-xl focus:border-acid focus:ring-4 focus:ring-acid/10 outline-none px-4 py-3 text-foreground font-mono text-sm transition-all shadow-inner"
               />
-              <p className="mt-2 font-mono text-[10px] text-bone/40">
-                Required for test case synthesis and auto-documentation
-                features.
+              <p className="mt-2 text-xs text-muted-foreground font-medium">
+                Required for test case synthesis and auto-documentation features.
               </p>
             </div>
           </div>
         </div>
 
-        <div className="flex justify-end pt-4">
+        <div className="pt-4">
           <button
             onClick={handleSave}
             disabled={isSaving}
             className={`
-              border px-8 py-3 font-mono text-xs uppercase tracking-[0.25em] transition-all
+              px-8 py-3.5 font-display font-semibold text-sm rounded-full shadow-md transition-all
               ${
                 isSaving
-                  ? "border-acid text-acid bg-acid/10 cursor-wait"
-                  : "border-acid text-acid hover:bg-acid hover:text-ink shadow-[0_0_15px_rgba(var(--acid-rgb),0.1)] hover:shadow-[0_0_20px_rgba(var(--acid-rgb),0.3)]"
+                  ? "bg-acid/50 text-ink cursor-wait shadow-none"
+                  : "bg-acid text-ink hover:shadow-lg hover:-translate-y-0.5"
               }
             `}
           >

@@ -8,8 +8,8 @@ export const Route = createFileRoute("/monitor")({
 
 function Monitor() {
   return (
-    <div className="p-6 max-w-6xl mx-auto pt-24">
-      <h1 className="text-3xl font-display uppercase tracking-tight mb-8">
+    <div className="p-6 max-w-6xl mx-auto pt-32 pb-20">
+      <h1 className="text-4xl font-display font-bold tracking-tight text-foreground mb-8">
         System Monitor
       </h1>
       <div className="grid md:grid-cols-3 gap-6">
@@ -26,34 +26,34 @@ function Monitor() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.1 }}
-            className="border border-border bg-card/40 backdrop-blur-xl p-6"
+            className="bg-secondary/20 rounded-2xl p-6 hover:bg-secondary/40 transition-colors"
           >
-            <div className="flex justify-between font-mono text-sm mb-4">
-              <span className="text-bone">{s.n}</span>
+            <div className="flex justify-between font-mono text-sm mb-6">
+              <span className="text-foreground font-medium">{s.n}</span>
               <span
-                className={
+                className={`px-2 py-0.5 rounded text-xs font-semibold uppercase tracking-wider ${
                   s.status === "healthy"
-                    ? "text-acid"
+                    ? "bg-acid/10 text-acid"
                     : s.status === "degraded"
-                      ? "text-warn"
-                      : "text-destructive"
-                }
+                      ? "bg-warn/10 text-warn"
+                      : "bg-destructive/10 text-destructive"
+                }`}
               >
                 {s.status}
               </span>
             </div>
             <div className="space-y-4">
               <div>
-                <div className="flex justify-between font-mono text-xs text-bone/60 mb-1">
+                <div className="flex justify-between font-medium text-xs text-muted-foreground mb-2">
                   <span>Uptime (30d)</span>
-                  <span>{s.v}%</span>
+                  <span className="text-foreground">{s.v}%</span>
                 </div>
-                <div className="h-1.5 bg-bone/10 rounded-full overflow-hidden">
+                <div className="h-2 bg-secondary rounded-full overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${s.v}%` }}
                     transition={{ duration: 1, delay: 0.2 }}
-                    className={`h-full ${
+                    className={`h-full rounded-full ${
                       s.status === "healthy"
                         ? "bg-acid"
                         : s.status === "degraded"
@@ -63,9 +63,9 @@ function Monitor() {
                   />
                 </div>
               </div>
-              <div className="flex justify-between font-mono text-xs border-t border-border/50 pt-3">
-                <span className="text-bone/40">Latency p50</span>
-                <span className="text-bone">{s.ms}ms</span>
+              <div className="flex justify-between font-medium text-xs border-t border-border/50 pt-4">
+                <span className="text-muted-foreground">Latency p50</span>
+                <span className="text-foreground font-mono">{s.ms}ms</span>
               </div>
             </div>
           </motion.div>

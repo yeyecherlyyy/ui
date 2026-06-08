@@ -143,13 +143,12 @@ function GlassShell({ children }: { children: ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body className="relative">
-        {/* ambient glass background layer */}
+      <body className="relative bg-background text-foreground antialiased min-h-screen">
+        {/* ambient background layer */}
         <div className="fixed inset-0 -z-10 bg-background" />
-        <div className="fixed inset-0 -z-10">
-          <div className="absolute top-[-20%] left-[-10%] h-[60vh] w-[60vw] rounded-full bg-acid/5 blur-[120px]" />
-          <div className="absolute bottom-[-20%] right-[-10%] h-[60vh] w-[60vw] rounded-full bg-signal/5 blur-[120px]" />
-          <div className="absolute top-[40%] left-[30%] h-[40vh] w-[40vw] rounded-full bg-warn/5 blur-[100px]" />
+        <div className="fixed inset-0 -z-10 overflow-hidden">
+          <div className="absolute top-[-10%] left-[-10%] h-[50vh] w-[50vw] rounded-full bg-acid/10 blur-[100px]" />
+          <div className="absolute bottom-[-10%] right-[-10%] h-[50vh] w-[50vw] rounded-full bg-secondary/60 blur-[100px]" />
         </div>
         {children}
         <Scripts />

@@ -57,85 +57,85 @@ function Scans() {
   };
 
   return (
-    <div className="p-6 max-w-[1400px] mx-auto pt-24">
-      <div className="mb-8">
-        <div className="font-mono text-xs text-acid uppercase tracking-widest mb-3">
-          [ control.plane ]
-        </div>
-        <h1 className="text-4xl md:text-5xl font-display uppercase tracking-tight">
+    <div className="p-6 max-w-[1400px] mx-auto pt-32 pb-20">
+      <div className="mb-10">
+        <h1 className="text-4xl md:text-5xl font-display font-bold tracking-tight text-foreground">
           Active Surface Sweep
         </h1>
+        <p className="text-muted-foreground mt-2 font-medium">
+          Initialize a new scan to check for security vulnerabilities and regressions.
+        </p>
       </div>
 
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="border border-border bg-card/40 backdrop-blur-xl overflow-hidden"
+        className="overflow-hidden"
       >
-        <div className="flex items-center justify-between border-b border-border px-4 py-3 font-mono text-[10px] text-bone/50 uppercase tracking-widest bg-background/50">
+        <div className="flex items-center justify-between border-b border-border/60 pb-4 font-display font-semibold text-xs text-muted-foreground uppercase tracking-wider">
           <div className="flex gap-2">
-            <span className="size-2.5 rounded-full bg-destructive/70" />
-            <span className="size-2.5 rounded-full bg-warn/70" />
-            <span className="size-2.5 rounded-full bg-acid/70" />
+            <span className="size-3 rounded-full bg-destructive/70" />
+            <span className="size-3 rounded-full bg-warn/70" />
+            <span className="size-3 rounded-full bg-acid/70" />
           </div>
-          <span>~/apiguard/scanner_module</span>
+          <span>Scanner Module</span>
           <span
-            className={isScanning ? "text-signal animate-pulse" : "text-acid"}
+            className={isScanning ? "text-signal animate-pulse font-bold" : "text-acid font-bold"}
           >
             {isScanning ? "SCANNING" : "STANDBY"}
           </span>
         </div>
 
-        <div className="grid md:grid-cols-[300px_1fr] gap-px bg-border">
+        <div className="grid md:grid-cols-[300px_1fr] gap-8 pt-6">
           {/* Left Rail: History */}
-          <div className="bg-card/30 backdrop-blur-md p-6">
-            <div className="font-mono text-[10px] text-bone/40 uppercase tracking-widest mb-6 border-b border-border/50 pb-2">
+          <div className="py-2">
+            <div className="font-display font-semibold text-xs text-muted-foreground uppercase tracking-widest mb-6 pb-2 border-b border-border/50">
               Recent Sweeps
             </div>
             <div className="space-y-4">
               {scanList.slice(0, 6).map((scan) => (
-                <div key={scan.id} className="group">
-                  <div className="flex items-center justify-between font-mono text-xs mb-1">
-                    <span className="text-bone/80 group-hover:text-acid transition-colors">
+                <div key={scan.id} className="group p-3 rounded-lg border border-transparent hover:border-border/60 hover:bg-secondary/30 transition-all cursor-default">
+                  <div className="flex items-center justify-between font-mono text-sm mb-2">
+                    <span className="text-foreground font-medium group-hover:text-acid transition-colors">
                       #{scan.id}
                     </span>
                     <span
-                      className={
+                      className={`text-xs font-semibold ${
                         scan.status === "completed"
                           ? "text-acid"
                           : scan.status === "failed"
                             ? "text-destructive"
                             : "text-signal animate-pulse"
-                      }
+                      }`}
                     >
                       {scan.status}
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className="h-0.5 flex-1 bg-border overflow-hidden">
+                    <div className="h-1 flex-1 bg-secondary rounded-full overflow-hidden">
                       {scan.status === "pending" ||
                       scan.status === "running" ? (
                         <motion.div
-                          className="h-full bg-signal"
+                          className="h-full bg-signal rounded-full"
                           initial={{ width: "0%" }}
                           animate={{ width: "100%" }}
                           transition={{ duration: 2, repeat: Infinity }}
                         />
                       ) : (
                         <div
-                          className={`h-full w-full ${scan.status === "completed" ? "bg-acid" : "bg-destructive"}`}
+                          className={`h-full w-full rounded-full ${scan.status === "completed" ? "bg-acid" : "bg-destructive"}`}
                         />
                       )}
                     </div>
                   </div>
-                  <div className="font-mono text-[9px] text-bone/30 uppercase mt-1">
+                  <div className="font-medium text-[10px] text-muted-foreground mt-2">
                     {new Date(scan.createdAt).toLocaleTimeString()}
                   </div>
                 </div>
               ))}
               {scanList.length === 0 && (
-                <div className="font-mono text-xs text-bone/40 italic">
+                <div className="font-medium text-sm text-muted-foreground italic p-4 text-center border border-dashed border-border/60 rounded-lg">
                   No history available
                 </div>
               )}
@@ -143,17 +143,17 @@ function Scans() {
           </div>
 
           {/* Main Area: Input */}
-          <div className="bg-card/30 backdrop-blur-md p-8 relative flex flex-col">
-            <div className="flex justify-between items-end mb-6">
+          <div className="py-2 relative flex flex-col">
+            <div className="flex justify-between items-end mb-8">
               <div>
-                <div className="font-mono text-[10px] text-bone/40 uppercase tracking-widest mb-2">
+                <div className="font-display font-semibold text-xs text-muted-foreground uppercase tracking-widest mb-2">
                   Target Payload
                 </div>
-                <h2 className="font-display text-2xl uppercase tracking-tight">
+                <h2 className="font-display font-bold text-2xl tracking-tight text-foreground">
                   OpenAPI / Postman Ingestion
                 </h2>
               </div>
-              <div className="font-mono text-[10px] text-bone/40 uppercase">
+              <div className="font-medium text-xs text-muted-foreground bg-secondary px-3 py-1 rounded-full">
                 Supported: json, yaml
               </div>
             </div>
@@ -164,37 +164,31 @@ function Scans() {
                 onChange={(e) => setSpec(e.target.value)}
                 disabled={isScanning}
                 placeholder="Paste API specification here to begin surface analysis..."
-                className="w-full h-full p-6 border border-border bg-background/50 text-bone font-mono text-sm resize-none focus:border-acid focus:outline-none focus:ring-1 focus:ring-acid/20 transition-all disabled:opacity-50"
+                className="w-full h-full p-6 border border-border/60 bg-background rounded-xl text-foreground font-mono text-sm resize-none focus:border-acid focus:outline-none focus:ring-4 focus:ring-acid/10 transition-all shadow-inner disabled:opacity-50"
                 spellCheck={false}
               />
-
-              {/* Corner Accents */}
-              <div className="absolute top-0 left-0 size-2 border-t border-l border-acid pointer-events-none" />
-              <div className="absolute top-0 right-0 size-2 border-t border-r border-acid pointer-events-none" />
-              <div className="absolute bottom-0 left-0 size-2 border-b border-l border-acid pointer-events-none" />
-              <div className="absolute bottom-0 right-0 size-2 border-b border-r border-acid pointer-events-none" />
             </div>
 
-            <div className="mt-6 flex justify-end">
+            <div className="mt-8 flex justify-end">
               <button
                 onClick={handleStart}
                 disabled={isScanning || !spec.trim()}
                 className={`
-                  relative overflow-hidden px-8 py-4 font-mono text-sm uppercase tracking-widest transition-all
+                  relative overflow-hidden px-8 py-3.5 font-display font-semibold text-sm rounded-full shadow-md transition-all
                   ${
                     isScanning || !spec.trim()
-                      ? "bg-border text-bone/30 cursor-not-allowed border border-border"
-                      : "bg-acid text-ink hover:bg-acid/90 hover:shadow-[0_0_20px_rgba(var(--acid-rgb),0.3)]"
+                      ? "bg-secondary text-muted-foreground cursor-not-allowed shadow-none"
+                      : "bg-acid text-ink hover:shadow-lg hover:-translate-y-0.5"
                   }
                 `}
               >
                 {isScanning ? (
-                  <span className="flex items-center gap-3">
+                  <span className="flex items-center gap-2">
                     <span className="size-2 bg-ink animate-ping rounded-full" />
                     Executing Sweep...
                   </span>
                 ) : (
-                  "initiate.scan()"
+                  "Initiate Scan"
                 )}
               </button>
             </div>

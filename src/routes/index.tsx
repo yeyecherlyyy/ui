@@ -132,89 +132,74 @@ function Index() {
       {/* HERO */}
       <section
         id="hero"
-        className="relative min-h-[120vh] grid-bg overflow-hidden pt-24"
+        className="relative min-h-[100vh] bg-background overflow-hidden pt-32 pb-20"
       >
-        <div className="absolute inset-0 scan-lines opacity-30 pointer-events-none" />
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-acid to-transparent" />
-
         <motion.div
           style={{ y: titleY, opacity: titleOpacity }}
-          className="relative z-10 px-6 pt-16 max-w-[1400px] mx-auto"
+          className="relative z-10 px-6 pt-16 max-w-[1400px] mx-auto flex flex-col items-center text-center"
         >
-          <div className="font-mono text-xs text-bone/70 mb-8 flex items-center gap-4">
-            <span className="border border-bone/40 px-2 py-1">
-              [ SYS.BOOT ]
-            </span>
-            <span>
-              initializing perimeter sweep
-              <span className="cursor-blink">_</span>
-            </span>
+          <div className="font-mono text-xs text-acid font-semibold mb-8 flex items-center justify-center gap-2 bg-acid/10 px-4 py-2 rounded-full">
+            <span className="size-2 rounded-full bg-acid animate-pulse" />
+            Initializing perimeter sweep...
           </div>
 
-          <h1 className="font-display text-[clamp(3rem,11vw,11rem)] leading-[0.85] tracking-tight uppercase">
-            <span className="block">Every API</span>
-            <span className="block text-stroke">you ship is</span>
-            <span className="block">
-              a{" "}
-              <span className="text-acid italic font-serif lowercase">
-                liability.
-              </span>
-            </span>
-            <span className="block text-bone/50">we fix that.</span>
+          <h1 className="font-display font-bold text-[clamp(2.5rem,8vw,7rem)] leading-[1.05] tracking-tight text-foreground max-w-5xl mx-auto">
+            <span className="block">Every API you ship is</span>
+            <span className="block text-muted-foreground">a liability.</span>
+            <span className="block text-acid mt-2">We fix that.</span>
           </h1>
 
-          <div className="mt-12 grid md:grid-cols-[1.4fr_1fr] gap-12 items-end">
-            <p className="text-bone/70 text-lg md:text-xl max-w-xl leading-relaxed">
-              APIGUARD is a brutalist control plane for API security,
-              observability, mocking and load — wired straight into your repo,
-              your CI, and your conscience.
+          <div className="mt-10 flex flex-col items-center justify-center">
+            <p className="text-muted-foreground text-lg md:text-xl max-w-2xl leading-relaxed text-center mb-10">
+              APIGUARD is the ultimate control plane for API security,
+              observability, mocking, and load testing — wired directly into your repository and CI pipeline.
             </p>
-            <div className="font-mono text-xs text-bone/50 grid grid-cols-3 gap-4 border-t border-border pt-4">
-              <div>
-                <div className="text-acid text-2xl font-display">12.4k</div>
-                endpoints scanned
+            <div className="font-display text-sm font-medium text-muted-foreground grid grid-cols-3 gap-8 md:gap-16 pt-8 border-t border-border/50">
+              <div className="text-center">
+                <div className="text-foreground text-3xl font-bold mb-1">12.4k</div>
+                Endpoints Scanned
               </div>
-              <div>
-                <div className="text-signal text-2xl font-display">3.1M</div>
-                requests/min
+              <div className="text-center">
+                <div className="text-foreground text-3xl font-bold mb-1">3.1M</div>
+                Requests/Min
               </div>
-              <div>
-                <div className="text-warn text-2xl font-display">99.99%</div>
-                uptime sla
+              <div className="text-center">
+                <div className="text-foreground text-3xl font-bold mb-1">99.99%</div>
+                Uptime SLA
               </div>
             </div>
           </div>
         </motion.div>
 
         {/* Floating cube */}
-        <div className="absolute right-[6%] top-[28%] hidden lg:block">
+        <div className="absolute right-[10%] top-[20%] hidden xl:block opacity-60">
           <CubeHero />
         </div>
 
         {/* Marquee strip */}
-        <div className="absolute bottom-0 inset-x-0 border-t border-border bg-background/40 backdrop-blur-xl overflow-hidden">
-          <div className="flex marquee-track whitespace-nowrap py-3 font-mono text-sm uppercase">
+        <div className="absolute bottom-0 inset-x-0 border-t border-border bg-card/50 backdrop-blur-md overflow-hidden py-4">
+          <div className="flex marquee-track whitespace-nowrap font-display font-medium text-sm text-muted-foreground uppercase tracking-widest">
             {Array.from({ length: 2 }).map((_, k) => (
               <div key={k} className="flex shrink-0">
                 {[
-                  "scan",
-                  "diff",
-                  "mock",
-                  "monitor",
-                  "load·test",
-                  "auto·doc",
-                  "openapi",
-                  "postman",
-                  "jenkins",
-                  "github·actions",
-                  "ci/cd",
-                  "owasp·top10",
+                  "Scan",
+                  "Diff",
+                  "Mock",
+                  "Monitor",
+                  "Load Test",
+                  "Auto Doc",
+                  "OpenAPI",
+                  "Postman",
+                  "Jenkins",
+                  "GitHub Actions",
+                  "CI/CD",
+                  "OWASP Top-10",
                 ].map((w) => (
                   <span
                     key={w + k}
-                    className="px-8 flex items-center gap-8 text-bone/60"
+                    className="px-8 flex items-center gap-8 text-foreground/70"
                   >
-                    {w} <span className="text-acid">◇</span>
+                    {w} <span className="text-acid/40">•</span>
                   </span>
                 ))}
               </div>
@@ -224,11 +209,11 @@ function Index() {
       </section>
 
       {/* DASHBOARD MOCK */}
-      <section id="scan" className="relative px-6 py-32 max-w-[1400px] mx-auto">
+      <section id="scan" className="relative px-6 py-24 max-w-[1400px] mx-auto">
         <SectionHead
-          n="00"
-          label="control.plane"
-          title="A dashboard that talks back."
+          n="01"
+          label="Control Plane"
+          title="A Dashboard that Talks Back"
         />
         <DashboardMock />
       </section>
@@ -236,48 +221,48 @@ function Index() {
       {/* CORE FEATURES BENTO */}
       <section
         id="modules"
-        className="relative px-6 py-32 max-w-[1400px] mx-auto"
+        className="relative px-6 py-24 bg-secondary/30"
       >
-        <SectionHead
-          n="01"
-          label="core.modules"
-          title="Six instruments. One console."
-        />
-        <div
-          className="grid md:grid-cols-3 gap-4 mt-12"
-          style={{ perspective: 1500 }}
-        >
-          {CORE.map((f) => (
-            <TiltCard key={f.code} className="group">
-              <Link
-                to="/module/$slug"
-                params={{ slug: f.slug }}
-                className="relative block border border-border bg-card/40 backdrop-blur-xl p-8 h-[280px] overflow-hidden hover:border-acid transition-colors shadow-sm"
-              >
-                <div className="absolute top-0 right-0 text-[8rem] leading-none text-bone/10 font-display font-bold">
-                  {f.code}
-                </div>
-                <div className="relative flex flex-col justify-between h-full">
-                  <div className="flex items-center justify-between font-mono text-xs text-bone/60">
-                    <span>MOD.{f.code}</span>
-                    <span className="text-acid text-xl">{f.glyph}</span>
+        <div className="max-w-[1400px] mx-auto">
+          <SectionHead
+            n="02"
+            label="Core Modules"
+            title="Six Instruments. One Console."
+          />
+          <div
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12"
+          >
+            {CORE.map((f) => (
+              <TiltCard key={f.code} className="group">
+                <Link
+                  to="/module/$slug"
+                  params={{ slug: f.slug }}
+                  className="relative block border border-border bg-card shadow-sm hover:shadow-lg rounded-2xl p-8 h-[280px] overflow-hidden transition-all duration-300"
+                >
+                  <div className="absolute top-4 right-6 text-6xl leading-none text-muted-foreground/10 font-display font-bold transition-transform group-hover:scale-110 group-hover:-translate-y-2">
+                    {f.code}
                   </div>
-                  <div>
-                    <h3 className="font-display text-2xl uppercase tracking-tight mb-2 group-hover:text-acid transition-colors">
-                      {f.title}
-                    </h3>
-                    <p className="text-bone/60 text-sm leading-relaxed">
-                      {f.desc}
-                    </p>
+                  <div className="relative flex flex-col justify-between h-full">
+                    <div className="flex items-center justify-between font-mono text-xs text-muted-foreground">
+                      <span className="bg-secondary px-2 py-1 rounded">Mod.{f.code}</span>
+                      <span className="text-acid text-2xl drop-shadow-sm">{f.glyph}</span>
+                    </div>
+                    <div className="mt-4">
+                      <h3 className="font-display text-2xl font-bold tracking-tight mb-3 text-foreground group-hover:text-acid transition-colors">
+                        {f.title}
+                      </h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">
+                        {f.desc}
+                      </p>
+                    </div>
+                    <div className="mt-auto font-display font-medium text-xs text-acid flex items-center gap-2">
+                      <span className="group-hover:translate-x-1 transition-transform">Explore Module →</span>
+                    </div>
                   </div>
-                  <div className="font-mono text-[10px] text-acid/70 flex items-center gap-2">
-                    <div className="h-px flex-1 bg-acid/30" />
-                    <span>OPEN →</span>
-                  </div>
-                </div>
-              </Link>
-            </TiltCard>
-          ))}
+                </Link>
+              </TiltCard>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -296,55 +281,53 @@ function Index() {
       </section>
 
       {/* LOAD TEST */}
-      <section id="load" className="relative px-6 py-32 max-w-[1400px] mx-auto">
+      <section id="load" className="relative px-6 py-24 max-w-[1400px] mx-auto bg-background">
         <SectionHead
           n="03"
-          label="load.simulation"
+          label="Load Simulation"
           title="Punch your API. See what breaks."
         />
-        <div className="grid md:grid-cols-3 gap-6 mt-12">
+        <div className="grid md:grid-cols-3 gap-8 mt-16">
           {LOAD_TIERS.map((t, i) => (
             <motion.div
               key={t.users}
-              initial={{ opacity: 0, y: 60, rotateX: -15 }}
-              whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+              initial={{ opacity: 0, y: 60 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.7, delay: i * 0.12 }}
-              className="relative border-2 p-8 aspect-[3/4] flex flex-col justify-between overflow-hidden bg-card/30 backdrop-blur-xl"
+              className="relative border border-border/40 p-10 flex flex-col justify-between overflow-hidden bg-card shadow-lg rounded-3xl group hover:-translate-y-2 transition-transform duration-300"
               style={{
-                borderColor: t.color,
-                background: `radial-gradient(circle at top right, color-mix(in oklab, ${t.color} 15%, transparent), transparent 60%)`,
+                background: `radial-gradient(circle at top right, color-mix(in oklab, ${t.color} 5%, transparent), transparent 70%), var(--card)`,
               }}
             >
               <div
-                className="font-mono text-xs uppercase"
+                className="font-display font-bold text-sm tracking-widest uppercase mb-8"
                 style={{ color: t.color }}
               >
-                TIER {String(i + 1).padStart(2, "0")}
+                Tier {String(i + 1).padStart(2, "0")}
               </div>
-              <div>
+              <div className="mb-12">
                 <div
-                  className="font-display text-[6rem] leading-none tracking-tighter"
-                  style={{ color: t.color }}
+                  className="font-display font-bold text-6xl md:text-7xl tracking-tighter text-foreground mb-2"
                 >
                   {t.users}
                 </div>
-                <div className="text-bone/60 uppercase tracking-widest text-xs mt-2">
-                  concurrent users
+                <div className="text-muted-foreground font-medium uppercase tracking-widest text-xs">
+                  Concurrent Users
                 </div>
               </div>
-              <div className="space-y-2 font-mono text-xs text-bone/60">
-                <div className="flex justify-between">
-                  <span>scenario</span>
-                  <span className="text-bone">{t.note}</span>
+              <div className="space-y-4 font-medium text-sm text-muted-foreground">
+                <div className="flex justify-between items-center border-b border-border/40 pb-2">
+                  <span>Scenario</span>
+                  <span className="text-foreground">{t.note}</span>
                 </div>
-                <div className="flex justify-between">
-                  <span>duration</span>
-                  <span className="text-bone">5m / 15m / 1h</span>
+                <div className="flex justify-between items-center border-b border-border/40 pb-2">
+                  <span>Duration</span>
+                  <span className="text-foreground">5m / 15m / 1h</span>
                 </div>
-                <div className="h-1 bg-bone/10 mt-3">
+                <div className="h-2 bg-secondary rounded-full mt-6 overflow-hidden">
                   <motion.div
-                    className="h-full"
+                    className="h-full rounded-full"
                     style={{ background: t.color }}
                     initial={{ width: 0 }}
                     whileInView={{ width: `${30 + i * 30}%` }}
@@ -361,38 +344,38 @@ function Index() {
       {/* CHANGE RADAR */}
       <section
         id="changes"
-        className="relative px-6 py-32 max-w-[1400px] mx-auto"
+        className="relative px-6 py-24 max-w-[1400px] mx-auto"
       >
         <SectionHead
           n="04"
-          label="diff.radar"
-          title="The world's most paranoid changelog."
+          label="Diff Radar"
+          title="The World's Most Paranoid Changelog"
         />
-        <div className="mt-12 border border-border bg-card/40 backdrop-blur-xl">
-          <div className="grid grid-cols-[100px_1fr_120px] gap-4 px-6 py-3 border-b border-border font-mono text-[10px] text-bone/40 uppercase tracking-widest">
-            <span>event</span>
-            <span>endpoint</span>
-            <span className="text-right">timestamp</span>
+        <div className="mt-12 border border-border bg-card shadow-md rounded-2xl overflow-hidden">
+          <div className="grid grid-cols-[120px_1fr_120px] gap-4 px-8 py-4 border-b border-border bg-secondary/30 font-display font-semibold text-xs text-muted-foreground uppercase tracking-widest">
+            <span>Event</span>
+            <span>Endpoint</span>
+            <span className="text-right">Timestamp</span>
           </div>
           {CHANGES.map((c, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, x: -40 }}
+              initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
-              className="grid grid-cols-[100px_1fr_120px] gap-4 px-6 py-5 border-b border-border/50 hover:bg-bone/[0.02] items-center group"
+              transition={{ delay: i * 0.05 }}
+              className="grid grid-cols-[120px_1fr_120px] gap-4 px-8 py-6 border-b border-border hover:bg-secondary/20 transition-colors items-center group"
             >
               <span
-                className="font-mono text-[11px] font-bold tracking-wider"
-                style={{ color: c.tone }}
+                className="font-display text-xs font-bold tracking-wider uppercase px-2 py-1 rounded bg-secondary inline-block text-center w-fit"
+                style={{ color: c.tone, backgroundColor: `color-mix(in oklab, ${c.tone} 10%, transparent)` }}
               >
                 {c.kind}
               </span>
-              <span className="font-mono text-sm text-bone group-hover:text-acid transition-colors">
+              <span className="font-mono text-sm text-foreground group-hover:text-acid transition-colors font-medium">
                 {c.path}
               </span>
-              <span className="font-mono text-xs text-bone/40 text-right">
+              <span className="font-display font-medium text-xs text-muted-foreground text-right">
                 {c.t}
               </span>
             </motion.div>
@@ -401,13 +384,13 @@ function Index() {
       </section>
 
       {/* INTEGRATIONS RAIL */}
-      <section className="relative py-24 border-y border-border overflow-hidden">
-        <div className="px-6 max-w-[1400px] mx-auto mb-12">
-          <div className="font-mono text-xs text-bone/40 uppercase tracking-widest">
-            // connected to your stack
+      <section className="relative py-24 bg-secondary/20 border-y border-border overflow-hidden">
+        <div className="px-6 max-w-[1400px] mx-auto mb-12 flex justify-center">
+          <div className="font-display font-semibold text-sm text-acid bg-acid/10 px-4 py-1 rounded-full uppercase tracking-widest">
+            Connected to your stack
           </div>
         </div>
-        <div className="flex marquee-track gap-16 font-display text-5xl md:text-7xl uppercase whitespace-nowrap">
+        <div className="flex marquee-track gap-16 font-display font-bold text-6xl md:text-8xl text-muted-foreground/30 whitespace-nowrap">
           {Array.from({ length: 2 }).map((_, k) =>
             [
               "GitHub",
@@ -439,9 +422,9 @@ function Index() {
                 <button
                   key={b + k}
                   onClick={() => clickable && setModal(kindMap[b])}
-                  className={`text-bone/20 hover:text-acid transition-colors flex items-center gap-16 bg-transparent border-none p-0 m-0 font-display ${clickable ? "cursor-pointer" : "cursor-default"}`}
+                  className={`hover:text-acid transition-colors flex items-center gap-16 bg-transparent border-none p-0 m-0 font-display ${clickable ? "cursor-pointer" : "cursor-default"}`}
                 >
-                  {b} <span className="text-acid/40">/</span>
+                  {b} <span className="text-acid/20">•</span>
                 </button>
               );
             }),
@@ -452,41 +435,43 @@ function Index() {
       {/* CTA */}
       <section className="relative px-6 py-40 max-w-[1400px] mx-auto text-center">
         <motion.h2
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="font-display text-[clamp(3rem,10vw,9rem)] leading-[0.85] uppercase tracking-tight"
+          className="font-display font-bold text-[clamp(2.5rem,8vw,7rem)] leading-[1.05] tracking-tight text-foreground"
         >
           Ship
           <br />
-          <span className="text-acid italic font-serif lowercase">without</span>
+          <span className="text-acid">without</span>
           <br />
-          <span className="text-stroke">flinching.</span>
+          flinching.
         </motion.h2>
-        <div className="mt-12 flex flex-wrap justify-center gap-4">
+        <div className="mt-16 flex flex-wrap justify-center gap-4">
           <button
             onClick={() => setModal("scan")}
-            className="bg-acid text-ink px-8 py-4 font-mono text-sm uppercase tracking-widest hover:bg-bone transition"
+            className="bg-acid text-ink px-8 py-4 font-display font-semibold text-lg rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all"
           >
-            start.scan()
+            Start Scan
           </button>
           <button
             onClick={() => setModal("demo")}
-            className="border border-bone/40 text-bone px-8 py-4 font-mono text-sm uppercase tracking-widest hover:border-acid hover:text-acid transition"
+            className="bg-card border border-border text-foreground px-8 py-4 font-display font-semibold text-lg rounded-full shadow-sm hover:border-acid hover:text-acid transition-all"
           >
-            book.demo()
+            Book Demo
           </button>
         </div>
       </section>
 
-      <footer className="border-t border-border px-6 py-8 font-mono text-xs text-bone/40 flex flex-wrap items-center justify-between gap-4 bg-background/40 backdrop-blur-xl">
-        <div>APIGUARD // api.os · built for engineers who don't sleep</div>
-        <div className="flex gap-6">
-          <span>
-            status: <span className="text-acid">operational</span>
+      <footer className="border-t border-border px-8 py-10 font-display font-medium text-sm text-muted-foreground flex flex-col md:flex-row items-center justify-between gap-4 bg-background">
+        <div className="flex items-center gap-2">
+          <span className="font-bold text-foreground">APIGUARD // api.os</span> · Built for modern engineering teams.
+        </div>
+        <div className="flex flex-wrap gap-6 items-center">
+          <span className="flex items-center gap-2 bg-secondary px-3 py-1 rounded-full text-xs">
+            Status: <span className="text-acid font-bold flex items-center gap-1.5"><span className="size-1.5 bg-acid rounded-full animate-pulse"/> Operational</span>
           </span>
-          <span>region: global·edge</span>
+          <span>Region: Global Edge</span>
           <span>© 2026</span>
         </div>
       </footer>
@@ -537,10 +522,10 @@ function SideNav() {
           aria-label={l.id}
         >
           <div
-            className={`w-0.5 transition-all duration-300 ${active === l.id ? "h-8 bg-acid" : "h-3 bg-bone/20 group-hover:bg-bone/60"}`}
+            className={`w-0.5 transition-all duration-300 ${active === l.id ? "h-8 bg-acid" : "h-3 bg-muted-foreground/30 group-hover:bg-muted-foreground"}`}
           />
           <span
-            className={`font-mono text-[9px] uppercase tracking-widest transition-opacity duration-300 ${active === l.id ? "opacity-100 text-acid" : "opacity-0 group-hover:opacity-50 text-bone"}`}
+            className={`font-display font-semibold text-[10px] uppercase tracking-widest transition-opacity duration-300 ${active === l.id ? "opacity-100 text-acid" : "opacity-0 group-hover:opacity-100 text-muted-foreground"}`}
           >
             {l.id}
           </span>
@@ -839,17 +824,17 @@ function SectionHead({
   title: string;
 }) {
   return (
-    <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-border pb-8">
+    <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-border/60 pb-6">
       <div>
-        <div className="font-mono text-xs text-acid uppercase tracking-widest mb-3">
-          [ {n} ] {label}
+        <div className="font-display font-semibold text-sm text-acid tracking-wide mb-2">
+          {n} — {label}
         </div>
-        <h2 className="font-display text-4xl md:text-6xl uppercase tracking-tight max-w-3xl">
+        <h2 className="font-display text-3xl md:text-5xl font-bold tracking-tight max-w-2xl text-foreground">
           {title}
         </h2>
       </div>
-      <div className="font-mono text-[10px] text-bone/40 uppercase">
-        scroll·to·engage ↓
+      <div className="font-medium text-xs text-muted-foreground uppercase tracking-wider hidden md:block">
+        Scroll to Explore
       </div>
     </div>
   );
@@ -863,49 +848,49 @@ function DashboardMock() {
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 1 }}
       style={{ transformPerspective: 1400 }}
-      className="mt-12 border border-border bg-card/40 backdrop-blur-xl overflow-hidden"
+      className="mt-12 border border-border/60 bg-card shadow-xl rounded-2xl overflow-hidden"
     >
-      <div className="flex items-center justify-between border-b border-border px-4 py-2 font-mono text-[10px] text-bone/50 uppercase">
-        <div className="flex gap-1.5">
-          <span className="size-2.5 rounded-full bg-destructive/70" />
-          <span className="size-2.5 rounded-full bg-warn/70" />
-          <span className="size-2.5 rounded-full bg-acid/70" />
+      <div className="flex items-center justify-between border-b border-border/60 bg-secondary/50 px-6 py-3 font-display font-medium text-xs text-muted-foreground uppercase tracking-wider">
+        <div className="flex gap-2">
+          <span className="size-3 rounded-full bg-destructive/70" />
+          <span className="size-3 rounded-full bg-warn/70" />
+          <span className="size-3 rounded-full bg-acid/70" />
         </div>
-        <span>~/apiguard/dashboard · prod</span>
-        <span className="text-acid">LIVE</span>
+        <span>Production Dashboard</span>
+        <span className="text-acid font-bold flex items-center gap-1.5"><span className="size-2 bg-acid rounded-full animate-pulse"/> LIVE</span>
       </div>
-      <div className="grid md:grid-cols-[1fr_2fr_1fr] gap-px bg-border">
+      <div className="grid md:grid-cols-[1fr_2fr_1fr] gap-px bg-border/40">
         {/* left rail: scan history */}
-        <div className="bg-card/30 backdrop-blur-md p-5 space-y-3">
-          <div className="font-mono text-[10px] text-bone/40 uppercase">
-            scan.history
+        <div className="bg-card p-6 space-y-4">
+          <div className="font-display font-semibold text-xs text-muted-foreground uppercase tracking-widest">
+            Scan History
           </div>
           {["#4192", "#4191", "#4190", "#4189", "#4188", "#4187"].map(
             (id, i) => (
               <div
                 key={id}
-                className="flex items-center justify-between text-xs font-mono border-l-2 pl-3 py-2"
+                className="flex items-center justify-between text-sm font-mono border-l-4 pl-4 py-2 rounded-r-md bg-secondary/20"
                 style={{
                   borderColor: i === 0 ? "var(--acid)" : "var(--border)",
                 }}
               >
-                <span className="text-bone/80">{id}</span>
-                <span className={i === 0 ? "text-acid" : "text-bone/40"}>
-                  {i === 0 ? "running" : `${94 - i}/100`}
+                <span className="text-foreground font-medium">{id}</span>
+                <span className={i === 0 ? "text-acid font-bold" : "text-muted-foreground"}>
+                  {i === 0 ? "Running" : `${94 - i}/100`}
                 </span>
               </div>
             ),
           )}
         </div>
         {/* center: security score + chart */}
-        <div className="bg-card/30 backdrop-blur-md p-8 relative">
-          <div className="font-mono text-[10px] text-bone/40 uppercase mb-4">
-            security.score · last 30d
+        <div className="bg-card p-8 relative">
+          <div className="font-display font-semibold text-xs text-muted-foreground uppercase tracking-widest mb-6">
+            Security Score · Last 30d
           </div>
-          <div className="flex items-baseline gap-4 mb-6">
-            <div className="font-display text-7xl text-acid">94</div>
-            <div className="text-bone/50 text-sm font-mono">
-              / 100 · ↑ 6 this week
+          <div className="flex items-baseline gap-4 mb-8">
+            <div className="font-display font-bold text-7xl text-foreground">94</div>
+            <div className="text-muted-foreground font-medium">
+              / 100 · <span className="text-acid">↑ 6 this week</span>
             </div>
           </div>
           {/* sparkline */}
@@ -934,18 +919,18 @@ function DashboardMock() {
               transition={{ duration: 1.6, ease: "easeInOut" }}
             />
           </svg>
-          <div className="grid grid-cols-4 gap-3 mt-6">
+          <div className="grid grid-cols-4 gap-4 mt-8">
             {[
-              { l: "critical", v: 0, c: "var(--destructive)" },
-              { l: "high", v: 2, c: "var(--signal)" },
-              { l: "medium", v: 7, c: "var(--warn)" },
-              { l: "low", v: 14, c: "var(--acid)" },
+              { l: "Critical", v: 0, c: "var(--destructive)" },
+              { l: "High", v: 2, c: "var(--signal)" },
+              { l: "Medium", v: 7, c: "var(--warn)" },
+              { l: "Low", v: 14, c: "var(--acid)" },
             ].map((v) => (
-              <div key={v.l} className="border border-border p-3">
-                <div className="font-display text-2xl" style={{ color: v.c }}>
+              <div key={v.l} className="border border-border/60 bg-background/50 rounded-xl p-4 text-center shadow-sm">
+                <div className="font-display font-bold text-3xl mb-1" style={{ color: v.c }}>
                   {v.v}
                 </div>
-                <div className="font-mono text-[10px] text-bone/40 uppercase">
+                <div className="font-display font-medium text-xs text-muted-foreground uppercase tracking-widest">
                   {v.l}
                 </div>
               </div>
@@ -953,9 +938,9 @@ function DashboardMock() {
           </div>
         </div>
         {/* right: health pulse */}
-        <div className="bg-card/30 backdrop-blur-md p-5 space-y-4">
-          <div className="font-mono text-[10px] text-bone/40 uppercase">
-            health.pulse
+        <div className="bg-card p-6 space-y-5">
+          <div className="font-display font-semibold text-xs text-muted-foreground uppercase tracking-widest mb-2">
+            Health Pulse
           </div>
           {[
             { n: "auth-svc", v: 99.99, ms: 42 },
@@ -963,22 +948,22 @@ function DashboardMock() {
             { n: "search", v: 98.4, ms: 312 },
             { n: "feed", v: 99.97, ms: 67 },
           ].map((s) => (
-            <div key={s.n} className="space-y-1">
-              <div className="flex justify-between font-mono text-xs">
-                <span className="text-bone/80">{s.n}</span>
-                <span className="text-acid">{s.v}%</span>
+            <div key={s.n} className="space-y-2">
+              <div className="flex justify-between font-mono text-sm">
+                <span className="text-foreground font-medium">{s.n}</span>
+                <span className="text-acid font-bold">{s.v}%</span>
               </div>
-              <div className="h-1 bg-bone/10">
+              <div className="h-1.5 bg-secondary rounded-full overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}
                   whileInView={{ width: `${s.v}%` }}
                   viewport={{ once: true }}
                   transition={{ duration: 1.2 }}
-                  className="h-full bg-acid"
+                  className="h-full bg-acid rounded-full"
                 />
               </div>
-              <div className="font-mono text-[10px] text-bone/40">
-                p50 · {s.ms}ms
+              <div className="font-mono text-xs text-muted-foreground">
+                P50: {s.ms}ms
               </div>
             </div>
           ))}
@@ -1011,16 +996,16 @@ function AIPanel({
     <div ref={ref} className="sticky top-24 px-6 max-w-[1400px] mx-auto py-16">
       <motion.div
         style={{ x, rotate: rot }}
-        className="grid md:grid-cols-2 gap-8 items-center border border-border bg-card/80 backdrop-blur-xl p-10 md:p-16"
+        className="grid md:grid-cols-2 gap-12 items-center border border-border/50 bg-card shadow-xl rounded-3xl p-10 md:p-16"
       >
         <div>
-          <div className="font-mono text-xs text-signal uppercase tracking-widest mb-4">
-            [ {item.tag} ]
+          <div className="font-display font-bold text-sm text-signal uppercase tracking-widest mb-4 bg-signal/10 inline-block px-3 py-1 rounded-full">
+            {item.tag}
           </div>
-          <h3 className="font-display text-4xl md:text-6xl uppercase tracking-tight leading-[0.9] mb-6">
+          <h3 className="font-display text-4xl md:text-5xl font-bold tracking-tight leading-[1.1] mb-6 text-foreground">
             {item.title}
           </h3>
-          <p className="text-bone/60 text-lg leading-relaxed max-w-md">
+          <p className="text-muted-foreground text-lg leading-relaxed max-w-md">
             {item.body}
           </p>
           {(() => {
@@ -1033,36 +1018,35 @@ function AIPanel({
             return (
               <Link
                 to={to}
-                className="mt-8 inline-block font-mono text-xs text-acid uppercase tracking-widest border-b border-acid pb-1 hover:text-signal hover:border-signal transition"
+                className="mt-8 inline-flex items-center gap-2 bg-acid text-ink px-6 py-3 rounded-full font-display font-medium shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all"
               >
-                initiate →
+                Initiate Module →
               </Link>
             );
           })()}
         </div>
-        <div className="relative aspect-square border border-border bg-background p-6 overflow-hidden">
-          <div className="absolute inset-0 grid-bg opacity-40" />
-          <div className="relative font-mono text-xs space-y-2 text-bone/60">
-            <div className="text-acid">
+        <div className="relative aspect-square border border-border/60 bg-secondary rounded-2xl p-8 overflow-hidden shadow-inner flex items-center justify-center">
+          <div className="relative font-mono text-sm space-y-3 text-muted-foreground bg-card w-full h-full rounded-xl p-6 shadow-sm border border-border/50">
+            <div className="text-acid font-semibold">
               ▸ apiguard.{item.tag.toLowerCase().replace(".", "_")}()
             </div>
-            <div className="pl-4">
-              analyzing 247 endpoints<span className="cursor-blink">_</span>
+            <div className="pl-4 text-foreground">
+              Analyzing 247 endpoints<span className="cursor-blink">_</span>
             </div>
-            <div className="pl-4 text-bone/40">▪ parsing openapi.yaml</div>
-            <div className="pl-4 text-bone/40">▪ inferring contracts</div>
-            <div className="pl-4 text-bone/40">▪ generating output</div>
-            <div className="pl-4 text-acid">
-              ✓ complete · {18 + index * 11}.{index * 3}s
+            <div className="pl-4">▪ Parsing openapi.yaml</div>
+            <div className="pl-4">▪ Inferring contracts</div>
+            <div className="pl-4">▪ Generating output</div>
+            <div className="pl-4 text-acid font-medium mt-4">
+              ✓ Complete · {18 + index * 11}.{index * 3}s
             </div>
           </div>
           <motion.div
-            className="absolute -bottom-10 -right-10 size-40 rounded-full"
+            className="absolute -bottom-10 -right-10 size-64 rounded-full"
             style={{
               background: `radial-gradient(circle, var(--signal), transparent 70%)`,
-              opacity: 0.3,
+              opacity: 0.15,
             }}
-            animate={{ scale: [1, 1.3, 1] }}
+            animate={{ scale: [1, 1.2, 1] }}
             transition={{ duration: 4, repeat: Infinity }}
           />
         </div>
